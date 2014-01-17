@@ -7,7 +7,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleGetInfoString</key>
-	<string>$VERSION, Copyright © 2009-$YEAR The Bitcoin developers</string>
+	<string>$VERSION, Copyright © 2013-$YEAR The Unobtanium developers</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$VERSION</string>
 	<key>CFBundleVersion</key>
@@ -15,19 +15,19 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
-	<string>Bitcoin-Qt</string>
+	<string>Unobtanium-Qt</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.bitcoinfoundation.Bitcoin-Qt</string>
+	<string>io.unobtanium.Unobtanium-Qt</string>
         <key>CFBundleURLTypes</key>
         <array>
           <dict>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
             <key>CFBundleURLName</key>
-            <string>org.bitcoinfoundation.BitcoinPayment</string>
+            <string>iu.unobtanium.UnobtaniumPayment</string>
             <key>CFBundleURLSchemes</key>
             <array>
-              <string>bitcoin</string>
+              <string>unobtanium</string>
             </array>
           </dict>
         </array>
