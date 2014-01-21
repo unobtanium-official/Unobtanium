@@ -14,6 +14,7 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
     unitlist.append(BTC);
     unitlist.append(mBTC);
     unitlist.append(uBTC);
+    //unitlist.append(nBTC);
     return unitlist;
 }
 
@@ -24,6 +25,7 @@ bool BitcoinUnits::valid(int unit)
     case BTC:
     case mBTC:
     case uBTC:
+    //case nBTC:
         return true;
     default:
         return false;
@@ -34,9 +36,10 @@ QString BitcoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Un");
-    case mBTC: return QString("mUn");
-    case uBTC: return QString::fromUtf8("μUn");
+    case BTC: return QString("kg/Un");
+    case mBTC: return QString("gm/Un");
+    case uBTC: return QString::fromUtf8("mg/Un");
+    //case nBTC: return QString::fromUtf8("ng/Un"); //single units of Un are 'nanograms'
     default: return QString("???");
     }
 }
@@ -45,9 +48,10 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Unobtanium");
-    case mBTC: return QString("MilliUnobtanium (1 / 1,000)");
-    case uBTC: return QString("MicroUnobtanium (1 / 1,000,000)");
+    case BTC: return QString("Kilogramweight Unobtanium (1 : 1)");
+    case mBTC: return QString("Gramweight Unobtanium (1 / 1,000)");
+    case uBTC: return QString("Milligramweight Unobtanium (1 / 1,000,000)");
+    //case nBTC: return QString("Nanogramweight Unobtanium (1 / 1,000,000,000) STILL IN RESEARCH PHASE");
     default: return QString("???");
     }
 }
@@ -59,9 +63,26 @@ qint64 BitcoinUnits::factor(int unit)
     case BTC:  return 100000000;
     case mBTC: return 100000;
     case uBTC: return 100;
+    //case nBTC: return 1;
     default:   return 100000000;
     }
 }
+/*
+//foundational work for the decimal addition, will be a hard-fork in a later release
+qint64 BitcoinUnits::factor(int unit, int nHeight)
+if (nHeight > )
+{
+    switch(unit)
+    {
+    case BTC:  return 100000000;
+    case mBTC: return 100000;
+    case uBTC: return 100;
+    case nBTC: return 1;
+    default:   return 100000000;
+    
+    }
+}
+*/
 
 qint64 BitcoinUnits::maxAmount(int unit)
 {
@@ -70,6 +91,7 @@ qint64 BitcoinUnits::maxAmount(int unit)
     case BTC:  return Q_INT64_C(21000000);
     case mBTC: return Q_INT64_C(21000000000);
     case uBTC: return Q_INT64_C(21000000000000);
+    //case nBTC: return Q_INT64_C(21000000000000);
     default:   return 0;
     }
 }
@@ -81,6 +103,7 @@ int BitcoinUnits::amountDigits(int unit)
     case BTC: return 8; // 21,000,000 (# digits, without commas)
     case mBTC: return 11; // 21,000,000,000
     case uBTC: return 14; // 21,000,000,000,000
+    //case nBTC: return 14; // 21,000,000,000,000
     default: return 0;
     }
 }
@@ -92,9 +115,26 @@ int BitcoinUnits::decimals(int unit)
     case BTC: return 8;
     case mBTC: return 5;
     case uBTC: return 2;
+    //case nBTC: return 0;
     default: return 0;
     }
 }
+
+/*
+//foundational work for the decimal addition, will be a hard-fork in a later release
+int BitcoinUnits::decimals(int unit, int nHeight)
+if (nHeight > )
+{
+    switch(unit)
+    {
+    case BTC: return 9;
+    case mBTC: return 6;
+    case uBTC: return 3;
+    case nBTC: return 0;
+    default: return 0;
+    }
+}
+*/
 
 QString BitcoinUnits::format(int unit, qint64 n, bool fPlus)
 {
@@ -110,7 +150,7 @@ QString BitcoinUnits::format(int unit, qint64 n, bool fPlus)
     QString quotient_str = QString::number(quotient);
     QString remainder_str = QString::number(remainder).rightJustified(num_decimals, '0');
 
-    // Right-trim excess zeros after the decimal point
+     //Right-trim excess zeros after the decimal point
     int nTrim = 0;
     for (int i = remainder_str.size()-1; i>=2 && (remainder_str.at(i) == '0'); --i)
         ++nTrim;
@@ -120,7 +160,7 @@ QString BitcoinUnits::format(int unit, qint64 n, bool fPlus)
         quotient_str.insert(0, '-');
     else if (fPlus && n > 0)
         quotient_str.insert(0, '+');
-    return quotient_str + QString(".") + remainder_str;
+    return quotient_str + QString(".") + remainder_str + QString("0"); //adding additional '0' as spacer for implementing additional decimals
 }
 
 QString BitcoinUnits::formatWithUnit(int unit, qint64 amount, bool plussign)

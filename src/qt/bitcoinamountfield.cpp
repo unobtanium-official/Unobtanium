@@ -15,7 +15,7 @@ BitcoinAmountField::BitcoinAmountField(QWidget *parent):
 {
     amount = new QDoubleSpinBox(this);
     amount->setLocale(QLocale::c());
-    amount->setDecimals(8);
+    amount->setDecimals(9);
     amount->installEventFilter(this);
     amount->setMaximumWidth(170);
     amount->setSingleStep(0.001);
