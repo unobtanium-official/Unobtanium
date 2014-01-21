@@ -67,7 +67,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
         vSeeds.push_back(CDNSSeedData("andarazoroflove.org", "andarazoroflove.org"));
-
+        vSeeds.push_back(CDNSSeedData("rockchain.info", "rockchain.info"));
 
         base58Prefixes[PUBKEY_ADDRESS] = 130;
         base58Prefixes[SCRIPT_ADDRESS] = 30;

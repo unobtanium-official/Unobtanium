@@ -1,0 +1,28 @@
+--- a/unobtanium.pro
++++ b/unobtanium.pro
+@@ -2,7 +2,8 @@ TEMPLATE = app
+ TARGET = unobtanium-qt
+ macx:TARGET = "Unobtanium-Qt"
+ VERSION = 0.9.0
+-INCLUDEPATH += src src/json src/qt
++INCLUDEPATH += src src/json src/qt /usr/local/include /usr/local/Cellar/boost/1.55.0/include /usr/local/Cellar/berkeley-db4/4.8.30/include /usr/local/Cellar/openssl/1.0.1e/include
++LIBS += -L/usr/local/Cellar/boost/1.55.0/lib -L/usr/local/Cellar/berkeley-db4/4.8.30/lib -L/usr/local/Cellar/openssl/1.0.1e/lib
+ QT += core gui network
+ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+ DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6 BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
+@@ -32,9 +33,12 @@ UI_DIR = build
+ # use: qmake "RELEASE=1"
+ contains(RELEASE, 1) {
+     # Mac: compile for maximum compatibility (10.5, 32-bit)
+-    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
+-    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
+-    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.5 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk
++    
++    SDKDIR=`xcrun --sdk macosx --show-sdk-path`
++    
++    macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -isysroot $$SDKDIR
++    macx:QMAKE_CFLAGS += -mmacosx-version-min=10.7 -isysroot $$SDKDIR
++    macx:QMAKE_OBJECTIVE_CFLAGS += -mmacosx-version-min=10.7 -isysroot $$SDKDIR
+ 
+     !win32:!macx {
+         # Linux: static link and extra security (see: https://wiki.debian.org/Hardening)
