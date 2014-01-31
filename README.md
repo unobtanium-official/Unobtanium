@@ -1,8 +1,8 @@
-Unobtanium 0.9.0 [Un]
+Unobtanium 0.9.3 [Un]
 
 Proof of Work SHA256D Cryptocurrency based on Bitcoin 0.8.99
 
-3 Minute Block targets 
+1 Minute Block targets //revised as of this version 
 
 Fast, progressive (4 blocks over 80) difficulty adjustments of max 10% up/20% down
 
@@ -17,3 +17,6 @@ Minimum subsidy of .00001 coin after final halving at 612,000 Blocks
 RPC Port = 65535
 
 P2P Port = 65534
+
+QR Code Support
+
