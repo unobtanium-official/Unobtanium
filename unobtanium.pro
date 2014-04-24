@@ -1,7 +1,7 @@
 TEMPLATE = app
 TARGET = unobtanium-qt
 macx:TARGET = "Unobtanium-Qt"
-VERSION = 0.9.0
+VERSION = 0.9.4
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
