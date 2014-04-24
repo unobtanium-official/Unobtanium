@@ -1,0 +1,8 @@
+obj/chainparams.o: chainparams.cpp chainparams.h bignum.h util.h \
+ uint256.h netbase.h serialize.h allocators.h version.h clientversion.h \
+ compat.h core.h script.h keystore.h crypter.h key.h hash.h sync.h \
+ threadsafety.h protocol.h
+chainparams.cpp chainparams.h bignum.h util.h :
+ uint256.h netbase.h serialize.h allocators.h version.h clientversion.h :
+ compat.h core.h script.h keystore.h crypter.h key.h hash.h sync.h :
+ threadsafety.h protocol.h :

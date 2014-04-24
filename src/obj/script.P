@@ -1,0 +1,6 @@
+obj/script.o: script.cpp script.h keystore.h crypter.h allocators.h key.h \
+ serialize.h version.h clientversion.h uint256.h hash.h sync.h \
+ threadsafety.h bignum.h util.h netbase.h compat.h core.h
+script.cpp script.h keystore.h crypter.h allocators.h key.h :
+ serialize.h version.h clientversion.h uint256.h hash.h sync.h :
+ threadsafety.h bignum.h util.h netbase.h compat.h core.h :

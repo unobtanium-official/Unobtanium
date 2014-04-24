@@ -1,0 +1,24 @@
+obj/main.o: main.cpp alert.h uint256.h util.h netbase.h serialize.h \
+ allocators.h version.h clientversion.h compat.h checkpoints.h db.h \
+ sync.h threadsafety.h txdb.h main.h core.h script.h keystore.h crypter.h \
+ key.h hash.h bignum.h net.h mruset.h limitedmap.h protocol.h \
+ chainparams.h addrman.h bloom.h leveldb.h \
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/db.h \
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/iterator.h \
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/slice.h \
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/status.h \
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/options.h \
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/write_batch.h \
+ init.h wallet.h walletdb.h base58.h ui_interface.h checkqueue.h
+main.cpp alert.h uint256.h util.h netbase.h serialize.h :
+ allocators.h version.h clientversion.h compat.h checkpoints.h db.h :
+ sync.h threadsafety.h txdb.h main.h core.h script.h keystore.h crypter.h :
+ key.h hash.h bignum.h net.h mruset.h limitedmap.h protocol.h :
+ chainparams.h addrman.h bloom.h leveldb.h :
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/db.h :
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/iterator.h :
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/slice.h :
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/status.h :
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/options.h :
+ /home/prosperous/Downloads/Unobtanium-master/src/leveldb/include/leveldb/write_batch.h :
+ init.h wallet.h walletdb.h base58.h ui_interface.h checkqueue.h :

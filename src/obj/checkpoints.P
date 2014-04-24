@@ -1,0 +1,10 @@
+obj/checkpoints.o: checkpoints.cpp checkpoints.h main.h core.h uint256.h \
+ serialize.h allocators.h version.h clientversion.h script.h keystore.h \
+ crypter.h key.h hash.h sync.h threadsafety.h bignum.h util.h netbase.h \
+ compat.h net.h mruset.h limitedmap.h protocol.h chainparams.h addrman.h \
+ bloom.h
+checkpoints.cpp checkpoints.h main.h core.h uint256.h :
+ serialize.h allocators.h version.h clientversion.h script.h keystore.h :
+ crypter.h key.h hash.h sync.h threadsafety.h bignum.h util.h netbase.h :
+ compat.h net.h mruset.h limitedmap.h protocol.h chainparams.h addrman.h :
+ bloom.h :

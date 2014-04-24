@@ -1,0 +1,8 @@
+obj/net.o: net.cpp chainparams.h bignum.h util.h uint256.h netbase.h \
+ serialize.h allocators.h version.h clientversion.h compat.h db.h sync.h \
+ threadsafety.h net.h mruset.h limitedmap.h protocol.h addrman.h hash.h \
+ bloom.h core.h script.h keystore.h crypter.h key.h ui_interface.h
+net.cpp chainparams.h bignum.h util.h uint256.h netbase.h :
+ serialize.h allocators.h version.h clientversion.h compat.h db.h sync.h :
+ threadsafety.h net.h mruset.h limitedmap.h protocol.h addrman.h hash.h :
+ bloom.h core.h script.h keystore.h crypter.h key.h ui_interface.h :

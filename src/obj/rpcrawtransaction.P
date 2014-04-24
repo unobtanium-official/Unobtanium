@@ -1,0 +1,16 @@
+obj/rpcrawtransaction.o: rpcrawtransaction.cpp base58.h chainparams.h \
+ bignum.h util.h uint256.h netbase.h serialize.h allocators.h version.h \
+ clientversion.h compat.h key.h hash.h script.h keystore.h crypter.h \
+ sync.h threadsafety.h bitcoinrpc.h json/json_spirit_reader_template.h \
+ json/json_spirit_value.h json/json_spirit_error_position.h \
+ json/json_spirit_writer_template.h json/json_spirit_utils.h db.h init.h \
+ wallet.h walletdb.h main.h core.h net.h mruset.h limitedmap.h protocol.h \
+ addrman.h bloom.h ui_interface.h
+rpcrawtransaction.cpp base58.h chainparams.h :
+ bignum.h util.h uint256.h netbase.h serialize.h allocators.h version.h :
+ clientversion.h compat.h key.h hash.h script.h keystore.h crypter.h :
+ sync.h threadsafety.h bitcoinrpc.h json/json_spirit_reader_template.h :
+ json/json_spirit_value.h json/json_spirit_error_position.h :
+ json/json_spirit_writer_template.h json/json_spirit_utils.h db.h init.h :
+ wallet.h walletdb.h main.h core.h net.h mruset.h limitedmap.h protocol.h :
+ addrman.h bloom.h ui_interface.h :

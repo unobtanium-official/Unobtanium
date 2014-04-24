@@ -1,0 +1,10 @@
+obj/walletdb.o: walletdb.cpp walletdb.h db.h sync.h threadsafety.h \
+ serialize.h allocators.h version.h clientversion.h base58.h \
+ chainparams.h bignum.h util.h uint256.h netbase.h compat.h key.h hash.h \
+ script.h keystore.h crypter.h wallet.h main.h core.h net.h mruset.h \
+ limitedmap.h protocol.h addrman.h bloom.h ui_interface.h
+walletdb.cpp walletdb.h db.h sync.h threadsafety.h :
+ serialize.h allocators.h version.h clientversion.h base58.h :
+ chainparams.h bignum.h util.h uint256.h netbase.h compat.h key.h hash.h :
+ script.h keystore.h crypter.h wallet.h main.h core.h net.h mruset.h :
+ limitedmap.h protocol.h addrman.h bloom.h ui_interface.h :

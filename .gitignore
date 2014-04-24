@@ -1,6 +1,0 @@
-.DS_Store
-dist/
-build/
-Makefile
-src/unobtaniumd
-mac_build_qt_helper.sh
