@@ -107,7 +107,23 @@
         <cursorShape>IBeamCursor</cursorShape>
        </property>
        <property name="text">
-        <string notr="true">Copyright &amp;copy; 2013 The Unobtanium Consortium</string>
+        <string notr="true">Copyright &amp;copy; 2013 -2014  The Unobtanium Consortium/SherlockCoin Developers</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+       </property>
+      </widget>
+     </item>
+	 <item>
+      <widget class="QLabel" name="copyrightLabel3">
+       <property name="cursor">
+        <cursorShape>IBeamCursor</cursorShape>
+       </property>
+       <property name="text">
+        <string notr="true">Copyright &amp;copy; 2014 - 2015 Soopy's Stargate Key (Anti-TimeWrap Technologies)</string>
        </property>
        <property name="textFormat">
         <enum>Qt::RichText</enum>
