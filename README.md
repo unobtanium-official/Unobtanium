@@ -1,8 +1,10 @@
-Unobtanium 0.9.3 [Un]
+Unobtanium 0.9.5 [Un]
 
 Proof of Work SHA256D Cryptocurrency based on Bitcoin 0.8.99
 
-1 Minute Block targets //revised as of this version 
+3 Minute Block targets //restored as of this version 
+
+KGW added.
 
 Fast, progressive (4 blocks over 80) difficulty adjustments of max 10% up/20% down
 
