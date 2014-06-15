@@ -66,8 +66,12 @@ public:
         assert(hashGenesisBlock == uint256("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
         assert(genesis.hashMerkleRoot == uint256("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
-        vSeeds.push_back(CDNSSeedData("unobtanium.no-ip.biz", "unobtanium.no-ip.biz"));
-        vSeeds.push_back(CDNSSeedData("rockchain.info", "rockchain.info"));
+        vSeeds.push_back(CDNSSeedData("162.243.74.171", "162.243.74.171"));
+        vSeeds.push_back(CDNSSeedData("188.165.138.47", "188.165.138.47"));
+        vSeeds.push_back(CDNSSeedData("50.17.203.75","50.17.203.75"));
+        vSeeds.push_back(CDNSSeedData("162.243.74.171","162.243.74.171"));
+        
+        
 
         base58Prefixes[PUBKEY_ADDRESS] = 130;
         base58Prefixes[SCRIPT_ADDRESS] = 30;
