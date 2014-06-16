@@ -2,10 +2,11 @@
 # Distributed under the MIT/X11 software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-DEPSDIR:=/usr/i686-mingw32msvc
+DEPSDIR:=/usr/i686-w64-mingw32
 
-CC := i686-mingw32msvc-gcc
-CXX := i686-mingw32msvc-g++
+CC := i686-w64-mingw32-gcc
+CXX := i686-w64-mingw32-g++
+
 
 USE_UPNP:=0
 USE_IPV6:=1
