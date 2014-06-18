@@ -28,10 +28,7 @@ extern const std::string CLIENT_DATE;
 static const int PROTOCOL_VERSION = 70001;
 
 // earlier versions not supported as of March 2014, and are disconnected
-// Seed nodes will accept version 209 for version switchover.
-// All clients will from now on require minimum 70000 - BAW20140618
-//static const int MIN_PROTO_VERSION = 209;
-static const int MIN_PROTO_VERSION = 70000;
+static const int MIN_PROTO_VERSION = 209;
 
 // nTime field added to CAddress, starting with this version;
 // if possible, avoid requesting addresses nodes older than this
