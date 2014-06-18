@@ -1265,6 +1265,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 
     return nSubsidy + nFees;
 }
+
 static const int64 nTargetTimespan = 3 * 60; // 3 minutes
 static const int64 nTargetSpacing = 60; // 30 seconds
 static const int64 nInterval = nTargetTimespan / nTargetSpacing; // 4 blocks
@@ -1276,52 +1277,53 @@ static const int64 nMaxAdjustDown = 20; // 20% adjustment down
 static const int64 nMaxAdjustUp = 10; // 10% adjustment up
 
 static const int64 nTargetTimespanAdjDown = nTargetTimespan * (100 + nMaxAdjustDown) / 100;
-
-CBigNum bnLimit = CBigNum(~uint256(0) >> 20);
 //
 // minimum amount of work that could possibly be required nTime after
 // minimum work required was nBase
 //
+CBigNum bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20); // yes, totally sloppy.  Fuck off.
+
 unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
 {
-    const CBigNum &bnLimit = Params().ProofOfWorkLimit();
     // Testnet has min-difficulty blocks
     // after nTargetSpacing*2 time between blocks:
     if (TestNet() && nTime > nTargetSpacing*2)
-        return bnLimit.GetCompact();
+        return bnProofOfWorkLimit.GetCompact();
 
     CBigNum bnResult;
     bnResult.SetCompact(nBase);
-    while (nTime > 0 && bnResult < bnLimit)
+    while (nTime > 0 && bnResult < bnProofOfWorkLimit)
     {
-        // Maximum adjustment...
-        bnResult *= (100 + nMaxAdjustDown);
-        bnResult /= 100;
-        // ... in best-case exactly adjustment times-normal target time
-        nTime -= nTargetTimespanAdjDown;
+        // Maximum 400% adjustment...
+        bnResult *= 4;
+        // ... in best-case exactly 4-times-normal target time
+        nTime -= nTargetTimespan*4;
     }
-    if (bnResult > bnLimit)
-        bnResult = bnLimit;
+    if (bnResult > bnProofOfWorkLimit)
+        bnResult = bnProofOfWorkLimit;
     return bnResult.GetCompact();
 }
 
 static const int64 nMinActualTimespan = nAveragingTargetTimespan * (100 - nMaxAdjustUp) / 100;
 static const int64 nMaxActualTimespan = nAveragingTargetTimespan * (100 + nMaxAdjustDown) / 100;
-    
+
 unsigned int static GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
-    unsigned int nProofOfWorkLimit = bnLimit.GetCompact();
+    unsigned int nProofOfWorkLimit = Params().ProofOfWorkLimit().GetCompact();
 
     // Genesis block
     if (pindexLast == NULL)
+        return nProofOfWorkLimit;
+        
+    if (pindexLast->nHeight+1 < nAveragingInterval) 
         return nProofOfWorkLimit;
 
     // Only change once per interval
     if ((pindexLast->nHeight+1) % nInterval != 0)
     {
-        // Special difficulty rule for testnet:
         if (TestNet())
         {
+            // Special difficulty rule for testnet:
             // If the new block's timestamp is more than 2* 10 minutes
             // then allow mining of a min-difficulty block.
             if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
@@ -1335,49 +1337,42 @@ unsigned int static GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const 
                 return pindex->nBits;
             }
         }
-
         return pindexLast->nBits;
     }
 
-    // Unobtanium: This fixes an issue where a 51% attack can change difficulty at will.
-    // Go back the full period unless it's the first retarget after genesis. Code courtesy of Art Forz
-    int blockstogoback = nInterval-1;
-    if ((pindexLast->nHeight+1) != nInterval)
-        blockstogoback = nInterval;
-
-    // Go back by what we want to be 14 days worth of blocks
+    // Go back by what we want to be nAveragingInterval blocks
     const CBlockIndex* pindexFirst = pindexLast;
-    for (int i = 0; pindexFirst && i < blockstogoback; i++)
+    for (int i = 0; pindexFirst && i < nAveragingInterval-1; i++)
         pindexFirst = pindexFirst->pprev;
     assert(pindexFirst);
 
     // Limit adjustment step
     int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
-    printf(" nActualTimespan = %"PRI64d" before bounds\n", nActualTimespan);
-    if (nActualTimespan < nTargetTimespan/4)
-        nActualTimespan = nTargetTimespan/4;
-    if (nActualTimespan > nTargetTimespan*4)
-        nActualTimespan = nTargetTimespan*4;
+    printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+    if (nActualTimespan < nMinActualTimespan)
+        nActualTimespan = nMinActualTimespan;
+    if (nActualTimespan > nMaxActualTimespan)
+        nActualTimespan = nMaxActualTimespan;
 
     // Retarget
     CBigNum bnNew;
     bnNew.SetCompact(pindexLast->nBits);
     bnNew *= nActualTimespan;
-    bnNew /= nTargetTimespan;
+    bnNew /= nAveragingTargetTimespan;
 
-    if (bnNew > bnLimit)
-        bnNew = bnLimit;
+    if (bnNew > Params().ProofOfWorkLimit())
+        bnNew = Params().ProofOfWorkLimit();
 
     /// debug print
     printf("GetNextWorkRequired RETARGET\n");
-    printf("nTargetTimespan = %"PRI64d" nActualTimespan = %"PRI64d"\n", nTargetTimespan, nActualTimespan);
-    printf("Before: %08x %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
-    printf("After: %08x %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
+    printf("nTargetTimespan = %"PRI64d"    nActualTimespan = %"PRI64d"\n", nAveragingTargetTimespan, nActualTimespan);
+    printf("Before: %08x  %s\n", pindexLast->nBits, CBigNum().SetCompact(pindexLast->nBits).getuint256().ToString().c_str());
+    printf("After:  %08x  %s\n", bnNew.GetCompact(), bnNew.getuint256().ToString().c_str());
 
     return bnNew.GetCompact();
 }
 unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBlockHeader *pblock, uint64 TargetBlocksSpacingSeconds, uint64 PastBlocksMin, uint64 PastBlocksMax) {
-        /* current difficulty formula, Unobtanium - Soopy's Stargate Key*/
+        /* current difficulty formula, megacoin - kimoto gravity well */
         const CBlockIndex *BlockLastSolved = pindexLast;
         const CBlockIndex *BlockReading = pindexLast;
         const CBlockHeader *BlockCreating = pblock;
@@ -1392,8 +1387,8 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
         double EventHorizonDeviationFast;
         double EventHorizonDeviationSlow;
         
-    if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || (uint64)BlockLastSolved->nHeight < PastBlocksMin) { return bnLimit.GetCompact(); }
-        int64 LatestBlockTime = BlockLastSolved->GetBlockTime();
+    if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || (uint64)BlockLastSolved->nHeight < PastBlocksMin) { return bnProofOfWorkLimit.GetCompact(); }
+        
         for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
                 if (PastBlocksMax > 0 && i > PastBlocksMax) { break; }
                 PastBlocksMass++;
@@ -1402,24 +1397,14 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
                 else { PastDifficultyAverage = ((CBigNum().SetCompact(BlockReading->nBits) - PastDifficultyAveragePrev) / i) + PastDifficultyAveragePrev; }
                 PastDifficultyAveragePrev = PastDifficultyAverage;
                 
-                if (LatestBlockTime < BlockReading->GetBlockTime()) {
-                                if (BlockReading->nHeight > 387581) LatestBlockTime = BlockReading->GetBlockTime();
-                        }
-                        PastRateActualSeconds = LatestBlockTime - BlockReading->GetBlockTime();
-
-                        PastRateTargetSeconds = TargetBlocksSpacingSeconds * PastBlocksMass;
-                        PastRateAdjustmentRatio = double(1);
-
-                        if (BlockReading->nHeight > 387581) {
-                                if (PastRateActualSeconds < 1) { PastRateActualSeconds = 1; }
-                        } else {
-                                if (PastRateActualSeconds < 0) { PastRateActualSeconds = 0; }
-                        }
-                
+                PastRateActualSeconds = BlockLastSolved->GetBlockTime() - BlockReading->GetBlockTime();
+                PastRateTargetSeconds = TargetBlocksSpacingSeconds * PastBlocksMass;
+                PastRateAdjustmentRatio = double(1);
+                if (PastRateActualSeconds < 0) { PastRateActualSeconds = 0; }
                 if (PastRateActualSeconds != 0 && PastRateTargetSeconds != 0) {
                 PastRateAdjustmentRatio = double(PastRateTargetSeconds) / double(PastRateActualSeconds);
                 }
-                EventHorizonDeviation = 1 + (0.7084 * pow((double(PastBlocksMass)/double(90)), -1.228));
+                EventHorizonDeviation = 1 + (0.7084 * pow((double(PastBlocksMass)/double(28.2)), -1.228));
                 EventHorizonDeviationFast = EventHorizonDeviation;
                 EventHorizonDeviationSlow = 1 / EventHorizonDeviation;
                 
@@ -1435,7 +1420,7 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
                 bnNew *= PastRateActualSeconds;
                 bnNew /= PastRateTargetSeconds;
         }
-    if (bnNew > bnLimit) { bnNew = bnLimit; }
+    if (bnNew > bnProofOfWorkLimit) { bnNew = bnProofOfWorkLimit; }
         
     /// debug print
     printf("Difficulty Retarget - Kimoto Gravity Well\n");
@@ -1448,10 +1433,10 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
 
 unsigned int static GetNextWorkRequired_V2(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
-        static const int64 BlocksTargetSpacing = 180 * 60; // 3 minutes
+        static const int64 BlocksTargetSpacing = 3 * 60; // 3 minutes
         unsigned int TimeDaySeconds = 60 * 60 * 24;
-        int64 PastSecondsMin = TimeDaySeconds * 0.1;
-        int64 PastSecondsMax = TimeDaySeconds * 0.29;
+        int64 PastSecondsMin = TimeDaySeconds * 0.23;
+        int64 PastSecondsMax = TimeDaySeconds * 1;
         uint64 PastBlocksMin = PastSecondsMin / BlocksTargetSpacing;
         uint64 PastBlocksMax = PastSecondsMax / BlocksTargetSpacing;
         
@@ -1462,10 +1447,10 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 {
         int DiffMode = 1;
         if (TestNet()) {
-                if (pindexLast->nHeight+1 >= 100) { DiffMode = 2; }
+                if (pindexLast->nHeight+1 >= 50) { DiffMode = 2; }
         }
         else {
-                if (pindexLast->nHeight+1 >= 450000) { DiffMode = 2; }
+                if (pindexLast->nHeight+1 >= 450000) { DiffMode = 2; } // KGW kicks in at block 450,000
         }
         
         if (DiffMode == 1) { return GetNextWorkRequired_V1(pindexLast, pblock); }

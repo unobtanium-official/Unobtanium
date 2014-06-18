@@ -11,7 +11,7 @@
 const std::string CLIENT_NAME("Unobtanium");
 
 // Client version number
-#define CLIENT_VERSION_SUFFIX   "-Ignatius"
+#define CLIENT_VERSION_SUFFIX   "-thermoremnant"
 
 
 // The following part of the code determines the CLIENT_BUILD variable.
