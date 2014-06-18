@@ -1,6 +1,0 @@
-obj/protocol.o: protocol.cpp protocol.h chainparams.h bignum.h util.h \
- uint256.h netbase.h serialize.h allocators.h version.h clientversion.h \
- compat.h
-protocol.cpp protocol.h chainparams.h bignum.h util.h :
- uint256.h netbase.h serialize.h allocators.h version.h clientversion.h :
- compat.h :

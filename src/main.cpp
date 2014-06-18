@@ -1,10 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Copyright (c) 2013 Unobtanium developers
-// Copyright (c) 2013-2014 Dr Kimoto Chan/Nite
-// Copyright (c) 2013-2014 Sherlockcoin Developers
-// Copyright (c) 2013-2015 Soopy452000 (Soopy's Stargate Key)
-
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1269,7 +1265,6 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 
     return nSubsidy + nFees;
 }
-
 static const int64 nTargetTimespan = 3 * 60; // 3 minutes
 static const int64 nTargetSpacing = 60; // 30 seconds
 static const int64 nInterval = nTargetTimespan / nTargetSpacing; // 4 blocks
@@ -1406,8 +1401,8 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
                 if (i == 1) { PastDifficultyAverage.SetCompact(BlockReading->nBits); }
                 else { PastDifficultyAverage = ((CBigNum().SetCompact(BlockReading->nBits) - PastDifficultyAveragePrev) / i) + PastDifficultyAveragePrev; }
                 PastDifficultyAveragePrev = PastDifficultyAverage;
-				
-				if (LatestBlockTime < BlockReading->GetBlockTime()) {
+                
+                if (LatestBlockTime < BlockReading->GetBlockTime()) {
                                 if (BlockReading->nHeight > 387581) LatestBlockTime = BlockReading->GetBlockTime();
                         }
                         PastRateActualSeconds = LatestBlockTime - BlockReading->GetBlockTime();
@@ -1420,7 +1415,7 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
                         } else {
                                 if (PastRateActualSeconds < 0) { PastRateActualSeconds = 0; }
                         }
-				
+                
                 if (PastRateActualSeconds != 0 && PastRateTargetSeconds != 0) {
                 PastRateAdjustmentRatio = double(PastRateTargetSeconds) / double(PastRateActualSeconds);
                 }
