@@ -21,14 +21,19 @@ USE_UPNP:=-
 USE_IPV6:=1
 
 DEPSDIR?=/usr/local
-BOOST_SUFFIX?=-mgw46-mt-s-1_52
-
+BOOST_SUFFIX?=-mgw48-mt-s-1_55
 INCLUDEPATHS= \
  -I"$(CURDIR)" \
+ -I"c:/deps/boost_1_55_0" \
+ -I"c:/deps/db-4.8.30.NC/build_unix" \
+ -I"c:/deps/openssl-1.0.1e/include" \
  -I"$(DEPSDIR)/include"
 
 LIBPATHS= \
  -L"$(CURDIR)/leveldb" \
+ -L"c:/deps/boost_1_55_0/stage/lib" \
+ -L"c:/deps/db-4.8.30.NC/build_unix" \
+ -L"c:/deps/openssl-1.0.1e" \
  -L"$(DEPSDIR)/lib"
 
 LIBS= \
@@ -52,7 +57,7 @@ LDFLAGS=-Wl,--dynamicbase -Wl,--nxcompat -Wl,--large-address-aware
 TESTDEFS = -DTEST_DATA_DIR=$(abspath test/data)
 
 ifndef USE_UPNP
-	override USE_UPNP = -
+    override USE_UPNP = -
 endif
 ifneq (${USE_UPNP}, -)
  LIBS += -l miniupnpc -l iphlpapi
@@ -60,7 +65,7 @@ ifneq (${USE_UPNP}, -)
 endif
 
 ifneq (${USE_IPV6}, -)
-	DEFS += -DUSE_IPV6=$(USE_IPV6)
+    DEFS += -DUSE_IPV6=$(USE_IPV6)
 endif
 
 LIBS += -l kernel32 -l user32 -l gdi32 -l comdlg32 -l winspool -l winmm -l shell32 -l comctl32 -l ole32 -l oleaut32 -l uuid -l rpcrt4 -l advapi32 -l ws2_32 -l mswsock -l shlwapi
@@ -108,7 +113,7 @@ OBJS= \
 all: unobtaniumd.exe
 
 test check: test_unobtanium.exe FORCE
-	test_unobtanium.exe
+    test_unobtanium.exe
 
 #
 # LevelDB support
@@ -117,26 +122,26 @@ DEFS += $(addprefix -I,$(CURDIR)/leveldb/include)
 DEFS += $(addprefix -I,$(CURDIR)/leveldb/helpers)
 
 leveldb/libleveldb.a:
-	cd leveldb && $(MAKE) CC=$(CC) CXX=$(CXX) OPT="$(CFLAGS)" TARGET_OS=NATIVE_WINDOWS libleveldb.a libmemenv.a && cd ..
+    cd leveldb && $(MAKE) CC=$(CC) CXX=$(CXX) OPT="$(CFLAGS)" TARGET_OS=NATIVE_WINDOWS libleveldb.a libmemenv.a && cd ..
 
 obj/%.o: %.cpp $(HEADERS)
-	$(CXX) -c $(CFLAGS) -o $@ $<
+    $(CXX) -c $(CFLAGS) -o $@ $<
 
 unobtaniumd.exe: $(OBJS:obj/%=obj/%)
-	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
+    $(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 
 obj-test/%.o: test/%.cpp $(HEADERS)
-	$(CXX) -c $(TESTDEFS) $(CFLAGS) -o $@ $<
+    $(CXX) -c $(TESTDEFS) $(CFLAGS) -o $@ $<
 
 test_unobtanium.exe: $(TESTOBJS) $(filter-out obj/init.o obj/unobtaniumd.o,$(OBJS:obj/%=obj/%))
-	$(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework$(BOOST_SUFFIX) $(LIBS)
+    $(CXX) $(CFLAGS) $(LDFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework$(BOOST_SUFFIX) $(LIBS)
 
 clean:
-	rm -f unobtaniumd.exe test_unobtanium.exe
-	rm -f obj/*
-	rm -f obj-test/*
-	cd leveldb && $(MAKE) TARGET_OS=NATIVE_WINDOWS clean && cd ..
+    rm -f unobtaniumd.exe test_unobtanium.exe
+    rm -f obj/*
+    rm -f obj-test/*
+    cd leveldb && $(MAKE) TARGET_OS=NATIVE_WINDOWS clean && cd ..
 
 FORCE:
