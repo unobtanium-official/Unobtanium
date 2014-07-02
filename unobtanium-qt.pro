@@ -1,29 +1,13 @@
 TEMPLATE = app
 TARGET = unobtanium-qt
 macx:TARGET = "Unobtanium-Qt"
-VERSION = 0.9.0
+VERSION = 0.9.5.9
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6 BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
+DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6 
 CONFIG += no_include_pwd
 CONFIG += thread
-
-#uncomment the following section to enable building on windows:
-windows:LIBS += -lshlwapi
-LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-LIBS += -lboost_system-mgw48-mt-sd-1_53 -lboost_filesystem-mgw48-mt-sd-1_53 -lboost_program_options-mgw48-mt-sd-1_53 -lboost_thread-mgw48-mt-sd-1_53
-BOOST_LIB_SUFFIX=-mgw48-mt-sd-1_53
-BOOST_INCLUDE_PATH=C:/deps/boost_1_53_0
-BOOST_LIB_PATH=C:/deps/boost_1_53_0/stage/lib
-BDB_INCLUDE_PATH=c:/deps/db-4.8.30.NC/build_unix
-BDB_LIB_PATH=c:/deps/db-4.8.30.NC/build_unix
-OPENSSL_INCLUDE_PATH=c:/deps/openssl-1.0.1e/include
-OPENSSL_LIB_PATH=c:/deps/openssl-1.0.1e
-MINIUPNPC_LIB_PATH=c:/deps/miniupnpc
-MINIUPNPC_INCLUDE_PATH=c:/deps/
 
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -61,7 +45,7 @@ win32:QMAKE_LFLAGS *= -Wl,--large-address-aware
 contains(USE_QRCODE, 1) {
     message(Building with QRCode support)
     DEFINES += USE_QRCODE
-    LIBS += -lqrencode
+    LIBS += -lqrencode -lpthread
 }
 
 # use: qmake "USE_UPNP=1" ( enabled by default; default)

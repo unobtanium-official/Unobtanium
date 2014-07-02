@@ -1246,18 +1246,14 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 }
 
 static const int64 nStartSubsidy = 1 * COIN;
-static const int64 nMinSubsidy = .00001 * COIN;
+static const int64 nMinSubsidy = .0001 * COIN; //corrected as of 0.9.6
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
     int64 nSubsidy = nStartSubsidy;
 	
-    // Mining phase: Subsidy is cut in half every SubsidyHalvingInterval
     nSubsidy >>= (nHeight / Params().SubsidyHalvingInterval());
     if(nHeight < 2000 ) {nSubsidy = .001 * COIN;} //Ease in to 0 diff.
-    // Inflation phase: Subsidy reaches minimum subsidy
-    // Network is rewarded for transaction processing with transaction fees and 
-    // the inflationary subsidy
     else if (nSubsidy < nMinSubsidy)
     {
         nSubsidy = nMinSubsidy;
@@ -1268,10 +1264,10 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 
 static const int64 nTargetTimespan = 3 * 60; // 3 minutes
 static const int64 nTargetSpacing = 60; // 30 seconds
-static const int64 nInterval = nTargetTimespan / nTargetSpacing; // 4 blocks
+static const int64 nInterval = nTargetTimespan / nTargetSpacing; 
 
-static const int64 nAveragingInterval = nInterval * 20; // 80 blocks
-static const int64 nAveragingTargetTimespan = nAveragingInterval * nTargetSpacing; // 40 minutes
+static const int64 nAveragingInterval = nInterval * 20;
+static const int64 nAveragingTargetTimespan = nAveragingInterval * nTargetSpacing; 
 
 static const int64 nMaxAdjustDown = 20; // 20% adjustment down
 static const int64 nMaxAdjustUp = 10; // 10% adjustment up
