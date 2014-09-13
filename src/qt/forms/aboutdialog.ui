@@ -124,7 +124,7 @@
        </property>
        <property name="text">
         <string>
-This is experimental software.
+This is experimental software. For more info visit: unobtanium.uno
 
 Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
