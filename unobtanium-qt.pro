@@ -1,6 +1,7 @@
 TEMPLATE = app
 TARGET = unobtanium-qt
 macx:TARGET = "Unobtanium-Qt"
+<<<<<<< HEAD
 VERSION = 0.9.5
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
@@ -28,6 +29,16 @@ CONFIG += thread
 macx:MINIUPNPC_LIB_PATH=/usr/local/Cellar/miniupnpc/1.8.20131007/lib/
 macx:MINIUPNPC_INCLUDE_PATH=/usr/local/Cellar/miniupnpc/1.8.20131007/include/
 
+=======
+VERSION = 0.9.5.9
+INCLUDEPATH += src src/json src/qt
+QT += core gui network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6 
+CONFIG += no_include_pwd
+CONFIG += thread
+
+>>>>>>> cb9805d2f473aa3518765958144f7fe05fe49e2a
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
@@ -67,7 +78,7 @@ win32:QMAKE_LFLAGS *= -static
 contains(USE_QRCODE, 1) {
     message(Building with QRCode support)
     DEFINES += USE_QRCODE
-    LIBS += -lqrencode
+    LIBS += -lqrencode -lpthread
 }
 
 # use: qmake "USE_UPNP=1" (enabled by default; default)
