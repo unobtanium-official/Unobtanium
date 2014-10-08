@@ -1,35 +1,7 @@
 TEMPLATE = app
 TARGET = unobtanium-qt
 macx:TARGET = "Unobtanium-Qt"
-<<<<<<< HEAD
-VERSION = 0.9.5
-INCLUDEPATH += src src/json src/qt
-QT += core gui network
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE USE_IPV6
-CONFIG += no_include_pwd
-CONFIG += thread
 
-#uncomment the following section to enable building on windows:
-#windows:LIBS += -lshlwapi
-#LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
-#LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-#windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
-#LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lboost_program_options-mgw46-mt-sd-1_53 -lboost_thread-mgw46-mt-sd-1_53
-#BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
-#BOOST_INCLUDE_PATH=C:/deps/boost
-#BOOST_LIB_PATH=C:/deps/boost/stage/lib
-#BDB_INCLUDE_PATH=c:/deps/db/build_unix
-#BDB_LIB_PATH=c:/deps/db/build_unix
-#OPENSSL_INCLUDE_PATH=c:/deps/ssl/include
-#OPENSSL_LIB_PATH=c:/deps/ssl
-#MINIUPNPC_LIB_PATH=c:/deps/miniupnpc
-#MINIUPNPC_INCLUDE_PATH=c:/deps
-
-macx:MINIUPNPC_LIB_PATH=/usr/local/Cellar/miniupnpc/1.8.20131007/lib/
-macx:MINIUPNPC_INCLUDE_PATH=/usr/local/Cellar/miniupnpc/1.8.20131007/include/
-
-=======
 VERSION = 0.9.5.9
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
