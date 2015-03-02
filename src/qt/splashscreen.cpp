@@ -56,20 +56,19 @@ SplashScreen::SplashScreen(Qt::WindowFlags f, const NetworkStyle *networkStyle) 
     QPainter pixPaint(&pixmap);
     pixPaint.setPen(QColor(100,100,100));
 
-    // draw a slighly radial gradient
-    QRadialGradient gradient(QPoint(0,0), splashSize.width()/devicePixelRatio);
-    gradient.setColorAt(0, Qt::white);
-    gradient.setColorAt(1, QColor(247,247,247));
-    QRect rGradient(QPoint(0,0), splashSize);
-    pixPaint.fillRect(rGradient, gradient);
+	// draw a slighly radial gradient
+	QRadialGradient gradient(QPoint(0,0), splashSize.width()/devicePixelRatio);
+	gradient.setColorAt(0, Qt::white);
+	gradient.setColorAt(1, QColor(247,247,247));
+	QRect rGradient(QPoint(0,0), splashSize);
+	pixPaint.fillRect(rGradient, gradient);
 
-    // draw the bitcoin icon, expected size of PNG: 1024x1024
-    QRect rectIcon(QPoint(-150,-122), QSize(430,430));
+	// draw the bitcoin icon, expected size of PNG: 1024x1024
+	QRect rectIcon(QPoint(0,0), QSize(256,256));
+	const QSize requiredSize(1024,1024);
+	QPixmap newPixmap(networkStyle->getAppIcon().pixmap(requiredSize));
 
-    const QSize requiredSize(1024,1024);
-    QPixmap icon(networkStyle->getAppIcon().pixmap(requiredSize));
-
-    pixPaint.drawPixmap(rectIcon, icon);
+    pixPaint.drawPixmap(rectIcon, newPixmap);
 
     // check font size and drawing with
     pixPaint.setFont(QFont(font, 33*fontFactor));

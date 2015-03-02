@@ -20,7 +20,7 @@ Fixed an obscure bug that could cause the bitcoin process to get
 stuck on an invalid block-chain, if the invalid chain was
 hundreds of blocks long.
 
-Bitcoin-Qt no longer automatically selects the first address
+Unobtanium-Qt no longer automatically selects the first address
 in the address book (Issue #1384).
 
 Fixed minimize-to-dock behavior of Bitcon-Qt on the Mac.

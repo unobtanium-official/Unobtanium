@@ -30,6 +30,8 @@ static const int STATUSBAR_ICONSIZE = 16;
 /* Transaction list -- TX status decoration - default color */
 #define COLOR_BLACK QColor(0, 0, 0)
 
+#define COLOR_MAIN QColor(0, 3, 76)
+
 /* Tooltips longer than this (in characters) are converted into rich text,
    so that they can be word-wrapped.
  */

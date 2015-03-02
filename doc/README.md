@@ -11,7 +11,7 @@ The following are some helpful notes on how to run Bitcoin on your native platfo
 
 ### Unix
 
-You need the Qt4 run-time libraries to run Bitcoin-Qt. On Debian or Ubuntu:
+You need the Qt4 run-time libraries to run Unobtanium-Qt. On Debian or Ubuntu:
 
 	sudo apt-get install libqtgui4
 
@@ -28,7 +28,7 @@ Unpack the files into a directory, and then run bitcoin-qt.exe.
 
 ### OSX
 
-Drag Bitcoin-Qt to your applications folder, and then run Bitcoin-Qt.
+Drag Unobtanium-Qt to your applications folder, and then run Unobtanium-Qt.
 
 ### Need Help?
 

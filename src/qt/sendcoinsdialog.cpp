@@ -739,7 +739,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         CoinControlDialog::coinControl->destChange = CNoDestination();
         ui->labelCoinControlChangeLabel->setStyleSheet("QLabel{color:red;}");
 
-        CBitcoinAddress addr = CBitcoinAddress(text.toStdString());
+        Cbitcoinaddress addr = Cbitcoinaddress(text.toStdString());
 
         if (text.isEmpty()) // Nothing entered
         {
