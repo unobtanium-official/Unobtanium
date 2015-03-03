@@ -5,6 +5,7 @@
 
 #ifndef BITCOIN_PRIMITIVES_BLOCK_H
 #define BITCOIN_PRIMITIVES_BLOCK_H
+
 #include <boost/shared_ptr.hpp>
 #include "primitives/transaction.h"
 #include "serialize.h"
@@ -31,6 +32,25 @@ class CAuxPow;
 template<typename Stream> void SerReadWrite(Stream& s, boost::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionSerialize ser_action);
 template<typename Stream> void SerReadWrite(Stream& s, boost::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionUnserialize ser_action);
 
+int GetOurChainID();
+
+enum
+{
+    // primary version
+    BLOCK_VERSION_DEFAULT        = (1 << 0),
+
+    // modifiers
+    BLOCK_VERSION_AUXPOW         = (1 << 8),
+
+    // bits allocated for chain ID
+    BLOCK_VERSION_CHAIN_START    = (1 << 16),
+    BLOCK_VERSION_CHAIN_END      = (1 << 30),
+};
+
+class CAuxPow;
+template<typename Stream> void SerReadWrite(Stream& s, boost::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionSerialize ser_action);
+template<typename Stream> void SerReadWrite(Stream& s, boost::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionUnserialize ser_action);
+
 /** Nodes collect new transactions into a block, hash them into a hash tree,
  * and scan through nonce values to make the block's hash satisfy proof-of-work
  * requirements.  When they solve the proof-of-work, they broadcast the block
@@ -51,6 +71,8 @@ public:
     uint32_t nNonce;
 	boost::shared_ptr<CAuxPow> auxpow;
 
+	boost::shared_ptr<CAuxPow> auxpow;
+
     CBlockHeader()
     {
         SetNull();
@@ -67,8 +89,8 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
- 		READWRITE(auxpow);
-     }
+        READWRITE(auxpow);
+    }
 
     void SetNull()
     {

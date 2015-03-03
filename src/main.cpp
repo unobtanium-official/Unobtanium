@@ -2314,6 +2314,8 @@ CBlockIndex* AddToBlockIndex(const CBlockHeader& block)
     setDirtyBlockIndex.insert(pindexNew);
     mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
 
+	mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
+
     return pindexNew;
 }
 
@@ -2526,6 +2528,11 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 	if (block.auxpow.get() != NULL && nHeight < GetAuxPowStartBlock())
 		return state.DoS(100, error("%s : premature auxpow block", __func__),
 						 REJECT_INVALID, "time-too-new");
+
+	// Check if auxpow is allowed at this height if block has it
+	if (block.auxpow.get() != NULL && nHeight < GetAuxPowStartBlock())
+		return state.DoS(100, error("%s : premature auxpow block", __func__),
+							REJECT_INVALID, "time-too-new");
 
     // Check proof of work
     if ((!Params().SkipProofOfWorkCheck()) &&

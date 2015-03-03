@@ -213,12 +213,12 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
             char chType;
             ssKey >> chType;
             if (chType == DB_BLOCK_INDEX) {
-            	ssKey >> hash;
+				ssKey >> hash;
                 leveldb::Slice slValue = pcursor->value();
                 CDataStream ssValue_immutable(slValue.data(), slValue.data()+slValue.size(), SER_DISK, CLIENT_VERSION);
                 CDiskBlockIndex diskindex;
                 ssValue_immutable >> diskindex;
-				
+
 				// Construct immutable parts of block index object
 				CBlockIndex* pindexNew = InsertBlockIndex(hash);
 				assert(diskindex.GetBlockHash() == *pindexNew->phashBlock); // paranoia check
@@ -233,9 +233,8 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nTx            = diskindex.nTx;
 
 				pcursor->Next(); // now we should be on the 'b' subkey
-				
 				assert(pcursor->Valid());
-				
+
 				slValue = pcursor->value();
 				CDataStream ssValue_mutable(slValue.data(), slValue.data()+slValue.size(), SER_DISK, CLIENT_VERSION);
 				ssValue_mutable >> *pindexNew; // read all mutable data

@@ -529,7 +529,6 @@ protected:
     friend void ::UnregisterAllValidationInterfaces();
 };
 
-
 // Internal stuff
 namespace {
 

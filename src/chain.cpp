@@ -71,6 +71,39 @@ std::string CDiskBlockIndex::ToString() const
     return str;
 }
 
+CBlockHeader CBlockIndex::GetBlockHeader(const std::map<uint256, boost::shared_ptr<CAuxPow> >& mapDirtyAuxPow) const
+{
+    CBlockHeader block;
+
+    if (nVersion & BLOCK_VERSION_AUXPOW) {
+        bool foundInDirty = false;
+        {
+            LOCK(cs_main);
+            std::map<uint256, boost::shared_ptr<CAuxPow> >::const_iterator it = mapDirtyAuxPow.find(*phashBlock);
+            if (it != mapDirtyAuxPow.end()) {
+                block.auxpow = it->second;
+                foundInDirty = true;
+            }
+        }
+        if (!foundInDirty) {
+            CDiskBlockIndex diskblockindex;
+            // auxpow is not in memory, load CDiskBlockHeader
+            // from database to get it
+
+            pblocktree->ReadDiskBlockIndex(*phashBlock, diskblockindex);
+            block.auxpow = diskblockindex.auxpow;
+        }
+    }
+
+    block.nVersion       = nVersion;
+    if (pprev)
+        block.hashPrevBlock = pprev->GetBlockHash();
+    block.hashMerkleRoot = hashMerkleRoot;
+    block.nTime          = nTime;
+    block.nBits          = nBits;
+    block.nNonce         = nNonce;
+    return block;
+}
 /** Turn the lowest '1' bit in the binary representation of a number into a '0'. */
 int static inline InvertLowestOne(int n) { return n & (n - 1); }
 
