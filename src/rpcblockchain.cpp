@@ -21,7 +21,6 @@ extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, Object& en
 void ScriptPubKeyToJSON(const CScript& scriptPubKey, Object& out, bool fIncludeHex);
 void TxToJSON(const CTransaction& tx, const uint256 hashBlock, Object& entry);
 
-
 double GetDifficulty(const CBlockIndex* blockindex)
 {
     // Floating point number that is a multiple of the minimum difficulty,

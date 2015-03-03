@@ -200,7 +200,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
     boost::scoped_ptr<leveldb::Iterator> pcursor(NewIterator());
 
     CDataStream ssKeySet(SER_DISK, CLIENT_VERSION);
-	ssKeySet << std::make_pair(std::make_pair(DB_BLOCK_INDEX, uint256()), 'a'); // 'b' is the prefix for BlockIndex, 'a' signifies the first part
+	ssKeySet << std::make_pair(std::make_pair(DB_BLOCK_INDEX, uint256(0)), 'a'); // 'b' is the prefix for BlockIndex, 'a' signifies the first part
 	uint256 hash;
     pcursor->Seek(ssKeySet.str());
 
@@ -234,6 +234,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
 
 				pcursor->Next(); // now we should be on the 'b' subkey
 				assert(pcursor->Valid());
+
 				slValue = pcursor->value();
 				CDataStream ssValue_mutable(slValue.data(), slValue.data()+slValue.size(), SER_DISK, CLIENT_VERSION);
 				ssValue_mutable >> *pindexNew; // read all mutable data

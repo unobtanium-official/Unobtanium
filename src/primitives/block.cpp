@@ -11,7 +11,7 @@
 
 int GetOurChainID()
 {
-	return 0x55; // "U"
+	return 0x75;
 }
 
 uint256 CBlockHeader::GetHash() const

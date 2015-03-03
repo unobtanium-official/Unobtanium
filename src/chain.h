@@ -221,7 +221,23 @@ public:
         return ret;
     }
 
-    CBlockHeader GetBlockHeader() const;
+    ADD_SERIALIZE_METHODS;
+
+    template <typename Stream, typename Operation>
+    inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
+        /* mutable stuff goes here, immutable stuff
+         * has SERIALIZE functions in CDiskBlockIndex */
+        if (!(nType & SER_GETHASH))
+              READWRITE(VARINT(nVersion));
+
+        READWRITE(VARINT(nStatus));
+        if (nStatus & (BLOCK_HAVE_DATA | BLOCK_HAVE_UNDO))
+            READWRITE(VARINT(nFile));
+        if (nStatus & BLOCK_HAVE_DATA)
+            READWRITE(VARINT(nDataPos));
+        if (nStatus & BLOCK_HAVE_UNDO)
+            READWRITE(VARINT(nUndoPos));
+    }
 	CBlockHeader GetBlockHeader(const std::map<uint256, boost::shared_ptr<CAuxPow> >& mapDirtyAuxPow) const;
 
     uint256 GetBlockHash() const
@@ -301,6 +317,9 @@ public:
     // if this is an aux work block
 	boost::shared_ptr<CAuxPow> auxpow;
 
+	// if this is an aux work block
+	boost::shared_ptr<CAuxPow> auxpow;
+
     CDiskBlockIndex() {
         hashPrev = uint256();
     }
@@ -312,8 +331,8 @@ public:
 
     ADD_SERIALIZE_METHODS;
 
-    /* immutable stuff goes here, mutable stuff
-     * has SERIALIZE functions in CBlockIndex */
+/* immutable stuff goes here, mutable stuff
+ * has SERIALIZE functions in CBlockIndex */
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action, int nType, int nVersion) {
@@ -322,6 +341,7 @@ public:
 
         READWRITE(VARINT(nHeight));
         READWRITE(VARINT(nTx));
+
         // block header
         READWRITE(this->nVersion);
         READWRITE(hashPrev);
@@ -329,8 +349,8 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
-        nVersion = this->nVersion;
-        READWRITE(auxpow);
+		nVersion = this->nVersion;
+		READWRITE(auxpow);
     }
 
     uint256 GetBlockHash() const
@@ -346,7 +366,7 @@ public:
     }
 
 
-	std::string ToString() const;
+    std::string ToString() const;
 };
 
 /** An in-memory indexed chain of blocks. */

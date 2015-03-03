@@ -81,7 +81,6 @@ CScript COINBASE_FLAGS;
 
 const string strMessageMagic = "Unobtanium Signed Message:\n";
 
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // dispatching functions
@@ -1866,9 +1865,9 @@ bool static FlushStateToDisk(CValidationState &state, FlushStateMode mode) {
             if (!pblocktree->WriteBatchSync(vFiles, nLastBlockFile, vBlocks, mapDirtyAuxPow)) {
                 return state.Abort("Files to write to block index database");
             }
-            for (std::vector<const CBlockIndex*>::const_iterator it = vBlocks.begin(); it != vBlocks.end(); it++) {
-            	mapDirtyAuxPow.erase((*it)->GetBlockHash());
-            }
+			for (std::vector<const CBlockIndex*>::const_iterator it = vBlocks.begin(); it != vBlocks.end(); it++) {
+				mapDirtyAuxPow.erase((*it)->GetBlockHash());
+			}
         }
         // Finally flush the chainstate (which may refer to block index entries).
         if (!pcoinsTip->Flush())
@@ -1913,8 +1912,8 @@ void static UpdateTip(CBlockIndex *pindexNew) {
         const CBlockIndex* pindex = chainActive.Tip();
         for (int i = 0; i < 100 && pindex != NULL; i++)
         {
-            if (pindex->nVersion > CBlock::CURRENT_VERSION &&
-            	pindex->nVersion != (CBlockHeader::CURRENT_VERSION | (GetOurChainID() * BLOCK_VERSION_CHAIN_START)))
+			if (pindex->nVersion > CBlock::CURRENT_VERSION &&
+				pindex->nVersion != (CBlockHeader::CURRENT_VERSION | (GetOurChainID() * BLOCK_VERSION_CHAIN_START)))
                 ++nUpgraded;
             pindex = pindex->pprev;
         }
@@ -2313,6 +2312,7 @@ CBlockIndex* AddToBlockIndex(const CBlockHeader& block)
         pindexBestHeader = pindexNew;
 
     setDirtyBlockIndex.insert(pindexNew);
+    mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
 
 	mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
 
@@ -2334,7 +2334,7 @@ bool ReceivedBlockTransactions(const CBlock &block, CValidationState& state, CBl
          pindexNew->nSequenceId = nBlockSequenceId++;
     }
     setDirtyBlockIndex.insert(pindexNew);
-	mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
+    mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
 
     if (pindexNew->pprev == NULL || pindexNew->pprev->nChainTx) {
         // If pindexNew is the genesis block or all parents are BLOCK_VALID_TRANSACTIONS.
@@ -2443,7 +2443,7 @@ bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, unsigne
 bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
 {
     // Check proof of work matches claimed amount
-	if (fCheckPOW && !CheckBlockProofOfWork(&block))
+    if (fCheckPOW && !CheckBlockProofOfWork(&block))
         return state.DoS(50, error("CheckBlockHeader(): proof of work failed"),
                          REJECT_INVALID, "high-hash");
 
@@ -2524,6 +2524,10 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     assert(pindexPrev);
 
     int nHeight = pindexPrev->nHeight+1;
+	// Check if auxpow is allowed at this height if block has it
+	if (block.auxpow.get() != NULL && nHeight < GetAuxPowStartBlock())
+		return state.DoS(100, error("%s : premature auxpow block", __func__),
+						 REJECT_INVALID, "time-too-new");
 
 	// Check if auxpow is allowed at this height if block has it
 	if (block.auxpow.get() != NULL && nHeight < GetAuxPowStartBlock())
