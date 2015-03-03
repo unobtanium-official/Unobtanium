@@ -48,7 +48,7 @@ void ScriptPubKeyToJSON(const CScript& scriptPubKey, Object& out, bool fIncludeH
 
     Array a;
     BOOST_FOREACH(const CTxDestination& addr, addresses)
-        a.push_back(Cbitcoinaddress(addr).ToString());
+        a.push_back(CBitcoinAddress(addr).ToString());
     out.push_back(Pair("addresses", a));
 }
 
@@ -242,11 +242,11 @@ Value listunspent(const Array& params, bool fHelp)
     if (params.size() > 1)
         nMaxDepth = params[1].get_int();
 
-    set<Cbitcoinaddress> setAddress;
+    set<CBitcoinAddress> setAddress;
     if (params.size() > 2) {
         Array inputs = params[2].get_array();
         BOOST_FOREACH(Value& input, inputs) {
-            Cbitcoinaddress address(input.get_str());
+            CBitcoinAddress address(input.get_str());
             if (!address.IsValid())
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Bitcoin address: ")+input.get_str());
             if (setAddress.count(address))
@@ -280,7 +280,7 @@ Value listunspent(const Array& params, bool fHelp)
         entry.push_back(Pair("vout", out.i));
         CTxDestination address;
         if (ExtractDestination(out.tx->vout[out.i].scriptPubKey, address)) {
-            entry.push_back(Pair("address", Cbitcoinaddress(address).ToString()));
+            entry.push_back(Pair("address", CBitcoinAddress(address).ToString()));
             if (pwalletMain->mapAddressBook.count(address))
                 entry.push_back(Pair("account", pwalletMain->mapAddressBook[address].name));
         }
@@ -361,9 +361,9 @@ Value createrawtransaction(const Array& params, bool fHelp)
         rawTx.vin.push_back(in);
     }
 
-    set<Cbitcoinaddress> setAddress;
+    set<CBitcoinAddress> setAddress;
     BOOST_FOREACH(const Pair& s, sendTo) {
-        Cbitcoinaddress address(s.name_);
+        CBitcoinAddress address(s.name_);
         if (!address.IsValid())
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid Bitcoin address: ")+s.name_);
 
@@ -484,7 +484,7 @@ Value decodescript(const Array& params, bool fHelp)
     }
     ScriptPubKeyToJSON(script, r, false);
 
-    r.push_back(Pair("p2sh", Cbitcoinaddress(CScriptID(script)).ToString()));
+    r.push_back(Pair("p2sh", CBitcoinAddress(CScriptID(script)).ToString()));
     return r;
 }
 

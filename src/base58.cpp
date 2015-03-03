@@ -206,10 +206,10 @@ namespace
 class CbitcoinaddressVisitor : public boost::static_visitor<bool>
 {
 private:
-    Cbitcoinaddress* addr;
+    CBitcoinAddress* addr;
 
 public:
-    CbitcoinaddressVisitor(Cbitcoinaddress* addrIn) : addr(addrIn) {}
+    CbitcoinaddressVisitor(CBitcoinAddress* addrIn) : addr(addrIn) {}
 
     bool operator()(const CKeyID& id) const { return addr->Set(id); }
     bool operator()(const CScriptID& id) const { return addr->Set(id); }
@@ -218,29 +218,29 @@ public:
 
 } // anon namespace
 
-bool Cbitcoinaddress::Set(const CKeyID& id)
+bool CBitcoinAddress::Set(const CKeyID& id)
 {
     SetData(Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS), &id, 20);
     return true;
 }
 
-bool Cbitcoinaddress::Set(const CScriptID& id)
+bool CBitcoinAddress::Set(const CScriptID& id)
 {
     SetData(Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS), &id, 20);
     return true;
 }
 
-bool Cbitcoinaddress::Set(const CTxDestination& dest)
+bool CBitcoinAddress::Set(const CTxDestination& dest)
 {
     return boost::apply_visitor(CbitcoinaddressVisitor(this), dest);
 }
 
-bool Cbitcoinaddress::IsValid() const
+bool CBitcoinAddress::IsValid() const
 {
     return IsValid(Params());
 }
 
-bool Cbitcoinaddress::IsValid(const CChainParams& params) const
+bool CBitcoinAddress::IsValid(const CChainParams& params) const
 {
     bool fCorrectSize = vchData.size() == 20;
     bool fKnownVersion = vchVersion == params.Base58Prefix(CChainParams::PUBKEY_ADDRESS) ||
@@ -248,7 +248,7 @@ bool Cbitcoinaddress::IsValid(const CChainParams& params) const
     return fCorrectSize && fKnownVersion;
 }
 
-CTxDestination Cbitcoinaddress::Get() const
+CTxDestination CBitcoinAddress::Get() const
 {
     if (!IsValid())
         return CNoDestination();
@@ -262,7 +262,7 @@ CTxDestination Cbitcoinaddress::Get() const
         return CNoDestination();
 }
 
-bool Cbitcoinaddress::GetKeyID(CKeyID& keyID) const
+bool CBitcoinAddress::GetKeyID(CKeyID& keyID) const
 {
     if (!IsValid() || vchVersion != Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS))
         return false;
@@ -272,7 +272,7 @@ bool Cbitcoinaddress::GetKeyID(CKeyID& keyID) const
     return true;
 }
 
-bool Cbitcoinaddress::IsScript() const
+bool CBitcoinAddress::IsScript() const
 {
     return IsValid() && vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS);
 }

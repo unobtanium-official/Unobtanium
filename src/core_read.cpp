@@ -13,6 +13,7 @@
 #include "util.h"
 #include "utilstrencodings.h"
 #include "version.h"
+#include "auxpow.h"
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/predicate.hpp>
