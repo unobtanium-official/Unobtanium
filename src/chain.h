@@ -300,9 +300,6 @@ public:
     // if this is an aux work block
 	boost::shared_ptr<CAuxPow> auxpow;
 
-	// if this is an aux work block
-	boost::shared_ptr<CAuxPow> auxpow;
-
     CDiskBlockIndex() {
         hashPrev = uint256();
     }
