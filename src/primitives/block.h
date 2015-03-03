@@ -17,25 +17,6 @@ int GetOurChainID();
 
 enum
 {
-	// primary version
-	BLOCK_VERSION_DEFAULT = (1 << 0),
-
-	// modifiers
-	BLOCK_VERSION_AUXPOW = (1 << 8),
-
-	// bits allocated for chain ID
-	BLOCK_VERSION_CHAIN_START = (1 << 16),
-	BLOCK_VERSION_CHAIN_END = (1 << 30),
-};
-
-class CAuxPow;
-template<typename Stream> void SerReadWrite(Stream& s, boost::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionSerialize ser_action);
-template<typename Stream> void SerReadWrite(Stream& s, boost::shared_ptr<CAuxPow>& pobj, int nType, int nVersion, CSerActionUnserialize ser_action);
-
-int GetOurChainID();
-
-enum
-{
     // primary version
     BLOCK_VERSION_DEFAULT        = (1 << 0),
 
@@ -69,8 +50,6 @@ public:
     uint32_t nTime;
     uint32_t nBits;
     uint32_t nNonce;
-	boost::shared_ptr<CAuxPow> auxpow;
-
 	boost::shared_ptr<CAuxPow> auxpow;
 
     CBlockHeader()
