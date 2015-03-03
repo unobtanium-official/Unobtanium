@@ -4,6 +4,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "chain.h"
+#include "auxpow.h"
+#include "txdb.h"
 
 using namespace std;
 
@@ -58,6 +60,17 @@ const CBlockIndex *CChain::FindFork(const CBlockIndex *pindex) const {
     return pindex;
 }
 
+std::string CDiskBlockIndex::ToString() const
+{
+    std::string str = "CDiskBlockIndex(";
+    str += CBlockIndex::ToString();
+    str += strprintf("\n                hashBlock=%s, hashPrev=%s, hashParentBlock=%s)",
+        GetBlockHash().ToString(),
+        hashPrev.ToString(),
+        (auxpow.get() != NULL) ? auxpow->GetParentBlockHash().ToString() : "-");
+    return str;
+}
+
 /** Turn the lowest '1' bit in the binary representation of a number into a '0'. */
 int static inline InvertLowestOne(int n) { return n & (n - 1); }
 
@@ -105,4 +118,39 @@ void CBlockIndex::BuildSkip()
 {
     if (pprev)
         pskip = pprev->GetAncestor(GetSkipHeight(nHeight));
+}
+
+
+CBlockHeader CBlockIndex::GetBlockHeader(const std::map<uint256, boost::shared_ptr<CAuxPow> >& mapDirtyAuxPow) const
+{
+    CBlockHeader block;
+
+    if (nVersion & BLOCK_VERSION_AUXPOW) {
+        bool foundInDirty = false;
+        {
+            LOCK(cs_main);
+            std::map<uint256, boost::shared_ptr<CAuxPow> >::const_iterator it = mapDirtyAuxPow.find(*phashBlock);
+            if (it != mapDirtyAuxPow.end()) {
+                block.auxpow = it->second;
+                foundInDirty = true;
+            }
+        }
+        if (!foundInDirty) {
+            CDiskBlockIndex diskblockindex;
+            // auxpow is not in memory, load CDiskBlockHeader
+            // from database to get it
+
+            pblocktree->ReadDiskBlockIndex(*phashBlock, diskblockindex);
+            block.auxpow = diskblockindex.auxpow;
+        }
+    }
+
+    block.nVersion       = nVersion;
+    if (pprev)
+        block.hashPrevBlock = pprev->GetBlockHash();
+    block.hashMerkleRoot = hashMerkleRoot;
+    block.nTime          = nTime;
+    block.nBits          = nBits;
+    block.nNonce         = nNonce;
+    return block;
 }

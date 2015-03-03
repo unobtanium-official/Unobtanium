@@ -8,6 +8,7 @@
 #include "chain.h"
 #include "chainparams.h"
 #include "primitives/block.h"
+#include "auxpow.h"
 #include "uint256.h"
 #include "util.h"
 
@@ -200,4 +201,40 @@ uint256 GetBlockProof(const CBlockIndex& block)
     // as bnTarget+1, it is equal to ((2**256 - bnTarget - 1) / (bnTarget+1)) + 1,
     // or ~bnTarget / (nTarget+1) + 1.
     return (~bnTarget / (bnTarget + 1)) + 1;
+}
+
+bool CheckBlockProofOfWork(const CBlockHeader *pblock)
+{
+	// There's an issue with blocks prior to the auxpow fork reporting an invalid chain ID.
+	// As no version earlier than the 0.10 client a) has version 3 blocks and b) 
+	//	has auxpow, anything that isn't a version 3 block can be checked normally.
+	//	There's probably a more elegant way to implement this.
+
+	if (pblock->nVersion > 2) {
+		LogPrintf("nVersion : %d, ChainID : %d, %d\n",pblock->nVersion,pblock->GetChainID(),GetOurChainID());
+	    if (!Params().AllowMinDifficultyBlocks() && pblock->GetChainID() != GetOurChainID())
+	        return error("CheckBlockProofOfWork() : block does not have our chain ID");	
+
+	    if (pblock->auxpow.get() != NULL)
+	    {
+	        if (!pblock->auxpow->Check(pblock->GetHash(), pblock->GetChainID()))
+	            return error("CheckBlockProofOfWork() : AUX POW is not valid");
+	        // Check proof of work matches claimed amount
+	        if (!CheckProofOfWork(pblock->auxpow->GetParentBlockHash(), pblock->nBits))
+	            return error("CheckBlockProofOfWork() : AUX proof of work failed");
+	    } 
+	    else
+	    {
+	        // Check proof of work matches claimed amount
+	        if (!CheckProofOfWork(pblock->GetHash(), pblock->nBits))
+	            return error("CheckBlockProofOfWork() : proof of work failed");
+	    }
+	}
+    else
+    {
+        // Check proof of work matches claimed amount
+        if (!CheckProofOfWork(pblock->GetHash(), pblock->nBits))
+            return error("CheckBlockProofOfWork() : proof of work failed");
+    }
+    return true;
 }

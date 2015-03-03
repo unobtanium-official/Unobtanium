@@ -18,6 +18,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
+bool CheckBlockProofOfWork(const CBlockHeader *pblock);
 uint256 GetBlockProof(const CBlockIndex& block);
 static const int PROOF_OF_WORK_FORK_BLOCK_MAINNET = 450000;
 static const int PROOF_OF_WORK_FORK_BLOCK_TESTNET = 50;

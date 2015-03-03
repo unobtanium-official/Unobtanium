@@ -17,6 +17,7 @@
 #include "pow.h"
 #include "txdb.h"
 #include "txmempool.h"
+#include "auxpow.h"
 #include "ui_interface.h"
 #include "undo.h"
 #include "util.h"
@@ -79,83 +80,6 @@ static bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned 
 CScript COINBASE_FLAGS;
 
 const string strMessageMagic = "Unobtanium Signed Message:\n";
-
-// Internal stuff
-namespace {
-
-    struct CBlockIndexWorkComparator
-    {
-        bool operator()(CBlockIndex *pa, CBlockIndex *pb) {
-            // First sort by most total work, ...
-            if (pa->nChainWork > pb->nChainWork) return false;
-            if (pa->nChainWork < pb->nChainWork) return true;
-
-            // ... then by earliest time received, ...
-            if (pa->nSequenceId < pb->nSequenceId) return false;
-            if (pa->nSequenceId > pb->nSequenceId) return true;
-
-            // Use pointer address as tie breaker (should only happen with blocks
-            // loaded from disk, as those all have id 0).
-            if (pa < pb) return false;
-            if (pa > pb) return true;
-
-            // Identical blocks.
-            return false;
-        }
-    };
-
-    CBlockIndex *pindexBestInvalid;
-
-    /**
-     * The set of all CBlockIndex entries with BLOCK_VALID_TRANSACTIONS or better that are at least
-     * as good as our current tip. Entries may be failed, though.
-     */
-    set<CBlockIndex*, CBlockIndexWorkComparator> setBlockIndexCandidates;
-    /** Number of nodes with fSyncStarted. */
-    int nSyncStarted = 0;
-    /** All pairs A->B, where A (or one if its ancestors) misses transactions, but B has transactions. */
-    multimap<CBlockIndex*, CBlockIndex*> mapBlocksUnlinked;
-
-    CCriticalSection cs_LastBlockFile;
-    std::vector<CBlockFileInfo> vinfoBlockFile;
-    int nLastBlockFile = 0;
-
-    /**
-     * Every received block is assigned a unique and increasing identifier, so we
-     * know which one to give priority in case of a fork.
-     */
-    CCriticalSection cs_nBlockSequenceId;
-    /** Blocks loaded from disk are assigned id 0, so start the counter at 1. */
-    uint32_t nBlockSequenceId = 1;
-
-    /**
-     * Sources of received blocks, to be able to send them reject messages or ban
-     * them, if processing happens afterwards. Protected by cs_main.
-     */
-    map<uint256, NodeId> mapBlockSource;
-
-    /** Blocks that are in flight, and that are in the queue to be downloaded. Protected by cs_main. */
-    struct QueuedBlock {
-        uint256 hash;
-        CBlockIndex *pindex;  //! Optional.
-        int64_t nTime;  //! Time of "getdata" request in microseconds.
-        int nValidatedQueuedBefore;  //! Number of blocks queued with validated headers (globally) at the time this one is requested.
-        bool fValidatedHeaders;  //! Whether this block has validated headers at the time of request.
-    };
-    map<uint256, pair<NodeId, list<QueuedBlock>::iterator> > mapBlocksInFlight;
-
-    /** Number of blocks in flight with validated headers. */
-    int nQueuedValidatedHeaders = 0;
-
-    /** Number of preferable block download peers. */
-    int nPreferredDownload = 0;
-
-    /** Dirty block index entries. */
-    set<CBlockIndex*> setDirtyBlockIndex;
-
-    /** Dirty block file entries. */
-    set<int> setDirtyFileInfo;
-} // anon namespace
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -1210,7 +1134,7 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos)
     }
 
     // Check the header
-    if (!CheckProofOfWork(block.GetHash(), block.nBits))
+    if (!CheckBlockProofOfWork(&block))
         return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
 
     return true;
@@ -1938,9 +1862,12 @@ bool static FlushStateToDisk(CValidationState &state, FlushStateMode mode) {
                 vBlocks.push_back(*it);
                 setDirtyBlockIndex.erase(it++);
             }
-            if (!pblocktree->WriteBatchSync(vFiles, nLastBlockFile, vBlocks)) {
+            if (!pblocktree->WriteBatchSync(vFiles, nLastBlockFile, vBlocks, mapDirtyAuxPow)) {
                 return state.Abort("Files to write to block index database");
             }
+			for (std::vector<const CBlockIndex*>::const_iterator it = vBlocks.begin(); it != vBlocks.end(); it++) {
+				mapDirtyAuxPow.erase((*it)->GetBlockHash());
+			}
         }
         // Finally flush the chainstate (which may refer to block index entries).
         if (!pcoinsTip->Flush())
@@ -1985,7 +1912,8 @@ void static UpdateTip(CBlockIndex *pindexNew) {
         const CBlockIndex* pindex = chainActive.Tip();
         for (int i = 0; i < 100 && pindex != NULL; i++)
         {
-            if (pindex->nVersion > CBlock::CURRENT_VERSION)
+			if (pindex->nVersion > CBlock::CURRENT_VERSION &&
+				pindex->nVersion != (CBlockHeader::CURRENT_VERSION | (GetOurChainID() * BLOCK_VERSION_CHAIN_START)))
                 ++nUpgraded;
             pindex = pindex->pprev;
         }
@@ -2384,6 +2312,7 @@ CBlockIndex* AddToBlockIndex(const CBlockHeader& block)
         pindexBestHeader = pindexNew;
 
     setDirtyBlockIndex.insert(pindexNew);
+    mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
 
     return pindexNew;
 }
@@ -2403,6 +2332,7 @@ bool ReceivedBlockTransactions(const CBlock &block, CValidationState& state, CBl
          pindexNew->nSequenceId = nBlockSequenceId++;
     }
     setDirtyBlockIndex.insert(pindexNew);
+    mapDirtyAuxPow.insert(std::make_pair(block.GetHash(), block.auxpow));
 
     if (pindexNew->pprev == NULL || pindexNew->pprev->nChainTx) {
         // If pindexNew is the genesis block or all parents are BLOCK_VALID_TRANSACTIONS.
@@ -2511,7 +2441,7 @@ bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, unsigne
 bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
 {
     // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
+    if (fCheckPOW && !CheckBlockProofOfWork(&block))
         return state.DoS(50, error("CheckBlockHeader(): proof of work failed"),
                          REJECT_INVALID, "high-hash");
 
@@ -2592,6 +2522,10 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     assert(pindexPrev);
 
     int nHeight = pindexPrev->nHeight+1;
+	// Check if auxpow is allowed at this height if block has it
+	if (block.auxpow.get() != NULL && nHeight < GetAuxPowStartBlock())
+		return state.DoS(100, error("%s : premature auxpow block", __func__),
+						 REJECT_INVALID, "time-too-new");
 
     // Check proof of work
     if ((!Params().SkipProofOfWorkCheck()) &&
@@ -3829,7 +3763,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         LogPrint("net", "getheaders %d to %s from peer=%d\n", (pindex ? pindex->nHeight : -1), hashStop.ToString(), pfrom->id);
         for (; pindex; pindex = chainActive.Next(pindex))
         {
-            vHeaders.push_back(pindex->GetBlockHeader());
+            vHeaders.push_back(pindex->GetBlockHeader(mapDirtyAuxPow));
             if (--nLimit <= 0 || pindex->GetBlockHash() == hashStop)
                 break;
         }
