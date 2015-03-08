@@ -678,7 +678,7 @@ Value getauxblock(const Array& params, bool fHelp)
         static CBlock* pblock;
         static CBlockTemplate* pblocktemplate;
         if (pindexPrev != chainActive.Tip() ||
-            (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 5))
+            (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 20))
         {
             if (pindexPrev != chainActive.Tip())
             {
@@ -694,14 +694,7 @@ Value getauxblock(const Array& params, bool fHelp)
 
             // Create new block with nonce = 0 and extraNonce = 1
             // TODO replace with P2PKH to configured address
-            CKeyID keyID;
-            CBitcoinAddress auxminingaddr(GetArg("-auxminingaddr", ""));
-            if (!auxminingaddr.GetKeyID(keyID)) {
-                CPubKey pubkey;
-                if (!reservekey.GetReservedKey(pubkey))
-                    throw JSONRPCError(-7, "Out of memory");
-                keyID = pubkey.GetID();
-            }
+			static const CKeyID keyID = GetAuxpowMiningKey();
             CScript scriptCoinbase = GetScriptForDestination(keyID);
             pblocktemplate = CreateNewBlock(scriptCoinbase);
             if (!pblocktemplate)
@@ -729,7 +722,7 @@ Value getauxblock(const Array& params, bool fHelp)
 
         Object result;
         result.push_back(Pair("target", hashTarget.GetHex()));
-        result.push_back(Pair("hash", pblock->GetHash().GetHex()));
+        result.push_back(Pair("hash", HexStr(BEGIN(hashTarget), END(hashTarget))));
         result.push_back(Pair("chainid", pblock->GetChainID()));
         return result;
     }
@@ -742,20 +735,39 @@ Value getauxblock(const Array& params, bool fHelp)
         CAuxPow* pow = new CAuxPow();
         ss >> *pow;
         if (!mapNewBlock.count(hash))
-            return ::error("getauxblock() : block not found");
+            return ::error("stale-work");
 
         CBlock* pblock = mapNewBlock[hash];
         pblock->SetAuxPow(pow);
 
-        if (!ProcessBlockFound(pblock, *pwalletMain, reservekey))
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+		BlockMap::iterator mi = mapBlockIndex.find(hash);
+		if (mi != mapBlockIndex.end()) {
+			CBlockIndex *pindex = mi->second;
+			if (pindex->IsValid(BLOCK_VALID_SCRIPTS))
+				return "duplicate";
+			if (pindex->nStatus & BLOCK_FAILED_MASK)
+				return "duplicate-invalid";
+		}
+
+		CValidationState state;
+		submitblock_StateCatcher sc(pblock->GetHash());
+		RegisterValidationInterface(&sc);
+
+		bool fAccepted = ProcessNewBlock(state, NULL, pblock);
+		UnregisterValidationInterface(&sc);
+		if (mi != mapBlockIndex.end())
+			if (fAccepted && !sc.found)
+				return "duplicate-inconclusive";
+	 		return "duplicate";
+		}
+		if (fAccepted)
+		{
+			if (!sc.found)
+				return "inconclusive";
+			state = sc.state;
+		}
+		return BIP22ValidationResult(state);
+	}
 }
 
 Value estimatefee(const Array& params, bool fHelp)

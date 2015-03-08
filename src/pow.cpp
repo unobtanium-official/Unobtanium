@@ -211,8 +211,8 @@ bool CheckBlockProofOfWork(const CBlockHeader *pblock)
 	//	There's probably a more elegant way to implement this.
 
 	if (pblock->nVersion > 2) {
-		LogPrintf("nVersion : %d, ChainID : %d, %d\n",pblock->nVersion,pblock->GetChainID(),GetOurChainID());
-	    if (!Params().AllowMinDifficultyBlocks() && pblock->GetChainID() != GetOurChainID())
+		LogPrintf("nVersion : %d, ChainID : %d, %d\n",pblock->nVersion,pblock->GetChainID(),AUXPOW_CHAIN_ID);
+	    if (!Params().AllowMinDifficultyBlocks() && (pblock->nVersion & BLOCK_VERSION_AUXPOW && pblock->GetChainID() != AUXPOW_CHAIN_ID))
 	        return error("CheckBlockProofOfWork() : block does not have our chain ID");	
 
 	    if (pblock->auxpow.get() != NULL)
