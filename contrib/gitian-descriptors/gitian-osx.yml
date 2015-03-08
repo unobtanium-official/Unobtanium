@@ -1,5 +1,5 @@
 ---
-name: "bitcoin-osx-0.10"
+name: "unobtanium-osx-0.10"
 enable_cache: true
 suites:
 - "precise"
@@ -20,8 +20,8 @@ packages:
 - "libbz2-dev"
 reference_datetime: "2013-06-01 00:00:00"
 remotes:
-- "url": "https://github.com/bitcoin/bitcoin.git"
-  "dir": "bitcoin"
+- "url": "https://github.com/unobtanium-official/unobtanium.git"
+  "dir": "unobtanium"
 files:
 - "MacOSX10.9.sdk.tar.gz"
 script: |
@@ -120,7 +120,7 @@ script: |
     popd
 
     make deploy
-    ${WRAP_DIR}/dmg dmg Bitcoin-Qt.dmg ${OUTDIR}/${DISTNAME}-osx-unsigned.dmg
+    ${WRAP_DIR}/dmg dmg Unobtanium-Qt.dmg ${OUTDIR}/${DISTNAME}-osx-unsigned.dmg
 
     cd installed
     find . -name "lib*.la" -delete
