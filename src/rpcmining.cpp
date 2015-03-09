@@ -749,7 +749,7 @@ Value getauxblock(const Array& params, bool fHelp)
 				return "duplicate-invalid";
 		}
 
-		CValidationState state;
+		CValidationState state; 
 		submitblock_StateCatcher sc(pblock->GetHash());
 		RegisterValidationInterface(&sc);
 
