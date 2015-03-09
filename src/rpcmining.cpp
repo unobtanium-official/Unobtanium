@@ -419,10 +419,10 @@ Value getblocktemplate(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid mode");
 
     if (vNodes.empty())
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Bitcoin is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Unobtanium is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Bitcoin is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Unobtanium is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -660,10 +660,10 @@ Value getauxblock(const Array& params, bool fHelp)
             "the aux proof of work and returns true if it was successful.");
 
     if (vNodes.empty())
-        throw JSONRPCError(-9, "Viacoin is not connected!");
+        throw JSONRPCError(-9, "Unobtanium is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(-10, "Viacoin is downloading blocks...");
+        throw JSONRPCError(-10, "Unobtanium is downloading blocks...");
 
     static map<uint256, CBlock*> mapNewBlock;
     static vector<CBlockTemplate*> vNewBlockTemplate;
@@ -753,20 +753,22 @@ Value getauxblock(const Array& params, bool fHelp)
 		submitblock_StateCatcher sc(pblock->GetHash());
 		RegisterValidationInterface(&sc);
 
-		bool fAccepted = ProcessNewBlock(state, NULL, pblock);
-		UnregisterValidationInterface(&sc);
-		if (mi != mapBlockIndex.end())
-			if (fAccepted && !sc.found)
-				return "duplicate-inconclusive";
-	 		return "duplicate";
-		}
-		if (fAccepted)
-		{
-			if (!sc.found)
-				return "inconclusive";
-			state = sc.state;
-		}
-		return BIP22ValidationResult(state);
+        bool fAccepted = ProcessNewBlock(state, NULL, pblock);
+        UnregisterValidationInterface(&sc);
+        if (mi != mapBlockIndex.end())
+        {
+            if (fAccepted && !sc.found)
+                return "duplicate-inconclusive";
+            return "duplicate";
+        }
+        if (fAccepted)
+        {
+            if (!sc.found)
+                return "inconclusive";
+            state = sc.state;
+        }
+        Value result = BIP22ValidationResult(state);
+        return result.is_null() ? true : result;
 	}
 }
 
