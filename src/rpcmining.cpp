@@ -721,8 +721,9 @@ Value getauxblock(const Array& params, bool fHelp)
         uint256 hashTarget = uint256().SetCompact(pblock->nBits);
 
         Object result;
-        result.push_back(Pair("target", hashTarget.GetHex()));
-        result.push_back(Pair("hash", HexStr(BEGIN(hashTarget), END(hashTarget))));
+        result.push_back(Pair("target", HexStr(BEGIN(hashTarget), END(hashTarget))));
+        result.push_back(Pair("hash", pblock->GetHash().GetHex()));
+
         result.push_back(Pair("chainid", pblock->GetChainID()));
         return result;
     }
