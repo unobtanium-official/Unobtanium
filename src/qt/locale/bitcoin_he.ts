@@ -295,7 +295,7 @@
         <translation>פתיחת &amp;כתובת משאב…</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>לקוח ליבה של ביטקוין</translation>
     </message>
     <message>
@@ -351,7 +351,7 @@
         <translation>&amp;קבלה</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>הצגת מידע על ליבת ביטקוין</translation>
     </message>
     <message>
@@ -391,7 +391,7 @@
         <translation>סרגל כלים לשוניות</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>ליבת ביטקוין</translation>
     </message>
     <message>
@@ -399,7 +399,7 @@
         <translation>בקשת תשלומים (יצירה של קודים מסוג QR וסכימות כתובות משאב של :bitcoin)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>על &amp;אודות ליבת ביטקוין</translation>
     </message>
     <message>
@@ -419,7 +419,7 @@
         <translation>אפשרויות &amp;שורת הפקודה</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>הצגת הודעות העזרה של ליבת ביטקוין כדי לקבל רשימה עם אפשרויות שורת הפקודה האפשריות של ביטקוין</translation>
     </message>
     <message>
@@ -789,7 +789,7 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>ליבת ביטקוין</translation>
     </message>
     <message>
@@ -801,7 +801,7 @@ Address: %4
         <translation>(%1-סיביות)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>על אודות ליבת ביטקוין</translation>
     </message>
     <message>
@@ -848,15 +848,15 @@ Address: %4
         <translation>ברוך בואך</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation>ברוך בואך לליבת ביטקוין</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation>מכיוון שזאת הפעם הראשונה שהתכנית פועלת ניתן לבחור איפה ליבת ביטקוין תאחסן את הנתונים שלה.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>לקוח ביטקוין יוריד וישמור העתק של שרשרת המקטעים של ביטקוין. לפחות %1 ג״ב מהנתונים יאוחסנו בתיקייה זו, והיא תגדל עם הזמן. הארנק גם יאוחסן בתיקייה הזו.</translation>
     </message>
     <message>
@@ -868,7 +868,7 @@ Address: %4
         <translation>שימוש בתיקיית נתונים מותאמת אישית:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>ליבת ביטקוין</translation>
     </message>
     <message>
@@ -1994,7 +1994,7 @@ Address: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation>ליבת ביטקוין נסגרת…</translation>
     </message>
     <message>
@@ -2144,11 +2144,11 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>ליבת ביטקוין</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation>מתכנתי ליבת ביטקוין</translation>
     </message>
     <message>
@@ -2710,7 +2710,7 @@ rpcpassword=%s
         <translation>זוהי בניית ניסיון טרום-שחרור - השימוש בה על אחריותך - אין להשתמש לצורך כריה או יישומי מסחר</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
         <translation>לא ניתן להתאגד אל %s במחשב זה. כנראה שליבת ביטקוין כבר פועלת.</translation>
     </message>
     <message>
@@ -2882,7 +2882,7 @@ rpcpassword=%s
         <translation>העמלות (ב־ UNO /ק״ב) הנמוכות מהסכום הזה נחשבות לעמלות אפס ליצירת העברה (בררת מחדל: %s)</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
         <translation>אזהרה: נא לבדוק שהתאריך והשעה של המחשב שלך נכונים! אם השעון שלך שגוי ליבת ביטקוין לא תעבוד כראוי.</translation>
     </message>
     <message>
@@ -2894,7 +2894,7 @@ rpcpassword=%s
         <translation>התחברות דרך מתווך SOCKS5</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
         <translation>כל הזכויות שמורות (C)‏ 2009‏-%i מתכנתי ליבת ביטקוין</translation>
     </message>
     <message>
@@ -2902,7 +2902,7 @@ rpcpassword=%s
         <translation>לא ניתן לנתח את הערך של ‎-rpcbind שצוין בתור %s ככתובת רשת</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
         <translation>אירעה שגיאה בטעינת wallet.dat: הארנק דורש גרסה חדשה יותר של ליבת ביטקוין</translation>
     </message>
     <message>
@@ -2918,7 +2918,7 @@ rpcpassword=%s
         <translation>מידע</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
         <translation>בדיקת התקינות ההתחלתית נכשלה. ליבת ביטקוין תיסגר כעת.</translation>
     </message>
     <message>
@@ -3006,7 +3006,7 @@ rpcpassword=%s
         <translation>שם משתמש לחיבורי JSON-RPC</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
         <translation>יש לכתוב את הארנק מחדש: נא להפעיל את ליבת ביטקוין מחדש כדי להשלים את הפעולה</translation>
     </message>
     <message>

@@ -102,7 +102,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle *networkStyle, QWidget *parent) :
 {
     GUIUtil::restoreWindowGeometry("nWindow", QSize(850, 550), this);
 
-    QString windowTitle = tr("Unobtanium Core") + " - ";
+    QString windowTitle = tr("Unobtanium") + " ";
 #ifdef ENABLE_WALLET
     /* if compiled with wallet support, -disablewallet can still disable the wallet */
     enableWallet = !GetBoolArg("-disablewallet", false);
@@ -111,7 +111,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle *networkStyle, QWidget *parent) :
 #endif // ENABLE_WALLET
     if(enableWallet)
     {
-        windowTitle += tr("Wallet");
+        windowTitle += tr("Vault");
     } else {
         windowTitle += tr("Node");
     }
@@ -248,14 +248,14 @@ void BitcoinGUI::createActions(const NetworkStyle *networkStyle)
     QActionGroup *tabGroup = new QActionGroup(this);
 
     overviewAction = new QAction(SingleColorIcon(":/icons/overview"), tr("&Overview"), this);
-    overviewAction->setStatusTip(tr("Show general overview of wallet"));
+    overviewAction->setStatusTip(tr("Show balance and most recent transactions"));
     overviewAction->setToolTip(overviewAction->statusTip());
     overviewAction->setCheckable(true);
     overviewAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_1));
     tabGroup->addAction(overviewAction);
 
-    sendCoinsAction = new QAction(SingleColorIcon(":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Unobtanium address"));
+    sendCoinsAction = new QAction(SingleColorIcon(":/icons/send"), tr("&Transfer Unobtanium"), this);
+    sendCoinsAction->setStatusTip(tr("Send Unobtanium to another Storage Vault"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -265,8 +265,8 @@ void BitcoinGUI::createActions(const NetworkStyle *networkStyle)
     sendCoinsMenuAction->setStatusTip(sendCoinsAction->statusTip());
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
-    receiveCoinsAction = new QAction(SingleColorIcon(":/icons/receiving_addresses"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and unobtanium: URIs)"));
+    receiveCoinsAction = new QAction(SingleColorIcon(":/icons/receiving_addresses"), tr("&Collect Unobtanium"), this);
+    receiveCoinsAction->setStatusTip(tr("Display your Storage Vault IDs for incoming transfers"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
@@ -276,7 +276,7 @@ void BitcoinGUI::createActions(const NetworkStyle *networkStyle)
     receiveCoinsMenuAction->setStatusTip(receiveCoinsAction->statusTip());
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
 
-    historyAction = new QAction(SingleColorIcon(":/icons/history"), tr("&Transactions"), this);
+    historyAction = new QAction(SingleColorIcon(":/icons/history"), tr("&Ledger"), this);
     historyAction->setStatusTip(tr("Browse transaction history"));
     historyAction->setToolTip(historyAction->statusTip());
     historyAction->setCheckable(true);
@@ -304,32 +304,32 @@ void BitcoinGUI::createActions(const NetworkStyle *networkStyle)
     quitAction->setStatusTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(TextColorIcon(":/icons/about"), tr("&About Unobtanium Core"), this);
-    aboutAction->setStatusTip(tr("Show information about Unobtanium Core"));
+    aboutAction = new QAction(TextColorIcon(":/icons/about"), tr("&About Unobtanium"), this);
+    aboutAction->setStatusTip(tr("Show information about Unobtanium"));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutQtAction = new QAction(TextColorIcon(":/icons/about_qt"), tr("About &Qt"), this);
     aboutQtAction->setStatusTip(tr("Show information about Qt"));
     aboutQtAction->setMenuRole(QAction::AboutQtRole);
     optionsAction = new QAction(TextColorIcon(":/icons/options"), tr("&Options..."), this);
-    optionsAction->setStatusTip(tr("Modify configuration options for Unobtanium Core"));
+    optionsAction->setStatusTip(tr("Modify configuration options for Unobtanium"));
     optionsAction->setMenuRole(QAction::PreferencesRole);
     toggleHideAction = new QAction(TextColorIcon(":/icons/about"), tr("&Show / Hide"), this);
     toggleHideAction->setStatusTip(tr("Show or hide the main Window"));
 
-    encryptWalletAction = new QAction(TextColorIcon(":/icons/lock_closed"), tr("&Encrypt Wallet..."), this);
-    encryptWalletAction->setStatusTip(tr("Encrypt the private keys that belong to your wallet"));
+    encryptWalletAction = new QAction(TextColorIcon(":/icons/lock_closed"), tr("&Encrypt Vault..."), this);
+    encryptWalletAction->setStatusTip(tr("Encrypt the private keys that belong to your vault"));
     encryptWalletAction->setCheckable(true);
-    backupWalletAction = new QAction(TextColorIcon(":/icons/filesave"), tr("&Backup Wallet..."), this);
-    backupWalletAction->setStatusTip(tr("Backup wallet to another location"));
+    backupWalletAction = new QAction(TextColorIcon(":/icons/filesave"), tr("&Backup Vault..."), this);
+    backupWalletAction->setStatusTip(tr("Backup vault to another location"));
     changePassphraseAction = new QAction(TextColorIcon(":/icons/key"), tr("&Change Passphrase..."), this);
-    changePassphraseAction->setStatusTip(tr("Change the passphrase used for wallet encryption"));
+    changePassphraseAction->setStatusTip(tr("Change the passphrase used for vault encryption"));
     signMessageAction = new QAction(TextColorIcon(":/icons/edit"), tr("Sign &message..."), this);
     signMessageAction->setStatusTip(tr("Sign messages with your Unobtanium addresses to prove you own them"));
     verifyMessageAction = new QAction(TextColorIcon(":/icons/verify"), tr("&Verify message..."), this);
     verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Unobtanium addresses"));
 
-    openRPCConsoleAction = new QAction(TextColorIcon(":/icons/debugwindow"), tr("&Debug window"), this);
-    openRPCConsoleAction->setStatusTip(tr("Open debugging and diagnostic console"));
+    openRPCConsoleAction = new QAction(TextColorIcon(":/icons/debugwindow"), tr("&Console"), this);
+    openRPCConsoleAction->setStatusTip(tr("Open diagnostic console"));
 
     usedSendingAddressesAction = new QAction(TextColorIcon(":/icons/address-book"), tr("&Sending addresses..."), this);
     usedSendingAddressesAction->setStatusTip(tr("Show the list of used sending addresses and labels"));
@@ -340,7 +340,7 @@ void BitcoinGUI::createActions(const NetworkStyle *networkStyle)
     openAction->setStatusTip(tr("Open a bitcoin: URI or payment request"));
 
     showHelpMessageAction = new QAction(TextColorIcon(":/icons/info"), tr("&Command-line options"), this);
-    showHelpMessageAction->setStatusTip(tr("Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options"));
+    showHelpMessageAction->setStatusTip(tr("Show the Unobtanium help message to get a list with possible Unobtanium command-line options"));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -374,30 +374,24 @@ void BitcoinGUI::createMenuBar()
 #endif
 
     // Configure the menus
-    QMenu *file = appMenuBar->addMenu(tr("&File"));
+    QMenu *file = appMenuBar->addMenu(tr("&Actions"));
     if(walletFrame)
     {
         file->addAction(openAction);
         file->addAction(backupWalletAction);
+        file->addAction(changePassphraseAction);
+        file->addAction(encryptWalletAction);
         file->addAction(signMessageAction);
         file->addAction(verifyMessageAction);
         file->addSeparator();
         file->addAction(usedSendingAddressesAction);
         file->addAction(usedReceivingAddressesAction);
         file->addSeparator();
+        file->addAction(optionsAction);
     }
     file->addAction(quitAction);
 
-    QMenu *settings = appMenuBar->addMenu(tr("&Settings"));
-    if(walletFrame)
-    {
-        settings->addAction(encryptWalletAction);
-        settings->addAction(changePassphraseAction);
-        settings->addSeparator();
-    }
-    settings->addAction(optionsAction);
-
-    QMenu *help = appMenuBar->addMenu(tr("&Help"));
+    QMenu *help = appMenuBar->addMenu(tr("&About"));
     if(walletFrame)
     {
         help->addAction(openRPCConsoleAction);
@@ -418,6 +412,7 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
+        toolbar->addAction(openRPCConsoleAction);
         overviewAction->setChecked(true);
     }
 }
@@ -510,7 +505,7 @@ void BitcoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
 {
 #ifndef Q_OS_MAC
     trayIcon = new QSystemTrayIcon(this);
-    QString toolTip = tr("Unobtanium Core client") + " " + networkStyle->getTitleAddText();
+    QString toolTip = tr("Unobtanium Client") + " " + networkStyle->getTitleAddText();
     trayIcon->setToolTip(toolTip);
     trayIcon->setIcon(networkStyle->getTrayAndWindowIcon());
     trayIcon->show();

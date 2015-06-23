@@ -295,8 +295,8 @@
         <translation>Відкрити &amp;URI</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Клієнт «Unobtanium Core»</translation>
+        <source>Unobtanium client</source>
+        <translation>Клієнт «Unobtanium»</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -351,8 +351,8 @@
         <translation>&amp;Отримати</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Показати інформацію про Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Показати інформацію про Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -391,16 +391,16 @@
         <translation>Панель вкладок</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Створити запит платежу (генерує QR-код та bitcoin: URI)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Про Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Про Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>Параметри командного рядка</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Показати довідку Unobtanium Core для отримання переліку можливих параметрів командного рядка.</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Показати довідку Unobtanium для отримання переліку можливих параметрів командного рядка.</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -826,8 +826,8 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
@@ -838,8 +838,8 @@ Address: %4
         <translation>(%1-бітний)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Про Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Про Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -885,16 +885,16 @@ Address: %4
         <translation>Вітання</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Ласкаво просимо в Unobtanium Core.</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Ласкаво просимо в Unobtanium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Оскільки це перший запуск програми, ви можете обрати де Unobtanium Core буде зберігати дані.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Оскільки це перший запуск програми, ви можете обрати де Unobtanium буде зберігати дані.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Unobtanium Core завантажить та збереже копію ланцюжка блоків Unobtanium. Щонайменше %1ГБ даних буде збережено в цьому каталозі. Гаманець теж буде збережено в цьому каталозі.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Unobtanium завантажить та збереже копію ланцюжка блоків Unobtanium. Щонайменше %1ГБ даних буде збережено в цьому каталозі. Гаманець теж буде збережено в цьому каталозі.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -905,8 +905,8 @@ Address: %4
         <translation>Використовувати свій каталог даних:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2135,8 +2135,8 @@ Address: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core вимикається...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium вимикається...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2285,12 +2285,12 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Розробники Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Розробники Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2871,8 +2871,8 @@ rpcpassword=%s
         <translation>Це тестова збірка пре-релізної версії - використовуйте на свій страх і ризик - не застосовувати для добування монет або торгівлі</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>Неможливо прив'язатися до %s на цьому комп'ютері. Можливо, Unobtanium Core вже запущено.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>Неможливо прив'язатися до %s на цьому комп'ютері. Можливо, Unobtanium вже запущено.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3063,8 +3063,8 @@ rpcpassword=%s
         <translation>Прив'язатися до даної адреси для прослуховування JSON-RPC підключень. Використовуйте запис виду [хост]:порт для IPv6. Цей параметр можна вказувати декілька разів (типово: прив'язуватися до всіх інтерфейсів)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>Не вдалося встановити блокування на каталог даних %s. Unobtanium Core, ймовірно, вже запущений.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>Не вдалося встановити блокування на каталог даних %s. Unobtanium, ймовірно, вже запущений.</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -3115,8 +3115,8 @@ rpcpassword=%s
         <translation>Цей продукт включає в себе програмне забезпечення, розроблене в рамках проекту OpenSSL &lt;https://www.openssl.org/&gt;, криптографічне програмне забезпечення, написане Еріком Янгом, та функції для роботи з UPnP, написані Томасом Бернардом.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
-        <translation>Увага: будь ласка, перевірте дату і час на своєму комп'ютері! Якщо ваш годинник йде неправильно, Unobtanium Core може працювати некоректно.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
+        <translation>Увага: будь ласка, перевірте дату і час на своєму комп'ютері! Якщо ваш годинник йде неправильно, Unobtanium може працювати некоректно.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -3131,16 +3131,16 @@ rpcpassword=%s
         <translation>Підключитись через SOCKS5-проксі</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
-        <translation>(C) 2009-%i Розробники Unobtanium Core</translation>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
+        <translation>(C) 2009-%i Розробники Unobtanium</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>Неможливо розпізнати мережеву адресу для параметру -rpcbind (%s)</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
-        <translation>Помилка при завантаженні wallet.dat: Гаманець потребує новішої версії Unobtanium Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
+        <translation>Помилка при завантаженні wallet.dat: Гаманець потребує новішої версії Unobtanium</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -tor found, use -onion.</source>
@@ -3155,8 +3155,8 @@ rpcpassword=%s
         <translation>Інформація</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
-        <translation>Не вдалося пройти базові перевірки під час ініціалізації. Unobtanium Core буде вимкнено.</translation>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
+        <translation>Не вдалося пройти базові перевірки під час ініціалізації. Unobtanium буде вимкнено.</translation>
     </message>
     <message>
         <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
@@ -3259,8 +3259,8 @@ rpcpassword=%s
         <translation>Ім'я користувача для JSON-RPC-з'єднань</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
-        <translation>Потрібно перезаписати гаманець: перезапустіть Unobtanium Core для завершення</translation>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
+        <translation>Потрібно перезаписати гаманець: перезапустіть Unobtanium для завершення</translation>
     </message>
     <message>
         <source>Warning</source>

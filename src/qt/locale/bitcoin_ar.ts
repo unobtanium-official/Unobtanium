@@ -291,7 +291,7 @@
         <translation>افتح &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>عميل bitcion core</translation>
     </message>
     <message>
@@ -331,7 +331,7 @@
         <translation>&amp;استقبل</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>  اظهار معلومات حول bitcion core</translation>
     </message>
     <message>
@@ -363,11 +363,11 @@
         <translation>شريط أدوات علامات التبويب</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>جوهر البيت كوين</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>حول bitcoin core</translation>
     </message>
     <message numerus="yes">
@@ -618,7 +618,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>جوهر البيت كوين</translation>
     </message>
     <message>
@@ -626,7 +626,7 @@
         <translation>النسخة</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>عن جوهر البيت كوين</translation>
     </message>
     <message>
@@ -653,7 +653,7 @@
         <translation>استخدام دليل بيانات مخصص:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>جوهر البيت كوين</translation>
     </message>
     <message>
@@ -1297,11 +1297,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>جوهر البيت كوين</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation>مطوري جوهر البيت كوين</translation>
     </message>
     <message>

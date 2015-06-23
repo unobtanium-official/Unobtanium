@@ -296,8 +296,8 @@ Var vänlig och försök igen.</translation>
         <translation>Öppna &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core klient</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium klient</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -352,8 +352,8 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Ta emot</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Visa information om Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Visa information om Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -392,7 +392,7 @@ Var vänlig och försök igen.</translation>
         <translation>Verktygsfält för Tabbar</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kärna</translation>
     </message>
     <message>
@@ -400,8 +400,8 @@ Var vänlig och försök igen.</translation>
         <translation>Begär betalning (genererar QR-koder och bitcoin-URI)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Om Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Om Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -420,8 +420,8 @@ Var vänlig och försök igen.</translation>
         <translation>&amp;Kommandoradsalternativ</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Visa Unobtanium Core hjälpmeddelande för att få en lista med möjliga Unobtanium kommandoradsalternativ.</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Visa Unobtanium hjälpmeddelande för att få en lista med möjliga Unobtanium kommandoradsalternativ.</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -823,7 +823,7 @@ Adress: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kärna</translation>
     </message>
     <message>
@@ -835,8 +835,8 @@ Adress: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Om Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Om Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -882,16 +882,16 @@ Adress: %4
         <translation>Välkommen</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Välkommen till Unobtanium Core.</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Välkommen till Unobtanium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Eftersom detta är första gången programmet startas får du välja var Unobtanium Core skall lagra sitt data.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Eftersom detta är första gången programmet startas får du välja var Unobtanium skall lagra sitt data.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Unobtanium Core kommer att ladda ner och spara en kopia av Unobtanium blockkedjan. Åtminstone %1GB av data kommer att sparas i denna katalog, och den kommer att växa över tiden. Plånboken kommer också att sparas i denna katalog.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Unobtanium kommer att ladda ner och spara en kopia av Unobtanium blockkedjan. Åtminstone %1GB av data kommer att sparas i denna katalog, och den kommer att växa över tiden. Plånboken kommer också att sparas i denna katalog.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -902,7 +902,7 @@ Adress: %4
         <translation>Använd en anpassad datakatalog:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kärna</translation>
     </message>
     <message>
@@ -2128,8 +2128,8 @@ Adress: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core stängs av...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium stängs av...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2278,12 +2278,12 @@ Adress: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kärna</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Unobtanium Core-utvecklarna</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Unobtanium-utvecklarna</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2864,8 +2864,8 @@ till exempel: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Detta är ett förhands testbygge - använd på egen risk - använd inte för mining eller handels applikationer</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>Det går inte att binda till %s på den här datorn. Unobtanium Core är förmodligen redan igång.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>Det går inte att binda till %s på den här datorn. Unobtanium är förmodligen redan igång.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3056,8 +3056,8 @@ till exempel: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Bind till angiven adress för att lyssna på JSON-RPC anslutningar. Använd [värd]:port notation for IPv6. Denna option kan specificeras flera gånger (förvalt: bind till alla gränssnitt)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>Kan inte låsa data-mappen %s. Unobtanium Core körs förmodligen redan.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>Kan inte låsa data-mappen %s. Unobtanium körs förmodligen redan.</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -3104,8 +3104,8 @@ till exempel: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Denna produkten innehåller mjukvara utvecklad av OpenSSL Project för användning i OpenSSL Toolkit &lt;https://www.openssl.org/&gt; och kryptografisk mjukvara utvecklad av Eric Young samt UPnP-mjukvara skriven av Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
-        <translation>Varning: Vänligen kolla så att din dators datum och tid är korrekt! Om din klocka går fel kommer Unobtanium Core inte att fungera korrekt.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
+        <translation>Varning: Vänligen kolla så att din dators datum och tid är korrekt! Om din klocka går fel kommer Unobtanium inte att fungera korrekt.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -3120,16 +3120,16 @@ till exempel: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Anslut genom SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
-        <translation>Copyright (C) 2009-%i Unobtanium Core Utvecklarna</translation>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
+        <translation>Copyright (C) 2009-%i Unobtanium Utvecklarna</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>Kunde inte tolka -rpcbind värdet %s som en nätverksadress</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
-        <translation>Fel vid inläsningen av wallet.dat: Kontofilen kräver en senare version av Unobtanium Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
+        <translation>Fel vid inläsningen av wallet.dat: Kontofilen kräver en senare version av Unobtanium</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -tor found, use -onion.</source>
@@ -3144,8 +3144,8 @@ till exempel: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Information</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
-        <translation>Initieringschecken fallerade. Unobtanium Core stängs av...</translation>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
+        <translation>Initieringschecken fallerade. Unobtanium stängs av...</translation>
     </message>
     <message>
         <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
@@ -3248,8 +3248,8 @@ till exempel: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Användarnamn för JSON-RPC-anslutningar</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
-        <translation>Kontot behöver sparas om: Starta om Unobtanium Core för att fullfölja</translation>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
+        <translation>Kontot behöver sparas om: Starta om Unobtanium för att fullfölja</translation>
     </message>
     <message>
         <source>Warning</source>

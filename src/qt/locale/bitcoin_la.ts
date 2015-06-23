@@ -315,7 +315,7 @@
         <translation>Tabella instrumentorum "Tabs"</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Nucleus</translation>
     </message>
     <message numerus="yes">
@@ -498,7 +498,7 @@ Inscriptio: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Nucleus</translation>
     </message>
     <message>
@@ -537,7 +537,7 @@ Inscriptio: %4
 <context>
     <name>Intro</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Nucleus</translation>
     </message>
     <message>
@@ -1097,7 +1097,7 @@ Inscriptio: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Nucleus</translation>
     </message>
     <message>

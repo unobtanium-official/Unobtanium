@@ -378,7 +378,7 @@
     </message>
     <message>
         <location line="+172"/>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -448,7 +448,7 @@
     </message>
     <message>
         <location line="+32"/>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -498,8 +498,8 @@
     </message>
     <message>
         <location line="-297"/>
-        <source>Unobtanium Core</source>
-        <translation type="unfinished">Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation type="unfinished">Unobtanium</translation>
     </message>
     <message>
         <location line="+155"/>
@@ -508,7 +508,7 @@
     </message>
     <message>
         <location line="+30"/>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -533,7 +533,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -1058,8 +1058,8 @@ Address: %4
     <name>HelpMessageDialog</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+31"/>
-        <source>Unobtanium Core</source>
-        <translation type="unfinished">Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation type="unfinished">Unobtanium</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -1074,7 +1074,7 @@ Address: %4
     </message>
     <message>
         <location line="+5"/>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1132,17 +1132,17 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+26"/>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+10"/>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1157,8 +1157,8 @@ Address: %4
     </message>
     <message>
         <location filename="../intro.cpp" line="+82"/>
-        <source>Unobtanium Core</source>
-        <translation type="unfinished">Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation type="unfinished">Unobtanium</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2743,7 +2743,7 @@ Address: %4
     <name>ShutdownWindow</name>
     <message>
         <location filename="../utilitydialog.cpp" line="+47"/>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2938,12 +2938,12 @@ Address: %4
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+35"/>
-        <source>Unobtanium Core</source>
-        <translation type="unfinished">Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation type="unfinished">Unobtanium</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3685,7 +3685,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Unobtanium Alert&quot; admin@f
     </message>
     <message>
         <location line="+7"/>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3925,7 +3925,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Unobtanium Alert&quot; admin@f
     </message>
     <message>
         <location line="+4"/>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3990,7 +3990,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Unobtanium Alert&quot; admin@f
     </message>
     <message>
         <location line="+13"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4010,7 +4010,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Unobtanium Alert&quot; admin@f
     </message>
     <message>
         <location line="+3"/>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4020,7 +4020,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Unobtanium Alert&quot; admin@f
     </message>
     <message>
         <location line="+12"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4040,7 +4040,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Unobtanium Alert&quot; admin@f
     </message>
     <message>
         <location line="+1"/>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4170,7 +4170,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Unobtanium Alert&quot; admin@f
     </message>
     <message>
         <location line="+4"/>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

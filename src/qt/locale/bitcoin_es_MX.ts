@@ -331,7 +331,7 @@
         <translation>Pestañas</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>nucleo Unobtanium</translation>
     </message>
     <message>
@@ -339,7 +339,7 @@
         <translation>opciones de la &amp;Linea de comandos</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>Mostrar mensaje de ayuda del nucleo de Unobtanium para optener una lista con los posibles comandos  de Unobtanium</translation>
     </message>
     <message numerus="yes">
@@ -494,7 +494,7 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>nucleo Unobtanium</translation>
     </message>
     <message>
@@ -506,8 +506,8 @@
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Acerca de Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Acerca de Unobtanium</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -541,7 +541,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>nucleo Unobtanium</translation>
     </message>
     </context>
@@ -803,7 +803,7 @@
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation>Apagando el nucleo de Unobtanium...</translation>
     </message>
     <message>
@@ -829,11 +829,11 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>nucleo Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation>El nucleo de Unobtanium de desarrolladores</translation>
     </message>
     </context>

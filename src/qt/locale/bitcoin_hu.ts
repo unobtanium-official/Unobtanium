@@ -189,7 +189,7 @@
     </message>
     <message>
         <source>Unobtanium will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation>A Unobtanium Core most bezár, hogy befejezze a titkosítást. Ne feledd: a tárca titkosítása nem nyújt teljes védelmet azzal szemben, hogy adathalász programok megfertőzzék a számítógéped és ellopják a bitcoinjaid.</translation>
+        <translation>A Unobtanium most bezár, hogy befejezze a titkosítást. Ne feledd: a tárca titkosítása nem nyújt teljes védelmet azzal szemben, hogy adathalász programok megfertőzzék a számítógéped és ellopják a bitcoinjaid.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
@@ -295,8 +295,8 @@
         <translation>&amp;URI azonosító megnyitása...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core kliens</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium kliens</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -351,8 +351,8 @@
         <translation>&amp;Fogadás</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Unobtanium Core információ megjelenítése</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Unobtanium információ megjelenítése</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -391,16 +391,16 @@
         <translation>Fül eszköztár</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Fizetési kérelem (QR-kódot és "bitcoin:" URI azonosítót hoz létre)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;A Unobtanium Core-ról</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;A Unobtanium-ról</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>Paran&amp;cssor kapcsolók</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>A Unobtanium Core súgóüzenet megjelenítése a Unobtanium lehetséges parancssori kapcsolóival.</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>A Unobtanium súgóüzenet megjelenítése a Unobtanium lehetséges parancssori kapcsolóival.</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -806,8 +806,8 @@ Cím: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
@@ -818,8 +818,8 @@ Cím: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>A Unobtanium Core-ról</translation>
+        <source>About Unobtanium</source>
+        <translation>A Unobtanium-ról</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -866,12 +866,12 @@ Cím: %4
         <translation>Üdvözlünk</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Üdvözlünk a Unobtanium Core-ban.</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Üdvözlünk a Unobtanium-ban.</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1521,8 +1521,8 @@ Cím: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>A Unobtanium Core leáll...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>A Unobtanium leáll...</translation>
     </message>
     </context>
 <context>
@@ -1623,11 +1623,11 @@ Cím: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation>A Unobtanium fejlesztői</translation>
     </message>
     <message>

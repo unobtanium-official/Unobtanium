@@ -295,7 +295,7 @@
         <translation>開啓 URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>位元幣核心客戶端軟體</translation>
     </message>
     <message>
@@ -351,7 +351,7 @@
         <translation>收款</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>顯示位元幣核心的相關資訊</translation>
     </message>
     <message>
@@ -391,7 +391,7 @@
         <translation>分頁工具列</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
@@ -399,7 +399,7 @@
         <translation>要求付款(產生 QR Code 和位元幣付款協議的 URI)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>關於位元幣核心</translation>
     </message>
     <message>
@@ -419,7 +419,7 @@
         <translation>命令列選項</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>顯示位元幣核心的說明訊息，來取得可用命令列選項的列表</translation>
     </message>
     <message numerus="yes">
@@ -818,7 +818,7 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
@@ -830,7 +830,7 @@ Address: %4
         <translation>(%1 位元)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>關於位元幣核心</translation>
     </message>
     <message>
@@ -877,15 +877,15 @@ Address: %4
         <translation>歡迎</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation>歡迎使用位元幣核心</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation>因為這是程式第一次啓動，你可以選擇位元幣核心儲存資料的地方。</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>位元幣核心會下載並儲存一份位元幣區塊鏈的拷貝。至少有 %1GB 的資料會儲存到這個目錄中，並且還會持續增長。另外錢包資料也會儲存在這個目錄。</translation>
     </message>
     <message>
@@ -897,7 +897,7 @@ Address: %4
         <translation>使用自定的資料目錄:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
@@ -2075,7 +2075,7 @@ Address: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation>位元幣核心正在關閉中...</translation>
     </message>
     <message>
@@ -2225,11 +2225,11 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>位元幣核心</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation>位元幣核心開發人員</translation>
     </message>
     <message>
@@ -2812,7 +2812,7 @@ alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</translation>
         <translation>這是個還沒發表的測試版本 - 使用請自負風險 - 請不要用來開採或商業應用</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
         <translation>沒辦法繫結在這台電腦上的 %s 。位元幣核心可能已經在執行了。</translation>
     </message>
     <message>
@@ -3000,7 +3000,7 @@ alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</translation>
         <translation>和指定的位址繫結以聽候 JSON-RPC 連線。IPv6 請用 [主機]:通訊埠 這種格式。這個選項可以設定多次。(預設值: 跟所有網路界面上的位址繫結)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
         <translation>沒辦法鎖定資料目錄 %s。位元幣核心可能已經在執行了。</translation>
     </message>
     <message>
@@ -3052,7 +3052,7 @@ alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</translation>
         <translation>此產品也包含了由 OpenSSL Project 所開發的 OpenSSL Toolkit 軟體 &lt;https://www.openssl.org/&gt;, 和由 Eric Young 撰寫的加解密軟體，以及由 Thomas Bernard 所撰寫的 UPnP 軟體。</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
         <translation>警告: 請檢查電腦日期和時間是否正確！位元幣核心沒辦法在時鐘不準的情況下正常運作。</translation>
     </message>
     <message>
@@ -3068,7 +3068,7 @@ alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</translation>
         <translation>透過 SOCKS5 代理伺服器連線</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
         <translation>版權為位元幣核心開發人員自西元 2009 至 %i 年起所有</translation>
     </message>
     <message>
@@ -3076,7 +3076,7 @@ alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</translation>
         <translation>沒辦法解析 -rpcbind 參數值 %s 為網路位址</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
         <translation>載入 wallet.dat 檔案時發生錯誤: 這個錢包需要新版的位元幣核心</translation>
     </message>
     <message>
@@ -3092,7 +3092,7 @@ alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</translation>
         <translation>資訊</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
         <translation>初始化時的基本檢查失敗了。位元幣核心將會關閉。</translation>
     </message>
     <message>
@@ -3196,7 +3196,7 @@ alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</translation>
         <translation>JSON-RPC 連線使用者名稱</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
         <translation>錢包需要重寫: 請重新啓動位元幣核心來完成</translation>
     </message>
     <message>

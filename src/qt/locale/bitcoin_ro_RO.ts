@@ -375,15 +375,15 @@
         <translation>Bara de file</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Cereti plati (genereaza coduri QR si bitcoin-uri: URls)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>&amp;Despre Nucleul Unobtanium</translation>
     </message>
     <message>
@@ -403,8 +403,8 @@
         <translation>Command-line setări</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Arată mesajul de ajutor Unobtanium Core pentru a obține o listă cu opțiunile posibile de linii de comandă Unobtanium</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Arată mesajul de ajutor Unobtanium pentru a obține o listă cu opțiunile posibile de linii de comandă Unobtanium</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -766,8 +766,8 @@ Adresa: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
@@ -778,7 +778,7 @@ Adresa: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>Despre Nucleul Unobtanium</translation>
     </message>
     <message>
@@ -821,11 +821,11 @@ Adresa: %4
         <translation>Bun venit</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation>Bine Aţi Venit la Nucleul Unobtanium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation>Dacă aceasta este prima dată când programul este lansat, puteţi alege unde Nucleul Unobtanium va stoca datele. </translation>
     </message>
     <message>
@@ -837,8 +837,8 @@ Adresa: %4
         <translation>Folosește un dosar de date personalizat:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1663,8 +1663,8 @@ Adresa: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core se închide...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium se închide...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1805,12 +1805,12 @@ Adresa: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Dezvoltatorii Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Dezvoltatorii Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>

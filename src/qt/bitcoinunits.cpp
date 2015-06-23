@@ -40,9 +40,9 @@ QString BitcoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("UNO");
-    case mBTC: return QString("mUNO");
-    case uBTC: return QString::fromUtf8("μUNO");
+    case BTC: return QString("kg/Un");
+    case mBTC: return QString("gm/Un");
+    case uBTC: return QString::fromUtf8("mg/Un");
     default: return QString("???");
     }
 }
@@ -51,9 +51,9 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Unobtanium");
-    case mBTC: return QString("Milli-UNO (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-UNO (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case BTC: return QString("Killogramweight Unobtanium");
+    case mBTC: return QString("Gramweight Unobtanium (1 / 1" THIN_SP_UTF8 "000)");
+    case uBTC: return QString("Milligramweight Unobtanium (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }

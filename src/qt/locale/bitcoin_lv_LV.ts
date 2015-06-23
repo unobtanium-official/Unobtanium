@@ -275,8 +275,8 @@
         <translation>Atvērt &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core klients</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium klients</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -331,8 +331,8 @@
         <translation>&amp;Saņemt</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Parādīt informāciju par Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Parādīt informāciju par Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -371,16 +371,16 @@
         <translation>Ciļņu rīkjosla</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Pieprasīt maksājumus (izveido QR kodu un bitcoin: URIs)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>Par &amp;Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>Par &amp;Unobtanium</translation>
     </message>
     <message>
         <source>Open a bitcoin: URI or payment request</source>
@@ -726,8 +726,8 @@ Adrese: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
@@ -738,8 +738,8 @@ Adrese: %4
         <translation>(%1-biti)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Par Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Par Unobtanium</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -773,8 +773,8 @@ Adrese: %4
         <translation>Sveiciens</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Sveicināts Unobtanium Core</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Sveicināts Unobtanium</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -785,8 +785,8 @@ Adrese: %4
         <translation>Izmantot pielāgotu datu mapi:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1603,8 +1603,8 @@ Adrese: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core tiek izslēgta...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium tiek izslēgta...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1733,12 +1733,12 @@ Adrese: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Unobtanium Core izstrādātāji</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Unobtanium izstrādātāji</translation>
     </message>
     <message>
         <source>[testnet]</source>

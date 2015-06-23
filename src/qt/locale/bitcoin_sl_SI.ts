@@ -279,8 +279,8 @@
         <translation>Odpri &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Odjemalec Unobtanium Core</translation>
+        <source>Unobtanium client</source>
+        <translation>Odjemalec Unobtanium</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -331,8 +331,8 @@
         <translation>&amp;Sprejmi</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Pokaži informacije o Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Pokaži informacije o Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -367,11 +367,11 @@
         <translation>Orodna vrstica zavihkov</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jedro Bitcoina</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>&amp;O jedru Bitcoina</translation>
     </message>
     <message>
@@ -746,7 +746,7 @@ Naslov: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jedro Bitcoina</translation>
     </message>
     <message>
@@ -758,7 +758,7 @@ Naslov: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>O jedru Bitcoina</translation>
     </message>
     <message>
@@ -805,16 +805,16 @@ Naslov: %4
         <translation>Dobrodošli</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation>Dobrodošli v jedru Bitcoina</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Program poganjaš prvič. Izberi kje bo Unobtanium Core shranjeval svoje podatke.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Program poganjaš prvič. Izberi kje bo Unobtanium shranjeval svoje podatke.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Unobtanium Core bo prenesel in shranil kopijo Unobtanium verige blokov. V izbrano mapo bo shranjenih vsaj %1 GB podatkov, ta količina pa bo sčasoma še naraščala. Denarnica bo prav tako shranjena v to mapo.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Unobtanium bo prenesel in shranil kopijo Unobtanium verige blokov. V izbrano mapo bo shranjenih vsaj %1 GB podatkov, ta količina pa bo sčasoma še naraščala. Denarnica bo prav tako shranjena v to mapo.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -825,7 +825,7 @@ Naslov: %4
         <translation>Uporabi to mapo za shranjevanje podatkov:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jedro Bitcoina</translation>
     </message>
     <message>
@@ -1661,7 +1661,7 @@ Naslov: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jedro Bitcoina</translation>
     </message>
     <message>

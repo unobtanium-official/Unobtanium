@@ -43,6 +43,7 @@
         <file alias="open">res/icons/open.png</file>
         <file alias="info">res/icons/info.png</file>
         <file alias="about">res/icons/about.png</file>
+        <file alias="scope">res/icons/scope.png</file>
         <file alias="about_qt">res/icons/about_qt.png</file>
         <file alias="verify">res/icons/verify.png</file>
     </qresource>

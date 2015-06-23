@@ -295,8 +295,8 @@
         <translation>Avaa &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core ohjelma</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium ohjelma</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -351,8 +351,8 @@
         <translation>&amp;Vastaanota</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Näytä tietoja Unobtanium Core:sta</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Näytä tietoja Unobtanium:sta</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -391,7 +391,7 @@
         <translation>Välilehtipalkki</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium-ydin</translation>
     </message>
     <message>
@@ -399,8 +399,8 @@
         <translation>Pyydä maksuja (Luo QR koodit ja bitcoin: URIt)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Tietoja Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Tietoja Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>&amp;Komentorivin valinnat</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Näytä Unobtanium Core ohjeet saadaksesi listan mahdollisista Bitcoinin komentorivivalinnoista</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Näytä Unobtanium ohjeet saadaksesi listan mahdollisista Bitcoinin komentorivivalinnoista</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -809,7 +809,7 @@ Osoite: %4</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium-ydin</translation>
     </message>
     <message>
@@ -821,8 +821,8 @@ Osoite: %4</translation>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Tietoja Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Tietoja Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -868,16 +868,16 @@ Osoite: %4</translation>
         <translation>Tervetuloa</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Tervetuloa Unobtanium Core</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Tervetuloa Unobtanium</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Tämän on ensimmäinen kerta kun Unobtanium Core on käynnistetty joten voit valita data-hakemiston paikan.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Tämän on ensimmäinen kerta kun Unobtanium on käynnistetty joten voit valita data-hakemiston paikan.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Unobtanium Core lataa ja tallentaa kopion Bitcoinin lohkoketjusta. Vähintään %1GB dataa tullaan tallentamaan tähän hakemistoon ja tarve kasvaa ajan myötä. Lomakko tullaan myös tallentamaan tähän hakemistoon.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Unobtanium lataa ja tallentaa kopion Bitcoinin lohkoketjusta. Vähintään %1GB dataa tullaan tallentamaan tähän hakemistoon ja tarve kasvaa ajan myötä. Lomakko tullaan myös tallentamaan tähän hakemistoon.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -888,7 +888,7 @@ Osoite: %4</translation>
         <translation>Määritä oma kansio:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium-ydin</translation>
     </message>
     <message>
@@ -1878,7 +1878,7 @@ Osoite: %4</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation>Unobtanium core sulkeutuu...</translation>
     </message>
     <message>
@@ -2020,12 +2020,12 @@ Osoite: %4</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium-ydin</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Unobtanium Core kehittäjät</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Unobtanium kehittäjät</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2570,8 +2570,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Tämä on esi-julkaistu testiversio - Käytä omalla riskillä - Ei saa käytää louhimiseen tai kauppasovelluksiin.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>Ei voida yhdistää %s tässä tietokoneessa. Unobtanium Core on luultavasti jo käynnissä.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>Ei voida yhdistää %s tässä tietokoneessa. Unobtanium on luultavasti jo käynnissä.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2730,8 +2730,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Tuodaan lohkoja ulkoisesta blk000??.dat tiedostosta</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>Ei voida lukita data-hakemistoa %s. Unobtanium Core on luultavasti jo käynnissä.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>Ei voida lukita data-hakemistoa %s. Unobtanium on luultavasti jo käynnissä.</translation>
     </message>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
@@ -2746,11 +2746,11 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Yhdistä SOCKS5 proxin kautta</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
         <translation>Copyright (C) 2009-%i  Unobtanium kehittäjät</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
         <translation>Virhe ladattaessa wallet.dat-tiedostoa: Tarvitset uudemman version Bitcoinista</translation>
     </message>
     <message>
@@ -2822,7 +2822,7 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Käyttäjätunnus JSON-RPC-yhteyksille</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
         <translation>Lompakko tarvitsee uudelleenkirjoittaa: käynnistä Unobtanium uudelleen</translation>
     </message>
     <message>

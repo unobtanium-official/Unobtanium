@@ -379,16 +379,16 @@
         <translation>Barra de separadores</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Solicitar pagamentos (gera códigos QR e URIs bitcoin:)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Sobre o Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Sobre o Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -407,8 +407,8 @@
         <translation>Opções da linha de &amp;comandos</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Mostrar a mensagem de ajuda do Unobtanium Core para obter uma lista com possíveis opções de linha de comandos</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Mostrar a mensagem de ajuda do Unobtanium para obter uma lista com possíveis opções de linha de comandos</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -785,16 +785,16 @@ Endereço: %4</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
         <translation>versão</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Sobre o Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Sobre o Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -836,16 +836,16 @@ Endereço: %4</translation>
         <translation>Bem-vindo</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Bem-vindo ao Unobtanium Core.</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Bem-vindo ao Unobtanium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Sendo esta a primeira vez que o programa é iniciado, poderá escolher onde o Unobtanium Core irá guardar os seus dados.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Sendo esta a primeira vez que o programa é iniciado, poderá escolher onde o Unobtanium irá guardar os seus dados.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>O Unobtanium Core vai transferir e armazenar uma cópia do "block chain" (cadeia de blocos). Pelo menos %1GB de dados serão armazenados nesta pasta, e vão crescer ao longo do tempo. A sua carteira também irá ser armazenada nesta pasta.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>O Unobtanium vai transferir e armazenar uma cópia do "block chain" (cadeia de blocos). Pelo menos %1GB de dados serão armazenados nesta pasta, e vão crescer ao longo do tempo. A sua carteira também irá ser armazenada nesta pasta.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -856,8 +856,8 @@ Endereço: %4</translation>
         <translation>Utilizar uma pasta de dados personalizada:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1758,8 +1758,8 @@ Endereço: %4</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>O Unobtanium Core está a encerrar...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>O Unobtanium está a encerrar...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1900,12 +1900,12 @@ Endereço: %4</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Os programadores do Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Os programadores do Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2441,8 +2441,8 @@ por exemplo: alertnotify=echo %%s | mail -s "Alerta Unobtanium" admin@foo.com</t
         <translation>Esta é uma versão de testes pré-lançamento - use à sua responsabilidade - não usar para minar ou aplicações comerciais</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>Incapaz de vincular à porta %s neste computador. O Unobtanium Core provavelmente já está a correr.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>Incapaz de vincular à porta %s neste computador. O Unobtanium provavelmente já está a correr.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2585,8 +2585,8 @@ por exemplo: alertnotify=echo %%s | mail -s "Alerta Unobtanium" admin@foo.com</t
         <translation>Importar blocos de um ficheiro blk000??.dat externo</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>Impossível trancar a pasta de dados %s. Provavelmente o Unobtanium Core já está a ser executado.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>Impossível trancar a pasta de dados %s. Provavelmente o Unobtanium já está a ser executado.</translation>
     </message>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>

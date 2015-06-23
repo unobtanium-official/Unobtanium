@@ -291,7 +291,7 @@
         <translation>打开 &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>比特币核心钱包</translation>
     </message>
     <message>
@@ -347,7 +347,7 @@
         <translation>接收(&amp;R)</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>显示有关比特币核心钱包信息</translation>
     </message>
     <message>
@@ -387,7 +387,7 @@
         <translation>分页工具栏</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>比特币核心</translation>
     </message>
     <message>
@@ -395,7 +395,7 @@
         <translation>请求支付（生成二维码和 bitcoin: URI）</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>关于比特币核心(&amp;A)</translation>
     </message>
     <message>
@@ -415,7 +415,7 @@
         <translation>&amp;命令行 选项</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>显示比特币核心 程序帮助信息，获取可用的命令行选项 </translation>
     </message>
     <message numerus="yes">
@@ -802,7 +802,7 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>比特币核心</translation>
     </message>
     <message>
@@ -814,7 +814,7 @@ Address: %4
         <translation>(%1 位)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>关于比特币核心</translation>
     </message>
     <message>
@@ -862,15 +862,15 @@ Address: %4
         <translation>欢迎</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation>欢迎使用 比特币核心 程序。</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation>由于这是第一次运行 比特币核心 程序，您可以选择数据存储目录。</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>比特币核心 程序会下载储存一份数据块链(blockchain)。至少需要 %1 GB的存储空间，随着时间推移会需要更多的存储空间。钱包文件也储存在该目录。</translation>
     </message>
     <message>
@@ -882,7 +882,7 @@ Address: %4
         <translation>使用自定义的数据目录：</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>比特币核心</translation>
     </message>
     <message>
@@ -1956,7 +1956,7 @@ Address: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation>比特币核心正在关机...</translation>
     </message>
     <message>
@@ -2098,12 +2098,12 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>比特币核心</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Unobtanium Core 的开发者</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Unobtanium 的开发者</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2638,7 +2638,7 @@ rpcpassword=%s
         <translation>这是测试用的预发布版本 - 请谨慎使用 - 不要用来挖矿，或者在正式商用环境下使用</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
         <translation>无法 %s的绑定到电脑上，比特币核心钱包可能已经在运行。</translation>
     </message>
     <message>
@@ -2798,7 +2798,7 @@ rpcpassword=%s
         <translation>从blk000??.dat文件导入数据块</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
         <translation>无法获取数据目录的 %s. 比特币核心钱包可能已经在运行.</translation>
     </message>
     <message>
@@ -2822,15 +2822,15 @@ rpcpassword=%s
         <translation>通过 SOCKS5 代理连接</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
-        <translation>版权所有 (C) 2009-%i Unobtanium Core 开发者</translation>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
+        <translation>版权所有 (C) 2009-%i Unobtanium 开发者</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>无法解析 -rpcbind 的值 %s 为网络地址</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
         <translation>加载wallet.dat错误：需要新版的比特币核心钱包</translation>
     </message>
     <message>
@@ -2842,8 +2842,8 @@ rpcpassword=%s
         <translation>信息</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
-        <translation>初始化完整性检查失败。Unobtanium Core 即将关闭。</translation>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
+        <translation>初始化完整性检查失败。Unobtanium 即将关闭。</translation>
     </message>
     <message>
         <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
@@ -2934,7 +2934,7 @@ rpcpassword=%s
         <translation>JSON-RPC 连接用户名</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
         <translation>钱包需要被改写：重新启动核心钱包来完成</translation>
     </message>
     <message>

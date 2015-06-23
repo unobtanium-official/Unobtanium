@@ -295,7 +295,7 @@
         <translation>Open &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>Unobtanium kern applicatie</translation>
     </message>
     <message>
@@ -351,7 +351,7 @@
         <translation>&amp;Ontvangen</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>Toon informatie over bitcoin kern</translation>
     </message>
     <message>
@@ -391,7 +391,7 @@
         <translation>Tab-werkbalk</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kern</translation>
     </message>
     <message>
@@ -399,8 +399,8 @@
         <translation>Vraag betaling aan (genereert QR codes en bitcoin: URIs)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Over Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Over Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>&amp;Commandoregel-opties</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Toon het Unobtanium Core hulpbericht om een lijst te krijgen met mogelijke Unobtanium commandoregelopties</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Toon het Unobtanium hulpbericht om een lijst te krijgen met mogelijke Unobtanium commandoregelopties</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -826,7 +826,7 @@ Adres: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kern</translation>
     </message>
     <message>
@@ -838,8 +838,8 @@ Adres: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Over Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Over Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -885,16 +885,16 @@ Adres: %4
         <translation>Welkom</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Welkom bij Unobtanium Core</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Welkom bij Unobtanium</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Omdat dit de eerste keer is dat het programma gestart is, kunt u nu kiezen waar Unobtanium Core de data moet opslaan.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Omdat dit de eerste keer is dat het programma gestart is, kunt u nu kiezen waar Unobtanium de data moet opslaan.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Unobtanium Core zal een kopie van de Unobtanium blokketen downloaden en opslaan. Tenminste %1 GB aan data wordt opgeslagen in deze map en het zal groeien in de tijd. De portemonnee wordt ook in deze map opgeslagen.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Unobtanium zal een kopie van de Unobtanium blokketen downloaden en opslaan. Tenminste %1 GB aan data wordt opgeslagen in deze map en het zal groeien in de tijd. De portemonnee wordt ook in deze map opgeslagen.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -905,7 +905,7 @@ Adres: %4
         <translation>Gebruik een persoonlijke gegevensmap:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kern</translation>
     </message>
     <message>
@@ -2107,8 +2107,8 @@ Adres: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core is aan het afsluiten...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium is aan het afsluiten...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2257,12 +2257,12 @@ Adres: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Kern</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>De Unobtanium Core ontwikkelaars</translation>
+        <source>The Unobtanium developers</source>
+        <translation>De Unobtanium ontwikkelaars</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2829,8 +2829,8 @@ bijvoorbeeld: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</t
         <translation>Dit is een pre-release testversie - gebruik op eigen risico! Gebruik deze niet voor het delven van munten of handelsdoeleinden</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>Niet in staat om %s te verbinden op deze computer. Unobtanium Core draait waarschijnlijk al.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>Niet in staat om %s te verbinden op deze computer. Unobtanium draait waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2993,8 +2993,8 @@ bijvoorbeeld: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</t
         <translation>Importeert blokken van extern blk000??.dat bestand</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>Kan geen lock verkrijgen op gegevensmap %s. Unobtanium Core draait waarschijnlijk al.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>Kan geen lock verkrijgen op gegevensmap %s. Unobtanium draait waarschijnlijk al.</translation>
     </message>
     <message>
         <source>Execute command when a relevant alert is received or we see a really long fork (%s in cmd is replaced by message)</source>
@@ -3005,8 +3005,8 @@ bijvoorbeeld: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com</t
         <translation>Stel maximumgrootte in bytes in voor hoge-prioriteits-/lage-transactiekosten-transacties (standaard: %d)</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
-        <translation>Fout bij laden wallet.dat: Portemonnee vereist een nieuwere versie van Unobtanium Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
+        <translation>Fout bij laden wallet.dat: Portemonnee vereist een nieuwere versie van Unobtanium</translation>
     </message>
     <message>
         <source>Information</source>

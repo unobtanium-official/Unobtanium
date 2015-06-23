@@ -295,7 +295,7 @@
         <translation>&amp;URI aç...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>Unobtanium Çekirdeği istemcisi</translation>
     </message>
     <message>
@@ -351,7 +351,7 @@
         <translation>&amp;Al</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>Unobtanium Çekirdeği hakkında bilgi göster</translation>
     </message>
     <message>
@@ -391,7 +391,7 @@
         <translation>Sekme araç çubuğu</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Çekirdeği</translation>
     </message>
     <message>
@@ -399,7 +399,7 @@
         <translation>Ödeme talep et (QR kodu ve bitcoin URI'si oluşturur)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>Unobtanium Çekirdeği &amp;hakkında</translation>
     </message>
     <message>
@@ -419,7 +419,7 @@
         <translation>&amp;Komut satırı seçenekleri</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>Unobtanium komut satırı seçeneklerinin listesini elde etmek için Unobtanium Çekirdeği yardım mesajını göster</translation>
     </message>
     <message numerus="yes">
@@ -826,7 +826,7 @@ Adres: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Çekirdeği</translation>
     </message>
     <message>
@@ -838,7 +838,7 @@ Adres: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>Unobtanium Çekirdeği hakkında</translation>
     </message>
     <message>
@@ -885,15 +885,15 @@ Adres: %4
         <translation>Hoş geldiniz</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation>Unobtanium Çekirdeğine hoş geldiniz.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation>Bu programı ilk kez başlattığınızdan dolayı Unobtanium Çekirdeğinin verilerini nereye saklayacağını seçebilirsiniz.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>Unobtanium çekirdeği Unobtanium blok zincirinin bir kopyasını indirip saklayacaktır. Asgari %1GB bouyutunda veri bu klasörde saklanacak ve zamanla bu boyut artacaktır. Cüzdan da bu klasörde saklanacaktır. </translation>
     </message>
     <message>
@@ -905,7 +905,7 @@ Adres: %4
         <translation>Özel bir veri klasörü kullan:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Çekirdeği</translation>
     </message>
     <message>
@@ -2135,7 +2135,7 @@ Adres: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation>Unobtanium Çekirdeği kapanıyor...</translation>
     </message>
     <message>
@@ -2285,11 +2285,11 @@ Adres: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Çekirdeği</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation>Unobtanium Çekirdeği geliştiricileri</translation>
     </message>
     <message>
@@ -2871,7 +2871,7 @@ mesela: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Bu yayın öncesi bir deneme sürümüdür - tüm riski siz üstlenmiş olursunuz - bitcoin oluşturmak ya da ticari uygulamalar için kullanmayınız</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
         <translation>Bu bilgisayarda %s unsuruna bağlanılamadı. Unobtanium Çekirdeği muhtemelen hâlihazırda çalışmaktadır.</translation>
     </message>
     <message>
@@ -3063,7 +3063,7 @@ mesela: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Belirtilen adrese bağlan ve JSON RPC bağlantıları için dinlemeye geç. IPv6 için [makine]:port imlasını kullanınız. Bu seçenek birden çok kez belirtilebilir (varsayılan: tüm arayüzlere bağlan)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
         <translation>%s veri dizininde kilit elde edilemedi. Unobtanium Çekirdeği muhtemelen hâlihazırda çalışmaktadır.</translation>
     </message>
     <message>
@@ -3115,7 +3115,7 @@ mesela: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Bu ürün OpenSSL projesi tarafından OpenSSL araç takımı (http://www.openssl.org/) için geliştirilen yazılımlar, Eric Young (eay@cryptsoft.com) tarafından hazırlanmış şifreleme yazılımları ve Thomas Bernard tarafından programlanmış UPnP yazılımı içerir.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
         <translation>Uyarı: Lütfen bilgisayarınızın saat ve tarihinin doğru olduğunu kontol ediniz! Saatinizde gecikme varsa Unobtanium Çekirdeği doğru şekilde çalışamaz.</translation>
     </message>
     <message>
@@ -3131,7 +3131,7 @@ mesela: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>SOCKS5 vekil sunucusu vasıtasıyla bağlan</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
         <translation>Telif hakkı 2009-%i Unobtanium Çekirdeği Geliştiricileri</translation>
     </message>
     <message>
@@ -3139,7 +3139,7 @@ mesela: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>-rpcbind değeri %s şebeke adresi olarak ayrıştırılamadı</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
         <translation>wallet.dat dosyasının yüklenmesinde hata: Cüzdan Unobtanium Çekirdeğinin daha yeni bir sürümünü gerektirmektedir</translation>
     </message>
     <message>
@@ -3155,7 +3155,7 @@ mesela: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Bilgi</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
         <translation>Başlatma sınaması başarısız oldu. Unobtanium Çekirdeği kapatılıyor.</translation>
     </message>
     <message>
@@ -3259,7 +3259,7 @@ mesela: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>JSON-RPC bağlantıları için kullanıcı ismi</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
         <translation>Cüzdanın tekrar yazılması gerekmektedir: tamamlamak için Unobtanium Çekirdeğini yeniden başlatın</translation>
     </message>
     <message>

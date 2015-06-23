@@ -295,8 +295,8 @@
         <translation>Otvori &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core klijent</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium klijent</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -351,8 +351,8 @@
         <translation>Pri&amp;miti</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Prikaži informacije o Unobtanium Coreu</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Prikaži informacije o Unobtaniumu</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -391,7 +391,7 @@
         <translation>Traka kartica</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Jezgra</translation>
     </message>
     <message>
@@ -399,7 +399,7 @@
         <translation>Zatraži uplate (Stvara QR kodove i bitcoin: URIje)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>&amp;O Unobtanium Jezgri</translation>
     </message>
     <message>
@@ -558,7 +558,7 @@ Adresa:%4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Jezgra</translation>
     </message>
     <message>
@@ -566,7 +566,7 @@ Adresa:%4
         <translation>verzija</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>O Unobtanium Jezrgu</translation>
     </message>
     <message>
@@ -589,7 +589,7 @@ Adresa:%4
         <translation>Dobrodošli</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Jezgra</translation>
     </message>
     <message>
@@ -1033,7 +1033,7 @@ Adresa:%4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium Jezgra</translation>
     </message>
     <message>

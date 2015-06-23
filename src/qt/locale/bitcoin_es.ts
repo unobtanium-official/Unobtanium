@@ -295,8 +295,8 @@
         <translation>Abrir &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Cliente Unobtanium Core</translation>
+        <source>Unobtanium client</source>
+        <translation>Cliente Unobtanium</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -351,8 +351,8 @@
         <translation>&amp;Recibir</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Mostrar información acerca de Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Mostrar información acerca de Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -391,16 +391,16 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Solicitar pagos (generando códigos QR e identificadores URI "bitcoin:")</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Acerca de Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Acerca de Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>&amp;Opciones de consola de comandos</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Mostrar el mensaje de ayuda de Unobtanium Core con una lista de las posibles opciones de la consola de comandos de Unobtanium</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Mostrar el mensaje de ayuda de Unobtanium con una lista de las posibles opciones de la consola de comandos de Unobtanium</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -826,8 +826,8 @@ Dirección: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
@@ -838,8 +838,8 @@ Dirección: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Acerca de Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Acerca de Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -885,16 +885,16 @@ Dirección: %4
         <translation>Bienvenido</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Bienvenido a Unobtanium Core</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Bienvenido a Unobtanium</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Al ser la primera vez que se ejecuta el programa, puede elegir dónde almacenará sus datos Unobtanium Core.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Al ser la primera vez que se ejecuta el programa, puede elegir dónde almacenará sus datos Unobtanium.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Unobtanium Core va a descargar y guardar una copia de la cadena de bloques de Unobtanium. Se almacenará al menos %1GB de datos en este directorio, que irá creciendo con el tiempo. El monedero se guardará también en este directorio.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Unobtanium va a descargar y guardar una copia de la cadena de bloques de Unobtanium. Se almacenará al menos %1GB de datos en este directorio, que irá creciendo con el tiempo. El monedero se guardará también en este directorio.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -905,8 +905,8 @@ Dirección: %4
         <translation>Utilizar un directorio de datos personalizado:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2103,8 +2103,8 @@ Dirección: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core se está cerrando...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium se está cerrando...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2253,12 +2253,12 @@ Dirección: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Los desarrolladores de Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Los desarrolladores de Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2843,8 +2843,8 @@ Por ejemplo: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Esta es una versión de pre-prueba - utilícela bajo su propio riesgo. No la utilice para usos comerciales o de minería.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>No se ha podido acceder a %s en esta máquina. Probablemente ya se está ejecutando Unobtanium Core.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>No se ha podido acceder a %s en esta máquina. Probablemente ya se está ejecutando Unobtanium.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3035,8 +3035,8 @@ Por ejemplo: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Ligar a las direcciones especificadas para escuchar por conexiones JSON-RPC. Usar la notación para IPv6 [host]:puerto. Esta opción se puede especificar múltiples veces (por defecto: ligar a todas las interfaces)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>No se ha podido bloquear el directorio de datos %s. Probablemente ya se está ejecutando Unobtanium Core.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>No se ha podido bloquear el directorio de datos %s. Probablemente ya se está ejecutando Unobtanium.</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -3079,8 +3079,8 @@ Por ejemplo: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Este producto incluye software desarrollado por el OpenSSL Project para su uso en OpenSSL Toolkit &lt;https://www.openssl.org/&gt;, software de cifrado escrito por Eric Young y software UPnP escrito por Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
-        <translation>Aviso: ¡Comprueba la fecha y hora de tu ordenador y verifica si es correcta! Si no es correcta Unobtanium Core no funcionará adecuadamente.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
+        <translation>Aviso: ¡Comprueba la fecha y hora de tu ordenador y verifica si es correcta! Si no es correcta Unobtanium no funcionará adecuadamente.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -3091,12 +3091,12 @@ Por ejemplo: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Conectar usando SOCKS5 proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
-        <translation>Copyright (C) 2009-%i The Unobtanium Core Developers</translation>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
+        <translation>Copyright (C) 2009-%i The Unobtanium Developers</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
-        <translation>Error al cargar wallet.dat: El monedero requiere una versión más reciente de Unobtanium Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
+        <translation>Error al cargar wallet.dat: El monedero requiere una versión más reciente de Unobtanium</translation>
     </message>
     <message>
         <source>Fee (in  UNO /kB) to add to transactions you send (default: %s)</source>
@@ -3107,8 +3107,8 @@ Por ejemplo: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Información</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
-        <translation>La inicialización de la verificación de validez falló. Se está apagando Unobtanium Core.</translation>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
+        <translation>La inicialización de la verificación de validez falló. Se está apagando Unobtanium.</translation>
     </message>
     <message>
         <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
@@ -3208,8 +3208,8 @@ Por ejemplo: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
 </translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
-        <translation>Monedero es necesario volver a escribir: reiniciar Unobtanium Core para completar</translation>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
+        <translation>Monedero es necesario volver a escribir: reiniciar Unobtanium para completar</translation>
     </message>
     <message>
         <source>Warning</source>

@@ -291,7 +291,7 @@
         <translation>Otwórz URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>Rdzeń klienta Unobtanium</translation>
     </message>
     <message>
@@ -347,7 +347,7 @@
         <translation>Odbie&amp;rz</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>Pokaż informacje o Rdzeniu Unobtanium</translation>
     </message>
     <message>
@@ -387,7 +387,7 @@
         <translation>Pasek zakładek</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Rdzeń BitCoin</translation>
     </message>
     <message>
@@ -395,8 +395,8 @@
         <translation>Żądaj płatności (generuje kod QR oraz bitcoin URI)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;O Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;O Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -411,7 +411,7 @@
         <translation>&amp;Opcje konsoli</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>Pokaż pomoc Rdzenia Unobtanium, aby zobaczyć listę wszystkich opcji linii poleceń</translation>
     </message>
     <message numerus="yes">
@@ -790,7 +790,7 @@ Adres: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Rdzeń BitCoin</translation>
     </message>
     <message>
@@ -802,8 +802,8 @@ Adres: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>O Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>O Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -845,15 +845,15 @@ Adres: %4
         <translation>Witaj</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Witam w Unobtanium Core</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Witam w Unobtanium</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation>Ponieważ jest to pierwsze uruchomienie programu, możesz wybrać gdzie będą przechowywane informacje.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>Program pobierze i będzie przechowywał kopię łańcucha bloków Unobtanium. W wybranym katalogu musi być przynajmniej %1GB miejsca, a z czasem wielkość danych będzie rosła. Portfel będzie przechowywany w tym samym katalogu.</translation>
     </message>
     <message>
@@ -865,7 +865,7 @@ Adres: %4
         <translation>Użyj wybranego folderu dla danych</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Rdzeń BitCoin</translation>
     </message>
     <message>
@@ -1715,8 +1715,8 @@ Adres: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core się zamyka...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium się zamyka...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1857,12 +1857,12 @@ Adres: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Rdzeń BitCoin</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Deweloperzy Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Deweloperzy Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2522,7 +2522,7 @@ na przykład: alertnotify=echo %%s | mail -s "Alarm Unobtanium" admin@foo.com⏎
         <translation>Importuj bloki z zewnętrznego pliku blk000??.dat</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
         <translation>Nie można uzyskać blokady na katalogu z danymi %s. Rdzeń Unobtanium najprawdopodobniej jest już uruchomiony.</translation>
     </message>
     <message>
@@ -2606,7 +2606,7 @@ na przykład: alertnotify=echo %%s | mail -s "Alarm Unobtanium" admin@foo.com⏎
         <translation>Nazwa użytkownika dla połączeń JSON-RPC</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
         <translation>Portfel wymaga przepisania: zresetuj Bitcoina aby ukończyć</translation>
     </message>
     <message>
