@@ -111,7 +111,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle *networkStyle, QWidget *parent) :
 #endif // ENABLE_WALLET
     if(enableWallet)
     {
-        windowTitle += tr("Vault");
+        windowTitle += tr("Storage Vault");
     } else {
         windowTitle += tr("Node");
     }
@@ -412,7 +412,6 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
         toolbar->addAction(historyAction);
-        toolbar->addAction(openRPCConsoleAction);
         overviewAction->setChecked(true);
     }
 }

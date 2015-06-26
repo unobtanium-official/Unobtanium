@@ -994,7 +994,7 @@ void ThreadMapPort()
             }
         }
 
-        string strDesc = "Bitcoin " + FormatFullVersion();
+        string strDesc = "Unobtanium " + FormatFullVersion();
 
         try {
             while (true) {

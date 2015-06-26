@@ -153,8 +153,7 @@ public:
         vSeeds.push_back(CDNSSeedData("198.199.97.43","198.199.97.43"));
         vSeeds.push_back(CDNSSeedData("128.199.174.196","128.199.174.196"));
         vSeeds.push_back(CDNSSeedData("rockchain.info", "rockchain.info"));
-        vSeeds.push_back(CDNSSeedData("seed1.coinlab.info", "seed1.coinlab.info"));
-        vSeeds.push_back(CDNSSeedData("seed3.coinlab.info", "seed3.coinlab.info"));
+        vSeeds.push_back(CDNSSeedData("23skidoo.info", "23skidoo.info"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);
