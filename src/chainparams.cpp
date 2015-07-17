@@ -147,12 +147,13 @@ public:
         assert(hashGenesisBlock == uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
-        vSeeds.push_back(CDNSSeedData("108.61.10.90", "108.61.10.90"));
+        vSeeds.push_back(CDNSSeedData("23skidoo.info", "23skidoo.info"));
         vSeeds.push_back(CDNSSeedData("107.170.63.157", "107.170.63.157"));
         vSeeds.push_back(CDNSSeedData("192.241.254.222", "192.241.254.222"));
         vSeeds.push_back(CDNSSeedData("198.199.97.43","198.199.97.43"));
         vSeeds.push_back(CDNSSeedData("128.199.174.196","128.199.174.196"));
-        vSeeds.push_back(CDNSSeedData("rockchain.info", "rockchain.info")); 
+        vSeeds.push_back(CDNSSeedData("rockchain.info", "rockchain.info"));
+        vSeeds.push_back(CDNSSeedData("108.61.10.90", "108.61.10.90"));        
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);
@@ -192,7 +193,7 @@ public:
         pchMessageStart[2] = 0x03;
         pchMessageStart[3] = 0x04;
         vAlertPubKey = ParseHex("0450a15957f7e05910a9ca54fd84a0b555a3563561f3ecbdb6f844f752917f8a8d0041d579022044bb9398dbb7babec4601444fc60870826f3f15afae074213bf4");
-        nDefaultPort = 65530;
+        nDefaultPort = 65525;
 
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
