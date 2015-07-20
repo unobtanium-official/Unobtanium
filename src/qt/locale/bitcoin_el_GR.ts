@@ -296,8 +296,8 @@
         <translation>'Ανοιγμα &amp;URI</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Εφαρμογή Unobtanium Core</translation>
+        <source>Unobtanium client</source>
+        <translation>Εφαρμογή Unobtanium</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -352,8 +352,8 @@
         <translation>&amp;Παραλαβή </translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Σχετικά με το Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Σχετικά με το Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -392,16 +392,16 @@
         <translation>Εργαλειοθήκη καρτελών</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσεις bitcoin: )</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Σχετικά με το Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Σχετικά με το Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -420,7 +420,7 @@
         <translation>&amp;Επιλογές γραμμής εντολών</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>Εμφανιση του Unobtanium-Qt μήνυματος βοήθειας για να πάρετε μια λίστα με τις πιθανές επιλογές Unobtanium γραμμής εντολών.</translation>
     </message>
     <message numerus="yes">
@@ -816,8 +816,8 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
@@ -828,8 +828,8 @@ Address: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Σχετικά με το Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Σχετικά με το Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -875,15 +875,15 @@ Address: %4
         <translation>Καλώς ήρθατε</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Καλώς ήρθατε στο Unobtanium Core.</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Καλώς ήρθατε στο Unobtanium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Καθώς αυτή είναι η πρώτη φορά που εκκινείται το πρόγραμμα, μπορείτε να διαλέξετε πού θα αποθηκεύει το Unobtanium Core τα δεδομένα του.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Καθώς αυτή είναι η πρώτη φορά που εκκινείται το πρόγραμμα, μπορείτε να διαλέξετε πού θα αποθηκεύει το Unobtanium τα δεδομένα του.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>O πυρήνας Unobtanium θα κατεβάσει και να αποθηκεύσει ένα αντίγραφο της αλυσίδας μπλοκ Unobtanium. Τουλάχιστον %1GB δεδομένων θα αποθηκευτούν σε αυτόν τον κατάλογο, και θα αυξηθεί με την πάροδο του χρόνου. Το πορτοφόλι θα αποθηκευτεί σε αυτόν τον κατάλογο.</translation>
     </message>
     <message>
@@ -895,8 +895,8 @@ Address: %4
         <translation>Προσαρμογή του φακέλου δεδομένων: </translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1829,8 +1829,8 @@ Address: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Το Unobtanium Core τερματίζεται...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Το Unobtanium τερματίζεται...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1979,12 +1979,12 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Οι προγραμματιστές του Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Οι προγραμματιστές του Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2634,7 +2634,7 @@ for example: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Εισαγωγή μπλοκ από εξωτερικό αρχείο blk000?.dat</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
         <translation>Αδυναμία κλειδώματος του φακέλου δεδομένων %s. Πιθανώς το Unobtanium να είναι ήδη ενεργό.</translation>
     </message>
     <message>
@@ -2646,7 +2646,7 @@ for example: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Δεν μπόρεσε να αναλυθεί η παράμετρος -rpcbind value %s ως διεύθυνση δικτύου</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
         <translation>Σφάλμα φόρτωσης wallet.dat: Το Πορτοφόλι απαιτεί μια νεότερη έκδοση του Unobtanium</translation>
     </message>
     <message>

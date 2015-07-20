@@ -71,11 +71,12 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
         ( 500000,	uint256S("0x0000000000000e8c9abf99b54350a546e6350443fb418db11205688fa09ab594"))
         ( 525000,	uint256S("0x0000000000000b5244cf2d5a8836a76fbbc838573710688fa3739686dc129f21"))
         ( 550000,	uint256S("0x0000000000000c4faf48d3ebafcebe74d016a2e932b634dd88b97588907692e3"))
+        ( 630000,	uint256S("0xf16ef330597e3e6ba6f3e425400433f5bbc8e5eab7ff77744c29a24d6c1a632d"))
         ;
 static const Checkpoints::CCheckpointData data = {
         &mapCheckpoints,
-        1389348616, // * UNIX timestamp of last checkpoint block
-        680219,     // * total number of transactions between genesis and last checkpoint
+        1436478823, // * UNIX timestamp of last checkpoint block
+        793171,     // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
         2880        // * estimated number of transactions per day after checkpoint
    };
@@ -83,11 +84,13 @@ static const Checkpoints::CCheckpointData data = {
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         boost::assign::map_list_of
         ( 0, uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"))
+        ( 10000, uint256S("0x0000000d0ad0fcd14d0642755a1ebdabc418dba2bbbb6c9d48f9f5304dd99dff"))
+        ( 25000, uint256S("0x00000008a54b0d3e8bcd84b131253009422104de8ecc16ac9fe53fa1a39c2fe4"))
         ;
 static const Checkpoints::CCheckpointData dataTestnet = {
         &mapCheckpointsTestnet,
-        1374901773,
-        0,
+        1436994107,
+        25044,
         2880
     };
 
@@ -147,14 +150,23 @@ public:
         assert(hashGenesisBlock == uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
-        vSeeds.push_back(CDNSSeedData("108.61.10.90", "108.61.10.90"));
+        vSeeds.push_back(CDNSSeedData("23skidoo.info", "23skidoo.info"));
         vSeeds.push_back(CDNSSeedData("107.170.63.157", "107.170.63.157"));
         vSeeds.push_back(CDNSSeedData("192.241.254.222", "192.241.254.222"));
         vSeeds.push_back(CDNSSeedData("198.199.97.43","198.199.97.43"));
         vSeeds.push_back(CDNSSeedData("128.199.174.196","128.199.174.196"));
         vSeeds.push_back(CDNSSeedData("rockchain.info", "rockchain.info"));
-        vSeeds.push_back(CDNSSeedData("seed1.coinlab.info", "seed1.coinlab.info"));
-        vSeeds.push_back(CDNSSeedData("seed3.coinlab.info", "seed3.coinlab.info"));
+        vSeeds.push_back(CDNSSeedData("108.61.10.90", "108.61.10.90"));
+        vSeeds.push_back(CDNSSeedData("96.19.216.113", "96.19.216.113"));
+        vSeeds.push_back(CDNSSeedData("81.205.30.207", "81.205.30.207"));
+        vSeeds.push_back(CDNSSeedData("192.95.29.153", "192.95.29.153"));
+        vSeeds.push_back(CDNSSeedData("188.138.94.6", "188.138.94.6"));   
+        vSeeds.push_back(CDNSSeedData("162.216.4.199", "162.216.4.199")); 
+        vSeeds.push_back(CDNSSeedData("158.255.89.244", "158.255.89.244")); 
+        vSeeds.push_back(CDNSSeedData("69.197.61.58", "69.197.61.58")); 
+        vSeeds.push_back(CDNSSeedData("159.118.11.101", "159.118.11.101")); 
+        vSeeds.push_back(CDNSSeedData("144.76.64.123", "144.76.64.123"));
+        vSeeds.push_back(CDNSSeedData("144.76.239.66", "144.76.239.66"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);
@@ -194,7 +206,7 @@ public:
         pchMessageStart[2] = 0x03;
         pchMessageStart[3] = 0x04;
         vAlertPubKey = ParseHex("0450a15957f7e05910a9ca54fd84a0b555a3563561f3ecbdb6f844f752917f8a8d0041d579022044bb9398dbb7babec4601444fc60870826f3f15afae074213bf4");
-        nDefaultPort = 65530;
+        nDefaultPort = 65525;
 
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
@@ -211,6 +223,8 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
+        vSeeds.push_back(CDNSSeedData("23skidoo.info", "23skidoo.info"));
+        vSeeds.push_back(CDNSSeedData("testnet.unobtanium.info", "testnet.unobtanium.info"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,68);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);

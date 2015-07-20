@@ -65,10 +65,10 @@ static bool AppInitRPC(int argc, char* argv[])
     //
     ParseParameters(argc, argv);
     if (argc<2 || mapArgs.count("-?") || mapArgs.count("-help") || mapArgs.count("-version")) {
-        std::string strUsage = _("Unobtanium Core RPC client version") + " " + FormatFullVersion() + "\n";
+        std::string strUsage = _("Unobtanium RPC client version") + " " + FormatFullVersion() + "\n";
         if (!mapArgs.count("-version")) {
             strUsage += "\n" + _("Usage:") + "\n" +
-                  "  bitcoin-cli [options] <command> [params]  " + _("Send command to Unobtanium Core") + "\n" +
+                  "  bitcoin-cli [options] <command> [params]  " + _("Send command to Unobtanium") + "\n" +
                   "  bitcoin-cli [options] help                " + _("List commands") + "\n" +
                   "  bitcoin-cli [options] help <command>      " + _("Get help for a command") + "\n";
 

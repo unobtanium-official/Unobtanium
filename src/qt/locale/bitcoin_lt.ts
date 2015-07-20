@@ -259,8 +259,8 @@
         <translation>&amp;Gaunami adresai...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core klientas</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium klientas</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -315,8 +315,8 @@
         <translation>&amp;Gauti</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Rodyti informaciją apie Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Rodyti informaciją apie Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -347,12 +347,12 @@
         <translation>Kortelių įrankinė</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium branduolys</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Apie Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Apie Unobtanium</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -633,7 +633,7 @@ Adresas: %4</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium branduolys</translation>
     </message>
     <message>
@@ -641,8 +641,8 @@ Adresas: %4</translation>
         <translation>versija</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Apie Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Apie Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -676,11 +676,11 @@ Adresas: %4</translation>
         <translation>Sveiki</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Sveiki atvykę į Unobtanium Core.</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Sveiki atvykę į Unobtanium.</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium branduolys</translation>
     </message>
     <message>
@@ -1256,7 +1256,7 @@ Adresas: %4</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Unobtanium branduolys</translation>
     </message>
     <message>

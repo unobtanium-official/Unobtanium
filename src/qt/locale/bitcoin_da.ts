@@ -295,8 +295,8 @@
         <translation>&amp;Åbn URI …</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core-klient</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium-klient</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -351,8 +351,8 @@
         <translation>&amp;Modtag</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Vis oplysninger om Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Vis oplysninger om Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -391,16 +391,16 @@
         <translation>Faneværktøjslinje</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Anmod om betalinger (genererer QR-koder og "bitcoin:"-URI'er)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Om Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Om Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -419,8 +419,8 @@
         <translation>Tilvalg for &amp;kommandolinje</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Vis Unobtanium Core hjælpebesked for at få en liste over mulige tilvalg for Unobtanium kommandolinje</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Vis Unobtanium hjælpebesked for at få en liste over mulige tilvalg for Unobtanium kommandolinje</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -826,8 +826,8 @@ Adresse: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
@@ -838,8 +838,8 @@ Adresse: %4
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Om Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Om Unobtanium</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -885,16 +885,16 @@ Adresse: %4
         <translation>Velkommen</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Velkommen til Unobtanium Core.</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Velkommen til Unobtanium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
-        <translation>Siden dette er første gang, programmet startes, kan du vælge, hvor Unobtanium Core skal gemme sin data.</translation>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
+        <translation>Siden dette er første gang, programmet startes, kan du vælge, hvor Unobtanium skal gemme sin data.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Unobtanium Core vil downloade og gemme et kopi af Unobtanium-blokkæden. Mindst %1 GB data vil blive gemt i denne mappe, og den vil vokse over tid. Tegnebogen vil også blive gemt i denne mappe.</translation>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Unobtanium vil downloade og gemme et kopi af Unobtanium-blokkæden. Mindst %1 GB data vil blive gemt i denne mappe, og den vil vokse over tid. Tegnebogen vil også blive gemt i denne mappe.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -905,8 +905,8 @@ Adresse: %4
         <translation>Brug tilpasset mappe for data:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -2131,8 +2131,8 @@ Adresse: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core lukker ned …</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium lukker ned …</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2281,12 +2281,12 @@ Adresse: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Udviklerne af Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Udviklerne af Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2867,8 +2867,8 @@ fx: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Dette er en foreløbig testudgivelse - brug på eget ansvar - brug ikke til udvinding eller handelsprogrammer</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>Ikke i stand til at tildele til %s på denne computer. Unobtanium Core kører sansynligvis allerede.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>Ikke i stand til at tildele til %s på denne computer. Unobtanium kører sansynligvis allerede.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3059,8 +3059,8 @@ fx: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Tildel til den givne adresse for at lytte efter JSON-RPC-forbindelser. Brug [vært]:port-notation for IPv6. Denne valgmulighed kan angives flere gange (standard: tildel til alle grænseflader)</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>Kan ikke opnå en lås på datamappe %s. Unobtanium Core kører sansynligvis allerede.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>Kan ikke opnå en lås på datamappe %s. Unobtanium kører sansynligvis allerede.</translation>
     </message>
     <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
@@ -3111,8 +3111,8 @@ fx: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Dette produkt indeholder software, der er udviklet af OpenSSL-projektet for brug i OpenSSL-værktøjskassen &lt;https://www.openssl.org/&gt;, samt kryptografisk software, der er skrevet af Eric Young, samt UPnP-software, der er skrevet af Thomas Bernard.</translation>
     </message>
     <message>
-        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium Core will not work properly.</source>
-        <translation>Advarsel: Undersøg venligst at din computers dato og klokkeslet er korrekt indstillet! Hvis der er fejl i disse vil Unobtanium Core ikke fungere korrekt.</translation>
+        <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Unobtanium will not work properly.</source>
+        <translation>Advarsel: Undersøg venligst at din computers dato og klokkeslet er korrekt indstillet! Hvis der er fejl i disse vil Unobtanium ikke fungere korrekt.</translation>
     </message>
     <message>
         <source>Whitelisted peers cannot be DoS banned and their transactions are always relayed, even if they are already in the mempool, useful e.g. for a gateway</source>
@@ -3127,16 +3127,16 @@ fx: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Forbind gennem SOCKS5-proxy</translation>
     </message>
     <message>
-        <source>Copyright (C) 2009-%i The Unobtanium Core Developers</source>
-        <translation>Ophavsret © 2009-%i Udviklerne af Unobtanium Core</translation>
+        <source>Copyright (C) 2009-%i The Unobtanium Developers</source>
+        <translation>Ophavsret © 2009-%i Udviklerne af Unobtanium</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
         <translation>Kunne ikke tolke -rpcbind-værdi %s som en netværksadresse</translation>
     </message>
     <message>
-        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium Core</source>
-        <translation>Fejl ved indlæsning af wallet.dat: Tegnebog kræver en nyere version af Unobtanium Core</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Unobtanium</source>
+        <translation>Fejl ved indlæsning af wallet.dat: Tegnebog kræver en nyere version af Unobtanium</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -tor found, use -onion.</source>
@@ -3151,8 +3151,8 @@ fx: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Information</translation>
     </message>
     <message>
-        <source>Initialization sanity check failed. Unobtanium Core is shutting down.</source>
-        <translation>Sundhedstjek under klargøring mislykkedes. Unobtanium Core lukker ned.</translation>
+        <source>Initialization sanity check failed. Unobtanium is shutting down.</source>
+        <translation>Sundhedstjek under klargøring mislykkedes. Unobtanium lukker ned.</translation>
     </message>
     <message>
         <source>Invalid amount for -minrelaytxfee=&lt;amount&gt;: '%s'</source>
@@ -3255,8 +3255,8 @@ fx: alertnotify=echo %%s | mail -s "Unobtanium Alert" admin@foo.com
         <translation>Brugernavn til JSON-RPC-forbindelser</translation>
     </message>
     <message>
-        <source>Wallet needed to be rewritten: restart Unobtanium Core to complete</source>
-        <translation>Det var nødvendigt at genskrive tegnebogen: genstart Unobtanium Core for at gennemføre</translation>
+        <source>Wallet needed to be rewritten: restart Unobtanium to complete</source>
+        <translation>Det var nødvendigt at genskrive tegnebogen: genstart Unobtanium for at gennemføre</translation>
     </message>
     <message>
         <source>Warning</source>

@@ -359,7 +359,7 @@
         <translation>Barra de ferramentas</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Core de Unobtanium</translation>
     </message>
     <message>
@@ -367,8 +367,8 @@
         <translation>Solicitar pagos (xenera códigos QR e bitcoin: URIs)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Sobre Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Sobre Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -714,7 +714,7 @@ Dirección: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Core de Unobtanium</translation>
     </message>
     <message>
@@ -722,7 +722,7 @@ Dirección: %4
         <translation>versión</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>Sobre Unobtanium core</translation>
     </message>
     <message>
@@ -773,7 +773,7 @@ Dirección: %4
         <translation>Empregar un directorio de datos personalizado</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Core de Unobtanium</translation>
     </message>
     <message>
@@ -1605,12 +1605,12 @@ Dirección: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Core de Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Os desarrolladores de Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Os desarrolladores de Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>

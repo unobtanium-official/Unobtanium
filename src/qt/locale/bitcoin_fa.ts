@@ -335,7 +335,7 @@
         <translation>نوارابزار برگه‌ها</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation> هسته Unobtanium </translation>
     </message>
     <message numerus="yes">
@@ -546,7 +546,7 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation> هسته Unobtanium </translation>
     </message>
     <message>
@@ -601,7 +601,7 @@ Address: %4
         <translation>استفاده از یک مسیر سفارشی:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation> هسته Unobtanium </translation>
     </message>
     <message>
@@ -1209,7 +1209,7 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation> هسته Unobtanium </translation>
     </message>
     <message>

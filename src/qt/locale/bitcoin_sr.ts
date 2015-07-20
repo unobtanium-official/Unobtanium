@@ -338,7 +338,7 @@ Address: %4
         <translation>верзија</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>O Unobtanium Coru</translation>
     </message>
     <message>

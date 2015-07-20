@@ -311,7 +311,7 @@
         <translation>Vahelehe tööriistariba</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Bitcoini tuumik</translation>
     </message>
     <message numerus="yes">
@@ -489,7 +489,7 @@ Aadress: %4⏎</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Bitcoini tuumik</translation>
     </message>
     <message>
@@ -528,7 +528,7 @@ Aadress: %4⏎</translation>
 <context>
     <name>Intro</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Bitcoini tuumik</translation>
     </message>
     <message>
@@ -1084,7 +1084,7 @@ Aadress: %4⏎</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Bitcoini tuumik</translation>
     </message>
     <message>

@@ -1,4 +1,4 @@
-Name "Unobtanium Core (-bit)"
+Name "Unobtanium (-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
@@ -19,7 +19,7 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Unobtanium Core"
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Unobtanium"
 !define MUI_FINISHPAGE_RUN $INSTDIR\bitcoin-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/bryce/unobtanium/share/pixmaps/nsis-wizard.bmp"

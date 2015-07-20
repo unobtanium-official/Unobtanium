@@ -315,7 +315,7 @@
         <translation>Gamit para king Tabs</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Kapilubluban ning Unobtanium</translation>
     </message>
     <message>
@@ -466,7 +466,7 @@ Address: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Kapilubluban ning Unobtanium</translation>
     </message>
     <message>
@@ -509,7 +509,7 @@ Address: %4
         <translation>Malaus ka</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Kapilubluban ning Unobtanium</translation>
     </message>
     <message>
@@ -1045,7 +1045,7 @@ Address: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Kapilubluban ning Unobtanium</translation>
     </message>
     <message>

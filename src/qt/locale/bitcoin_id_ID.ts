@@ -279,7 +279,7 @@
         <translation>Buka &amp;URI</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
+        <source>Unobtanium client</source>
         <translation>Client Unobtanium Inti</translation>
     </message>
     <message>
@@ -335,7 +335,7 @@
         <translation>&amp;Menerima</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
+        <source>Show information about Unobtanium</source>
         <translation>Tampilkan informasi tentang Unobtanium Inti</translation>
     </message>
     <message>
@@ -375,16 +375,16 @@
         <translation>Baris tab</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and bitcoin: URIs)</source>
         <translation>Permintaan pembayaran (membangkitkan kode QR dan bitcoin: URIs)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
-        <translation>&amp;Mengenai Unobtanium Core</translation>
+        <source>&amp;About Unobtanium</source>
+        <translation>&amp;Mengenai Unobtanium</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -403,8 +403,8 @@
         <translation>&amp;pilihan Perintah-baris</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
-        <translation>Tampilkan pesan bantuan Unobtanium Core untuk memberikan daftar pilihan perintah-baris yang memungkinkan dalam aplikasi Unobtanium</translation>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
+        <translation>Tampilkan pesan bantuan Unobtanium untuk memberikan daftar pilihan perintah-baris yang memungkinkan dalam aplikasi Unobtanium</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Unobtanium network</source>
@@ -782,16 +782,16 @@ Alamat: %4
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>version</source>
         <translation>versi</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
-        <translation>Mengenai Unobtanium Core</translation>
+        <source>About Unobtanium</source>
+        <translation>Mengenai Unobtanium</translation>
     </message>
     <message>
         <source>Usage:</source>
@@ -825,8 +825,8 @@ Alamat: %4
         <translation>Selamat Datang</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
-        <translation>Selamat Datang ke Unobtanium Core</translation>
+        <source>Welcome to Unobtanium.</source>
+        <translation>Selamat Datang ke Unobtanium</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -837,8 +837,8 @@ Alamat: %4
         <translation>Menggunakan direktori data yang dipilih Anda:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
         <source>Error</source>
@@ -1699,8 +1699,8 @@ Alamat: %4
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
-        <translation>Unobtanium Core sementara dimatikan...</translation>
+        <source>Unobtanium is shutting down...</source>
+        <translation>Unobtanium sementara dimatikan...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -1825,12 +1825,12 @@ Alamat: %4
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
-        <translation>Unobtanium Core</translation>
+        <source>Unobtanium</source>
+        <translation>Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
-        <translation>Pembangun Unobtanium Core</translation>
+        <source>The Unobtanium developers</source>
+        <translation>Pembangun Unobtanium</translation>
     </message>
     <message>
         <source>[testnet]</source>
@@ -2315,8 +2315,8 @@ Alamat: %4
         <translation>Jalankan perintah ketika perubahan transaksi dompet (%s di cmd digantikan oleh TxID)</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
-        <translation>Tidak bisa mengikat dengan %s di computer ini. Kemungkinan Unobtanium Core sudah mulai.</translation>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
+        <translation>Tidak bisa mengikat dengan %s di computer ini. Kemungkinan Unobtanium sudah mulai.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -2443,8 +2443,8 @@ Alamat: %4
         <translation>Impor blok dari eksternal berkas blk000???.dat</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
-        <translation>Tidak bisa mengunci data directory %s. Kemungkinan Unobtanium Core sudah mulai.</translation>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
+        <translation>Tidak bisa mengunci data directory %s. Kemungkinan Unobtanium sudah mulai.</translation>
     </message>
     <message>
         <source>Information</source>

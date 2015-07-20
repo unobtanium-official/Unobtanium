@@ -295,8 +295,8 @@
         <translation>Otvoriť &amp;URI...</translation>
     </message>
     <message>
-        <source>Unobtanium Core client</source>
-        <translation>Unobtanium Core klient</translation>
+        <source>Unobtanium client</source>
+        <translation>Unobtanium klient</translation>
     </message>
     <message>
         <source>Importing blocks from disk...</source>
@@ -351,8 +351,8 @@
         <translation>&amp;Prijať</translation>
     </message>
     <message>
-        <source>Show information about Unobtanium Core</source>
-        <translation>Zobraziť informácie o Unobtanium Core</translation>
+        <source>Show information about Unobtanium</source>
+        <translation>Zobraziť informácie o Unobtanium</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
@@ -391,7 +391,7 @@
         <translation>Lišta záložiek</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jadro Unobtanium</translation>
     </message>
     <message>
@@ -399,7 +399,7 @@
         <translation>Vyžiadať platbu (vygeneruje QR kód a bitcoin: URI)</translation>
     </message>
     <message>
-        <source>&amp;About Unobtanium Core</source>
+        <source>&amp;About Unobtanium</source>
         <translation>O jadre Unobtanium</translation>
     </message>
     <message>
@@ -419,7 +419,7 @@
         <translation>Možnosti príkazového riadku</translation>
     </message>
     <message>
-        <source>Show the Unobtanium Core help message to get a list with possible Unobtanium command-line options</source>
+        <source>Show the Unobtanium help message to get a list with possible Unobtanium command-line options</source>
         <translation>Zobraziť pomocnú správu od Unobtanium Jadra pre získanie zoznamu dostupných možností príkazového riadku</translation>
     </message>
     <message numerus="yes">
@@ -797,7 +797,7 @@ Adresa: %4</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jadro Unobtanium</translation>
     </message>
     <message>
@@ -809,7 +809,7 @@ Adresa: %4</translation>
         <translation>(%1-bit)</translation>
     </message>
     <message>
-        <source>About Unobtanium Core</source>
+        <source>About Unobtanium</source>
         <translation>O jadre Unobtanium</translation>
     </message>
     <message>
@@ -856,15 +856,15 @@ Adresa: %4</translation>
         <translation>Vitajte</translation>
     </message>
     <message>
-        <source>Welcome to Unobtanium Core.</source>
+        <source>Welcome to Unobtanium.</source>
         <translation>Vitajte v jadre Unobtanium.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where Unobtanium Core will store its data.</source>
+        <source>As this is the first time the program is launched, you can choose where Unobtanium will store its data.</source>
         <translation>Keďže spúštate program prvý krát, môžte si vybrať kde bude Unobtanium Jadro ukladať svoje dáta.</translation>
     </message>
     <message>
-        <source>Unobtanium Core will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>Unobtanium will download and store a copy of the Unobtanium block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation>Jadro Unobtanium stiahne zo siete a uloží kópiu Unobtanium blockchain. Aspoň %1GB dát bude uložených v tomto priečinku a časom porastie. Peňaženka bude tiež uložená v tomto priečinku.</translation>
     </message>
     <message>
@@ -876,7 +876,7 @@ Adresa: %4</translation>
         <translation>Použiť vlastný dátový adresár:</translation>
     </message>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jadro Unobtanium</translation>
     </message>
     <message>
@@ -1786,7 +1786,7 @@ Adresa: %4</translation>
 <context>
     <name>ShutdownWindow</name>
     <message>
-        <source>Unobtanium Core is shutting down...</source>
+        <source>Unobtanium is shutting down...</source>
         <translation>Jadro Unobtanium sa ukončuje...</translation>
     </message>
     <message>
@@ -1928,11 +1928,11 @@ Adresa: %4</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>Unobtanium Core</source>
+        <source>Unobtanium</source>
         <translation>Jadro Unobtanium</translation>
     </message>
     <message>
-        <source>The Unobtanium Core developers</source>
+        <source>The Unobtanium developers</source>
         <translation>Vývojári jadra Unobtanium</translation>
     </message>
     <message>
@@ -2462,7 +2462,7 @@ napríklad: alertnotify=echo %%s | mail -s "Unobtanium Výstraha" admin@foo.com
         <translation>Toto je pred-testovacia verzia - použitie je na vlastné riziko - nepoužívajte na tvorbu bitcoin ani obchodovanie.</translation>
     </message>
     <message>
-        <source>Unable to bind to %s on this computer. Unobtanium Core is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Unobtanium is probably already running.</source>
         <translation>Nepodarilo sa pripojiť na %s na tomto počítači. Unobtanium Jadro je už pravdepodobne spustené.</translation>
     </message>
     <message>
@@ -2624,7 +2624,7 @@ The network does not appear to fully agree! Some miners appear to be experiencin
         <translation>Importuje bloky z externého súboru blk000??.dat</translation>
     </message>
     <message>
-        <source>Cannot obtain a lock on data directory %s. Unobtanium Core is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Unobtanium is probably already running.</source>
         <translation>Neviem uzamknúť data adresár %s. Jadro Unobtanium je pravdepodobne už spustené.</translation>
     </message>
     <message>
