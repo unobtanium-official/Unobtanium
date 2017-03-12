@@ -150,10 +150,8 @@ public:
         assert(hashGenesisBlock == uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
-        vSeeds.push_back(CDNSSeedData("seed1.unobtanium.uno", "seed1.unobtanium.uno"));
-        vSeeds.push_back(CDNSSeedData("seed2.unobtanium.uno", "seed2.unobtanium.uno"));
-        vSeeds.push_back(CDNSSeedData("seed3.unobtanium.uno", "seed3.unobtanium.uno"));
-        vSeeds.push_back(CDNSSeedData("seed4.unobtanium.uno", "seed4.unobtanium.uno"));
+        vSeeds.push_back(CDNSSeedData("node1.unobtanium.uno", "node1.unobtanium.uno"));
+        vSeeds.push_back(CDNSSeedData("node2.unobtanium.uno", "node2.unobtanium.uno"));
         vSeeds.push_back(CDNSSeedData("unobtanium.cryptap.us", "unobtanium.cryptap.us"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
