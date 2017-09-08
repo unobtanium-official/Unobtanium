@@ -1913,7 +1913,8 @@ void static UpdateTip(CBlockIndex *pindexNew) {
         int nUpgraded = 0;
         const CBlockIndex* pindex = chainActive.Tip();
         int chainID;
-        if (fTestNet && pindex->nVersion >= 4)
+	// pblock->nVersion == 65536 * chainID
+        if (fTestNet && pindex->nVersion >= 7798784)
             chainID = AUXPOW_TESTNET_CHAIN_ID;
         else
             chainID = AUXPOW_CHAIN_ID;
