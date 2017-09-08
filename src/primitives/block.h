@@ -10,10 +10,12 @@
 #include "primitives/transaction.h"
 #include "serialize.h"
 #include "uint256.h"
+#include "util.h"
 
 /** The maximum allowed size for a serialized block, in bytes (network rule) */
 static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const int AUXPOW_CHAIN_ID = 0x75;
+static const int AUXPOW_TESTNET_CHAIN_ID = 0x77;
 
 enum
 {
@@ -43,7 +45,7 @@ class CBlockHeader
 {
 public:
     // header
-    static const int32_t CURRENT_VERSION=3;
+    static const int32_t CURRENT_VERSION=4;
     int32_t nVersion;
     uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
@@ -73,7 +75,13 @@ public:
 
     void SetNull()
     {
-        nVersion = CBlockHeader::CURRENT_VERSION | (AUXPOW_CHAIN_ID * BLOCK_VERSION_CHAIN_START);
+        int chainID;
+        bool fTestNet = GetBoolArg("-testnet", false);
+        if (fTestNet)
+            chainID = AUXPOW_TESTNET_CHAIN_ID;
+        else
+            chainID = AUXPOW_CHAIN_ID;
+        nVersion = CBlockHeader::CURRENT_VERSION | (chainID * BLOCK_VERSION_CHAIN_START);
         hashPrevBlock.SetNull();
         hashMerkleRoot.SetNull();
         nTime = 0;

@@ -1904,16 +1904,23 @@ void static UpdateTip(CBlockIndex *pindexNew) {
 
     cvBlockChange.notify_all();
 
+    bool fTestNet = GetBoolArg("-testnet", false);
+
     // Check the version of the last 100 blocks to see if we need to upgrade:
     static bool fWarned = false;
     if (!IsInitialBlockDownload() && !fWarned)
     {
         int nUpgraded = 0;
         const CBlockIndex* pindex = chainActive.Tip();
+        int chainID;
+        if (fTestNet && pindex->nVersion >= 4)
+            chainID = AUXPOW_TESTNET_CHAIN_ID;
+        else
+            chainID = AUXPOW_CHAIN_ID;
         for (int i = 0; i < 100 && pindex != NULL; i++)
         {
 			if (pindex->nVersion > CBlock::CURRENT_VERSION &&
-				(pindex->nVersion & ~BLOCK_VERSION_AUXPOW) != (CBlockHeader::CURRENT_VERSION | (AUXPOW_CHAIN_ID * BLOCK_VERSION_CHAIN_START)))
+				(pindex->nVersion & ~BLOCK_VERSION_AUXPOW) != (CBlockHeader::CURRENT_VERSION | (chainID * BLOCK_VERSION_CHAIN_START)))
                 ++nUpgraded;
             pindex = pindex->pprev;
         }
@@ -2566,6 +2573,13 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
     if (block.nVersion < 3 && IsSuperMajority(3, pindexPrev, Params().RejectBlockOutdatedMajority()))
     {
         return state.Invalid(error("%s : rejected nVersion=2 block", __func__),
+                             REJECT_OBSOLETE, "bad-version");
+    }
+
+    // Reject block.nVersion=3 blocks when 95% (75% on testnet) of the network has upgraded:
+    if (block.nVersion < 4 && IsSuperMajority(4, pindexPrev, Params().RejectBlockOutdatedMajority()))
+    {
+        return state.Invalid(error("%s : rejected nVersion=3 block", __func__),
                              REJECT_OBSOLETE, "bad-version");
     }
     return true;
