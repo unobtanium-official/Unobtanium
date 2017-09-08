@@ -150,23 +150,9 @@ public:
         assert(hashGenesisBlock == uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
-        vSeeds.push_back(CDNSSeedData("23skidoo.info", "23skidoo.info"));
-        vSeeds.push_back(CDNSSeedData("107.170.63.157", "107.170.63.157"));
-        vSeeds.push_back(CDNSSeedData("192.241.254.222", "192.241.254.222"));
-        vSeeds.push_back(CDNSSeedData("198.199.97.43","198.199.97.43"));
-        vSeeds.push_back(CDNSSeedData("128.199.174.196","128.199.174.196"));
-        vSeeds.push_back(CDNSSeedData("rockchain.info", "rockchain.info"));
-        vSeeds.push_back(CDNSSeedData("108.61.10.90", "108.61.10.90"));
-        vSeeds.push_back(CDNSSeedData("96.19.216.113", "96.19.216.113"));
-        vSeeds.push_back(CDNSSeedData("81.205.30.207", "81.205.30.207"));
-        vSeeds.push_back(CDNSSeedData("192.95.29.153", "192.95.29.153"));
-        vSeeds.push_back(CDNSSeedData("188.138.94.6", "188.138.94.6"));   
-        vSeeds.push_back(CDNSSeedData("162.216.4.199", "162.216.4.199")); 
-        vSeeds.push_back(CDNSSeedData("158.255.89.244", "158.255.89.244")); 
-        vSeeds.push_back(CDNSSeedData("69.197.61.58", "69.197.61.58")); 
-        vSeeds.push_back(CDNSSeedData("159.118.11.101", "159.118.11.101")); 
-        vSeeds.push_back(CDNSSeedData("144.76.64.123", "144.76.64.123"));
-        vSeeds.push_back(CDNSSeedData("144.76.239.66", "144.76.239.66"));
+        vSeeds.push_back(CDNSSeedData("node1.unobtanium.uno", "node1.unobtanium.uno"));
+        vSeeds.push_back(CDNSSeedData("node2.unobtanium.uno", "node2.unobtanium.uno"));
+        vSeeds.push_back(CDNSSeedData("unobtanium.cryptap.us", "unobtanium.cryptap.us"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);
