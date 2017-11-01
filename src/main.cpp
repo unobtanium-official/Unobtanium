@@ -1151,19 +1151,30 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 }
 
 static const CAmount nStartSubsidy = 1 * COIN;
-static const CAmount nMinSubsidy = .0001 * COIN; //corrected as of 0.9.6
+static const CAmount nOldMinSubsidy = .0001 * COIN; //corrected as of 0.9.6
+static const CAmount nNewMinSubsidy = .01 * COIN; //corrected as of 0.10.3
 
 CAmount GetBlockValue(int nHeight, const CAmount& nFees)
 {
     CAmount nSubsidy = nStartSubsidy;
 	
     nSubsidy >>= (nHeight / Params().SubsidyHalvingInterval());
-    if(nHeight < 2000 ) {nSubsidy = .001 * COIN;} //Ease in to 0 diff.
-    else if (nSubsidy < nMinSubsidy)
+    if(nHeight < 2000 ) 
     {
-        nSubsidy = nMinSubsidy;
+        nSubsidy = .001 * COIN;  //Ease in to 0 diff.
     }
-
+    else if(nHeight < 1035000)
+    {
+        if (nSubsidy < nOldMinSubsidy)
+        {
+            nSubsidy = nOldMinSubsidy;
+        }
+    } else {
+        if (nSubsidy < nNewMinSubsidy)
+        {
+            nSubsidy = nNewMinSubsidy;
+        }
+    }
     return nSubsidy + nFees;
 }
 
