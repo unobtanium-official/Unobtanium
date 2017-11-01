@@ -47,8 +47,7 @@
 /* Define to 1 if the system has the type `__int128'. */
 #define HAVE___INT128 1
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
 
 /* Name of package */

@@ -5,16 +5,16 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.10.0
+!define VERSION 0.10.1
 !define COMPANY "Bitcoin Core project"
 !define URL http://www.bitcoin.org/
 
 # MUI Symbol Definitions
-!define MUI_ICON "/home/bryce/unobtanium/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/home/bryce/unobtanium/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/Users/bryceweiner/documents/repo/unobtanium/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/Users/bryceweiner/documents/repo/unobtanium/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/home/bryce/unobtanium/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/Users/bryceweiner/documents/repo/unobtanium/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
@@ -22,7 +22,7 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "Unobtanium"
 !define MUI_FINISHPAGE_RUN $INSTDIR\bitcoin-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/home/bryce/unobtanium/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/Users/bryceweiner/documents/repo/unobtanium/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -48,7 +48,7 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /home/bryce/unobtanium/bitcoin-${VERSION}-win-setup.exe
+OutFile /Users/bryceweiner/documents/repo/unobtanium/bitcoin-${VERSION}-win-setup.exe
 !if "" == "64"
 InstallDir $PROGRAMFILES64\Bitcoin
 !else
@@ -58,7 +58,7 @@ CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion ${VERSION}.0
+VIProductVersion ${VERSION}.1
 VIAddVersionKey ProductName "Bitcoin Core"
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -73,14 +73,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /home/bryce/unobtanium/release/bitcoin-qt.exe
-    File /oname=COPYING.txt /home/bryce/unobtanium/COPYING
-    File /oname=readme.txt /home/bryce/unobtanium/doc/README_windows.txt
+    File /Users/bryceweiner/documents/repo/unobtanium/release/bitcoin-qt.exe
+    File /oname=COPYING.txt /Users/bryceweiner/documents/repo/unobtanium/COPYING
+    File /oname=readme.txt /Users/bryceweiner/documents/repo/unobtanium/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /home/bryce/unobtanium/release/bitcoind.exe
-    File /home/bryce/unobtanium/release/bitcoin-cli.exe
+    File /Users/bryceweiner/documents/repo/unobtanium/release/bitcoind.exe
+    File /Users/bryceweiner/documents/repo/unobtanium/release/bitcoin-cli.exe
     SetOutPath $INSTDIR\doc
-    File /r /home/bryce/unobtanium/doc\*.*
+    File /r /Users/bryceweiner/documents/repo/unobtanium/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 
