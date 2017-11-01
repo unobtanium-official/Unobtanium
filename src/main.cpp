@@ -1163,7 +1163,7 @@ CAmount GetBlockValue(int nHeight, const CAmount& nFees)
     {
         nSubsidy = .001 * COIN;  //Ease in to 0 diff.
     }
-    else if(nHeight < 1035000)
+    else if(nHeight < 1042000)
     {
         if (nSubsidy < nOldMinSubsidy)
         {
