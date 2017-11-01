@@ -262,6 +262,8 @@ case $host in
            LIBS="$LIBS -L/opt/local/lib/db48"
          fi
        fi
+       CXXFLAGS="$CXXFLAGS -std=c++11"
+       OBJCXXFLAGS="$OBJCXXFLAGS -std=c++11"
 
        AC_CHECK_PROG([BREW],brew, brew)
        if test x$BREW = xbrew; then
