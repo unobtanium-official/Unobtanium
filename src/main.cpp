@@ -1158,22 +1158,19 @@ CAmount GetBlockValue(int nHeight, const CAmount& nFees)
 {
     CAmount nSubsidy = nStartSubsidy;
 	
-    nSubsidy >>= (nHeight / Params().SubsidyHalvingInterval());
     if(nHeight < 2000 ) 
     {
         nSubsidy = .001 * COIN;  //Ease in to 0 diff.
     }
     else if(nHeight < 1042000)
     {
+        nSubsidy >>= (nHeight / Params().SubsidyHalvingInterval());
         if (nSubsidy < nOldMinSubsidy)
         {
             nSubsidy = nOldMinSubsidy;
         }
     } else {
-        if (nSubsidy < nNewMinSubsidy)
-        {
-            nSubsidy = nNewMinSubsidy;
-        }
+        nSubsidy = nNewMinSubsidy;
     }
     return nSubsidy + nFees;
 }
