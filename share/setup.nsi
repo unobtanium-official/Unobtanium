@@ -5,9 +5,9 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.10.1
-!define COMPANY "Bitcoin Core project"
-!define URL http://www.bitcoin.org/
+!define VERSION 0.10.4
+!define COMPANY "Unobtanium Core project"
+!define URL http://www.unobtanium.uno/
 
 # MUI Symbol Definitions
 !define MUI_ICON "/Users/bryceweiner/documents/repo/unobtanium/share/pixmaps/bitcoin.ico"
@@ -59,7 +59,7 @@ XPStyle on
 BrandingText " "
 ShowInstDetails show
 VIProductVersion ${VERSION}.1
-VIAddVersionKey ProductName "Bitcoin Core"
+VIAddVersionKey ProductName "Unobtanium Core"
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
