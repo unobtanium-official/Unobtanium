@@ -30,9 +30,8 @@ _Portable Files ( No Installer ):_
 [Unobtanium Win32.zip](https://transfer.sh/RSrbv/unobtanium-0.10.4.1-win32.zip) - _bdcb927066a7b62f0dfd8e604915a743e076d28734d8470e1bac160d567e4c94_  
 [Unobtanium Win64.zip](https://transfer.sh/i1b55/unobtanium-0.10.4.1-win64.zip) - _6be61a43c39a646d615abffbc0939b56b6c45e10c7d7f9c7765ee21266d07586_  
 
-**OSX Binaries (32 & 64):**  
-_TODO: Currently build issues, looking into!_
-
+**OSX Binaries:**  
+[Unobtanium-Qt.dmg](flurbo.xyz/Unobtanium/Unobtanium-Qt.dmg)
 
 
 Source:  
@@ -46,7 +45,7 @@ https://github.com/Flurbos/UnobtaniumCore/
 
 Donations:  
 ---  
-Please don't hesitate to donate to show appreciation for the time/effort it's taken to help move Unobtanium further.
+Please don't hesitate to donate to show appreciation for the time/effort it's taken to help move Unobtanium further.  
 **Unobtanium:**  
 uXoKXkoBjLKdTsPjsTEq4n9FitcEpzDUpC  
 **Bitcoin:**  
