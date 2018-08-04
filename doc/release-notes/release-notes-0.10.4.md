@@ -1,4 +1,4 @@
-Version 0.10.4 is now available.
+Version 0.10.4 is now available (old).
 ===
 
 Features:  
@@ -12,8 +12,11 @@ But this update is the start to a better future for unobtanium!_
 
 _Future plans involve More build fixes, Updates on more documentation, Segwit, Lightning network and much more, Stay Tuned!_
 
-**To aid any more development please donate hesitate to donate:**  
-uXoKXkoBjLKdTsPjsTEq4n9FitcEpzDUpC
+**To aid any more development, donations 
+are accepted:** 
+uXoKXkoBjLKdTsPjsTEq4n9FitcEpzDUpC 
+**btc** 
+19hu4hB2Udmh91Rfy3o6AiUJxvXdLP7J2k
 
 __Download:__
 ---
