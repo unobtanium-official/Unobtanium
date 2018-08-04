@@ -1,6 +1,6 @@
 PACKAGE=qt
 $(package)_version=5.2.1
-$(package)_download_path=http://download.qt-project.org/official_releases/qt/5.2/$($(package)_version)/single
+$(package)_download_path=http://download.qt-project.org/archive/qt/5.2/$($(package)_version)/single
 $(package)_file_name=$(package)-everywhere-opensource-src-$($(package)_version).tar.gz
 $(package)_sha256_hash=84e924181d4ad6db00239d87250cc89868484a14841f77fb85ab1f1dbdcd7da1
 $(package)_dependencies=openssl
@@ -29,7 +29,7 @@ $(package)_config_opts += -skip qtquickcontrols -skip qtactiveqt -skip qtconnect
 $(package)_config_opts += -skip qtwinextras -skip qtxmlpatterns -skip qtscript -skip qtdoc
 
 $(package)_config_opts += -prefix $(host_prefix) -bindir $(build_prefix)/bin
-$(package)_config_opts += -no-c++11 -openssl-linked  -v -static -silent -pkg-config
+$(package)_config_opts += -c++11 -openssl-linked  -v -static -silent -pkg-config
 $(package)_config_opts += -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre
 
 ifneq ($(build_os),darwin)
@@ -49,6 +49,7 @@ define $(package)_preprocess_cmds
   sed -i.old "s/src_plugins.depends = src_sql src_xml src_network/src_plugins.depends = src_xml src_network/" qtbase/src/src.pro && \
   sed -i.old "/XIproto.h/d" qtbase/src/plugins/platforms/xcb/qxcbxsettings.cpp && \
   sed -i.old 's/if \[ "$$$$XPLATFORM_MAC" = "yes" \]; then xspecvals=$$$$(macSDKify/if \[ "$$$$BUILD_ON_MAC" = "yes" \]; then xspecvals=$$$$(macSDKify/' qtbase/configure && \
+  sed -i.old 's/CGEventCreateMouseEvent(0, kCGEventMouseMoved, pos, 0)/CGEventCreateMouseEvent(0, kCGEventMouseMoved, pos, kCGMouseButtonLeft)/' qtbase/src/plugins/platforms/cocoa/qcocoacursor.mm && \
   mkdir -p qtbase/mkspecs/macx-clang-linux &&\
   cp -f qtbase/mkspecs/macx-clang/Info.plist.lib qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f qtbase/mkspecs/macx-clang/Info.plist.app qtbase/mkspecs/macx-clang-linux/ &&\

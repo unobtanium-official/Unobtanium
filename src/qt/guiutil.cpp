@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2013 The Bitcoin Core developers
+// Copyright (c) 2011-2018 The Bitcoin/Unobtanium Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -106,7 +106,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Unobtanium address (e.g. %1)").arg("1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L"));
+    widget->setPlaceholderText(QObject::tr("Enter a Unobtanium address (e.g. %1)").arg("uXoKXkoBjLKdTsPjsTEq4n9FitcEpzDUpC"));
 #endif
     widget->setValidator(new bitcoinaddressEntryValidator(parent));
     widget->setCheckValidator(new bitcoinaddressCheckValidator(parent));
