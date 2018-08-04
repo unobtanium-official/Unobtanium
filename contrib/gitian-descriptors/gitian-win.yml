@@ -1,5 +1,5 @@
 ---
-name: "unobtanium-win-0.10.4"
+name: "unobtanium-win-0.10.4.1"
 enable_cache: true
 suites:
 - "trusty"
@@ -18,7 +18,7 @@ packages:
 - "g++-mingw-w64"
 - "nsis"
 - "zip"
-reference_datetime: "2013-06-01 00:00:00"
+reference_datetime: "2018-06-01 00:00:00"
 remotes:
 - "url": "https://github.com/Flurbos/UnobtaniumCore.git"
   "dir": "unobtanium"
