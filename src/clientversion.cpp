@@ -18,7 +18,7 @@ const std::string CLIENT_NAME("Unobtanium");
 /**
  * Client version number
  */
-#define CLIENT_VERSION_SUFFIX "-blueschist"
+#define CLIENT_VERSION_SUFFIX "-BadChoicesZ"
 
 
 /**
