@@ -281,7 +281,7 @@ Clone the git repositories for unobtanium and gitian.
 
 ```bash
 git clone https://github.com/devrandom/gitian-builder.git
-git clone https://github.com/Flurbos/UnobtaniumCore.git
+git clone https://github.com/unobtanium-official/Unobtanium.git
 ```
 
 Setting up the gitian image
@@ -361,11 +361,11 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/Flurbos/UnobtaniumCore.git
-COMMIT=Testnet
-./bin/gbuild --commit unobtanium=${COMMIT} --url unobtanium=${URL} ../UnobtaniumCore/contrib/gitian-descriptors/gitian-linux.yml
-./bin/gbuild --commit unobtanium=${COMMIT} --url unobtanium=${URL} ../UnobtaniumCore/contrib/gitian-descriptors/gitian-win.yml
-./bin/gbuild --commit unobtanium=${COMMIT} --url unobtanium=${URL} ../UnobtaniumCore/contrib/gitian-descriptors/gitian-osx.yml
+URL=https://github.com/unobtanium-official/Unobtanium.git
+COMMIT=master
+./bin/gbuild --commit unobtanium=${COMMIT} --url unobtanium=${URL} ../Unobtanium/contrib/gitian-descriptors/gitian-linux.yml
+./bin/gbuild --commit unobtanium=${COMMIT} --url unobtanium=${URL} ../Unobtanium/contrib/gitian-descriptors/gitian-win.yml
+./bin/gbuild --commit unobtanium=${COMMIT} --url unobtanium=${URL} ../Unobtanium/contrib/gitian-descriptors/gitian-osx.yml
 ```
 
 Signing externally
