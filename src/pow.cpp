@@ -212,7 +212,8 @@ bool CheckBlockProofOfWork(const CBlockHeader *pblock)
 
     bool fTestNet = GetBoolArg("-testnet", false);
     int chainID;
-    if (fTestNet && pblock->nVersion >= 4)
+    // pblock->nVersion == 65536 * chainID
+    if (fTestNet && pblock->nVersion >= 7798784)
         chainID = AUXPOW_TESTNET_CHAIN_ID;
     else
         chainID = AUXPOW_CHAIN_ID;
