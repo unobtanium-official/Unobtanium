@@ -723,9 +723,8 @@ Value getauxblock(const Array& params, bool fHelp)
         Object result;
         result.push_back(Pair("target", HexStr(BEGIN(hashTarget), END(hashTarget))));
         result.push_back(Pair("hash", pblock->GetHash().GetHex()));
-        result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0]->vout[0].nValue);
-        result.push_back(Pair("bits", strprintf("%08x", pblock->nBits));
-        result.push_back(Pair("height", (int64_t)(pindexPrev->nHeight+1));
+        result.push_back(Pair("bits", strprintf("%08x", pblock->nBits)));
+        result.push_back(Pair("height", (int64_t)(pindexPrev->nHeight+1)));
         result.push_back(Pair("chainid", pblock->GetChainID()));
         return result;
     }
