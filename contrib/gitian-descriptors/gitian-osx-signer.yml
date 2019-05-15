@@ -1,16 +1,16 @@
 ---
-name: "bitcoin-dmg-signer"
+name: "unobtanium-dmg-signer"
 suites:
-- "precise"
+- "trusty"
 architectures:
 - "amd64"
 packages:
 - "libc6:i386"
 - "faketime"
-reference_datetime: "2013-06-01 00:00:00"
+reference_datetime: "2018-06-01 00:00:00"
 remotes: []
 files:
-- "bitcoin-osx-unsigned.tar.gz"
+- "unobtanium-osx-unsigned.tar.gz"
 - "signature.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
@@ -22,16 +22,16 @@ script: |
   for prog in ${FAKETIME_PROGS}; do
     echo '#!/bin/bash' > ${WRAP_DIR}/${prog}
     echo "REAL=\`which -a ${prog} | grep -v ${WRAP_DIR}/${prog} | head -1\`" >> ${WRAP_DIR}/${prog}
-    echo 'export LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1' >> ${WRAP_DIR}/${prog}
+    echo 'export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1' >> ${WRAP_DIR}/${prog}
     echo "export FAKETIME=\"${REFERENCE_DATETIME}\"" >> ${WRAP_DIR}/${prog}
     echo "\$REAL \$@" >> $WRAP_DIR/${prog}
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=bitcoin-osx-unsigned.tar.gz
-  SIGNED=bitcoin-osx-signed.dmg
+  UNSIGNED=unobtanium-osx-unsigned.tar.gz
+  SIGNED=unobtanium-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   ./detached-sig-apply.sh ${UNSIGNED} signature.tar.gz
-  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "Bitcoin-Qt" -no-pad -r -apple -o uncompressed.dmg signed-app
+  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "Unobtanium-Qt" -no-pad -r -apple -o uncompressed.dmg signed-app
   ${WRAP_DIR}/dmg dmg uncompressed.dmg ${OUTDIR}/${SIGNED}

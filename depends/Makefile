@@ -1,6 +1,7 @@
 .NOTPARALLEL :
 
 SOURCES_PATH ?= $(BASEDIR)/sources
+WORK_PATH = $(BASEDIR)/work
 BASE_CACHE ?= $(BASEDIR)/built
 SDK_PATH ?= $(BASEDIR)/SDKs
 NO_QT ?=
@@ -29,9 +30,9 @@ else
 release_type=release
 endif
 
-base_build_dir=$(BASEDIR)/work/build
-base_staging_dir=$(BASEDIR)/work/staging
-base_download_dir=$(BASEDIR)/work/download
+base_build_dir=$(WORK_PATH)/build
+base_staging_dir=$(WORK_PATH)/staging
+base_download_dir=$(WORK_PATH)/download
 canonical_host:=$(shell ./config.sub $(HOST))
 build:=$(shell ./config.sub $(BUILD))
 
@@ -122,13 +123,20 @@ $(host_prefix)/share/config.site : config.site.in $(host_prefix)/.stamp_$(final_
             $< > $@
 	$(AT)touch $@
 
+clean-all: clean
+	@rm -rf $(SOURCES_PATH) x86_64* i686* mips* arm* aarch64*
+
+clean:
+	@rm -rf $(WORK_PATH) $(BASE_CACHE) $(BUILD)
+
+
 install: $(host_prefix)/share/config.site
 download-one: $(all_sources)
 download-osx:
-	@$(MAKE) -s HOST=x86_64-apple-darwin11 download-one
+	@$(MAKE) -s HOST=x86_64-apple-darwin14 download-one
 download-linux:
 	@$(MAKE) -s HOST=x86_64-unknown-linux-gnu download-one
 download-win:
 	@$(MAKE) -s HOST=x86_64-w64-mingw32 download-one
 download: download-osx download-linux download-win
-.PHONY: install cached download-one download-osx download-linux download-win download
+.PHONY: install clean clean-all cached download-one download-osx download-linux download-win download
