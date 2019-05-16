@@ -19,6 +19,10 @@ const char* ScriptErrorString(const ScriptError serror)
             return "Script failed an OP_EQUALVERIFY operation";
         case SCRIPT_ERR_CHECKMULTISIGVERIFY:
             return "Script failed an OP_CHECKMULTISIGVERIFY operation";
+        case SCRIPT_ERR_UNSATISFIED_LOCKTIME:
+            return "Script failed an OP_CHECKLOCKTIMEVERIFY operation";
+        case SCRIPT_ERR_NEGATIVE_LOCKTIME:
+            return "Negative locktime";            
         case SCRIPT_ERR_CHECKSIGVERIFY:
             return "Script failed an OP_CHECKSIGVERIFY operation";
         case SCRIPT_ERR_NUMEQUALVERIFY:

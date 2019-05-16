@@ -337,7 +337,7 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                 case OP_NOP:
                 break;
 
-                case OP_NOP1: case OP_CHECKLOCKTIMEVERIFY: case OP_NOP3: case OP_NOP4: case OP_NOP5:
+                case OP_NOP1: case OP_NOP3: case OP_NOP4: case OP_NOP5:
                 case OP_NOP6: case OP_NOP7: case OP_NOP8: case OP_NOP9: case OP_NOP10:
                 {
                     if (flags & SCRIPT_VERIFY_DISCOURAGE_UPGRADABLE_NOPS)
@@ -912,17 +912,15 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                             return set_error(serror, SCRIPT_ERR_CHECKMULTISIGVERIFY);
                     }
                 }
-                case OP_CHECKLOCKTIMEVERIFY: 
+               case OP_CHECKLOCKTIMEVERIFY:
                 {
-                    // CHECKLOCKTIMEVERIFY
-                    //
-                    // (nLockTime -- nLockTime )
-
-                    if (!(flags & SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY))
-                        break; // not enabled; treat as a NOP
+                    if (!(flags & SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY)) {
+                        // not enabled; treat as a NOP2
+                        break;
+                    }
 
                     if (stack.size() < 1)
-                        return false;
+                        return set_error(serror, SCRIPT_ERR_INVALID_STACK_OPERATION);
 
                     // Note that elsewhere numeric opcodes are limited to
                     // operands in the range -2**31+1 to 2**31-1, however it is
@@ -936,50 +934,23 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                     // after the year 2106.
                     //
                     // Thus as a special case we tell CScriptNum to accept up
-                    // to 5-byte bignums, which are good until 2**32-1, the
-                    // same limit as the nLockTime field itself.
+                    // to 5-byte bignums, which are good until 2**39-1, well
+                    // beyond the 2**32-1 limit of the nLockTime field itself.
                     const CScriptNum nLockTime(stacktop(-1), 5);
 
                     // In the rare event that the argument may be < 0 due to
                     // some arithmetic being done first, you can always use
                     // 0 MAX CHECKLOCKTIMEVERIFY.
                     if (nLockTime < 0)
-                        return false;
+                        return set_error(serror, SCRIPT_ERR_NEGATIVE_LOCKTIME);
 
-                    // There are two times of nLockTime: lock-by-blockheight
-                    // and lock-by-blocktime, distinguished by whether
-                    // nLockTime < LOCKTIME_THRESHOLD.
-                    //
-                    // We want to compare apples to apples, so fail the script
-                    // unless the type of nLockTime being tested is the same as
-                    // the nLockTime in the transaction.
-                    if (!(
-                          (txTo.nLockTime <  LOCKTIME_THRESHOLD && nLockTime <  LOCKTIME_THRESHOLD) ||
-                          (txTo.nLockTime >= LOCKTIME_THRESHOLD && nLockTime >= LOCKTIME_THRESHOLD)
-                         ))
-                        return false;
-
-                    // Now that we know we're comparing apples-to-apples, the
-                    // comparison is a simple numeric one.
-                    if (nLockTime > (int64_t)txTo.nLockTime)
-                        return false;
-
-                    // Finally the nLockTime feature can be disabled and thus
-                    // CHECKLOCKTIMEVERIFY bypassed if every txin has been
-                    // finalized by setting nSequence to maxint. The
-                    // transaction would be allowed into the blockchain, making
-                    // the opcode ineffective.
-                    //
-                    // Testing if this vin is not final is sufficient to
-                    // prevent this condition. Alternatively we could test all
-                    // inputs, but testing just this input minimizes the data
-                    // required to prove correct CHECKLOCKTIMEVERIFY execution.
-                    if (txTo.vin[nIn].IsFinal())
-                        return false;
+                    // Actually compare the specified lock time with the transaction.
+                    if (!checker.CheckLockTime(nLockTime))
+                        return set_error(serror, SCRIPT_ERR_UNSATISFIED_LOCKTIME);
 
                     break;
-
                 }
+
                 break;
 
                 default:
@@ -1147,6 +1118,42 @@ bool TransactionSignatureChecker::CheckSig(const vector<unsigned char>& vchSigIn
     uint256 sighash = SignatureHash(scriptCode, *txTo, nIn, nHashType);
 
     if (!VerifySignature(vchSig, pubkey, sighash))
+        return false;
+
+    return true;
+}
+
+bool TransactionSignatureChecker::CheckLockTime(const CScriptNum& nLockTime) const
+{
+    // There are two kinds of nLockTime: lock-by-blockheight
+    // and lock-by-blocktime, distinguished by whether
+    // nLockTime < LOCKTIME_THRESHOLD.
+    //
+    // We want to compare apples to apples, so fail the script
+    // unless the type of nLockTime being tested is the same as
+    // the nLockTime in the transaction.
+    if (!(
+        (txTo->nLockTime <  LOCKTIME_THRESHOLD && nLockTime <  LOCKTIME_THRESHOLD) ||
+        (txTo->nLockTime >= LOCKTIME_THRESHOLD && nLockTime >= LOCKTIME_THRESHOLD)
+    ))
+        return false;
+
+    // Now that we know we're comparing apples-to-apples, the
+    // comparison is a simple numeric one.
+    if (nLockTime > (int64_t)txTo->nLockTime)
+        return false;
+
+    // Finally the nLockTime feature can be disabled and thus
+    // CHECKLOCKTIMEVERIFY bypassed if every txin has been
+    // finalized by setting nSequence to maxint. The
+    // transaction would be allowed into the blockchain, making
+    // the opcode ineffective.
+    //
+    // Testing if this vin is not final is sufficient to
+    // prevent this condition. Alternatively we could test all
+    // inputs, but testing just this input minimizes the data
+    // required to prove correct CHECKLOCKTIMEVERIFY execution.
+    if (txTo->vin[nIn].IsFinal())
         return false;
 
     return true;

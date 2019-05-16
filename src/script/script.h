@@ -22,7 +22,7 @@ std::vector<unsigned char> ToByteVector(const T& in)
 {
     return std::vector<unsigned char>(in.begin(), in.end());
 }
-
+static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
 /** Script opcodes */
 enum opcodetype
 {
