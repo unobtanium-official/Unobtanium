@@ -64,7 +64,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
 		( 300000,	uint256S("0x00000000000011c7eec259d9be4694b4460217fc82929ce1e380de371ccf3131"))
 		( 350000,	uint256S("0x00000000000078d00a08c6e655d95cbf5011b10676f1b94a106ddb3b9df62202"))
         ( 400000,   uint256S("0x0000000000001833336d69645601662b9252d09d64426e518c1bcf22eca46013"))
-        ( 449999,	uint256S("0x000000000000abc7c4e2a51394faa3a6dddbfaf4b8a961724ba47b332356b9de"))	
+        ( 449999,	uint256S("0x000000000000abc7c4e2a51394faa3a6dddbfaf4b8a961724ba47b332356b9de"))
         ( 450000,   uint256S("0x00000000000037801b25318e156bd65082c6b25758da742df8a4431a4e3350a0"))
         ( 450001,	uint256S("0x00000000000031e9eb8de67ba3299f4d2d96fde10349542a6aab48b46d31e35d"))
         ( 475000,	uint256S("0x0000000000001d0bbf2f2cf5b4994dd13e97a232ef943c3cd6f17270886eefa9"))
@@ -109,7 +109,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        /** 
+        /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
@@ -152,6 +152,8 @@ public:
 
         vSeeds.push_back(CDNSSeedData("node1.unobtanium.uno", "node1.unobtanium.uno"));
         vSeeds.push_back(CDNSSeedData("node2.unobtanium.uno", "node2.unobtanium.uno"));
+        vSeeds.push_back(CDNSSeedData("node3unobtanium.ddns.net", "node3unobtanium.ddns.net"));
+        vSeeds.push_back(CDNSSeedData("node4unobtanium.ddns.net", "node4unobtanium.ddns.net"));
         vSeeds.push_back(CDNSSeedData("unobtanium.cryptap.us", "unobtanium.cryptap.us"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
@@ -172,7 +174,7 @@ public:
         fTestnetToBeDeprecatedFieldRPC = false;
     }
 
-    const Checkpoints::CCheckpointData& Checkpoints() const 
+    const Checkpoints::CCheckpointData& Checkpoints() const
     {
         return data;
     }
@@ -248,7 +250,7 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
     }
-    const Checkpoints::CCheckpointData& Checkpoints() const 
+    const Checkpoints::CCheckpointData& Checkpoints() const
     {
         return dataTestnet;
     }
@@ -296,7 +298,7 @@ public:
         fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = false;
     }
-    const Checkpoints::CCheckpointData& Checkpoints() const 
+    const Checkpoints::CCheckpointData& Checkpoints() const
     {
         return dataRegtest;
     }
@@ -321,7 +323,7 @@ public:
         fMineBlocksOnDemand = true;
     }
 
-    const Checkpoints::CCheckpointData& Checkpoints() const 
+    const Checkpoints::CCheckpointData& Checkpoints() const
     {
         // UnitTest share the same checkpoints as MAIN
         return data;
