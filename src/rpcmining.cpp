@@ -17,8 +17,8 @@
 #include "base58.h"
 #include "auxpow.h"
 #ifdef ENABLE_WALLET
-#include "db.h"
-#include "wallet.h"
+#include "wallet/db.h"
+#include "wallet/wallet.h"
 #endif
 
 #include <stdint.h>
@@ -752,7 +752,7 @@ Value getauxblock(const Array& params, bool fHelp)
 				return "duplicate-invalid";
 		}
 
-		CValidationState state; 
+		CValidationState state;
 		submitblock_StateCatcher sc(pblock->GetHash());
 		RegisterValidationInterface(&sc);
 
