@@ -71,7 +71,7 @@ void EraseOrphansFor(NodeId peer);
 
 /**
  * Returns true if there are nRequired or more blocks of minVersion or above
- * in the last Params().ToCheckBlockUpgradeMajority() blocks, starting at pstart 
+ * in the last Params().ToCheckBlockUpgradeMajority() blocks, starting at pstart
  * and going backwards.
  */
 static bool IsSuperMajority(int minVersion, const CBlockIndex* pstart, unsigned int nRequired);
@@ -639,7 +639,7 @@ bool IsFinalTx(const CTransaction &tx, int nBlockHeight, int64_t nBlockTime)
 /**
  * Check transaction inputs to mitigate two
  * potential denial-of-service attacks:
- * 
+ *
  * 1. scriptSigs with extra data stuffed into them,
  *    not consumed by scriptPubKey (or P2SH script)
  * 2. P2SH scripts with a crazy number of expensive
@@ -1157,8 +1157,8 @@ static const CAmount nNewMinSubsidy = .01 * COIN; //corrected as of 0.10.3
 CAmount GetBlockValue(int nHeight, const CAmount& nFees)
 {
     CAmount nSubsidy = nStartSubsidy;
-	
-    if(nHeight < 2000 ) 
+
+    if(nHeight < 2000 )
     {
         nSubsidy = .001 * COIN;  //Ease in to 0 diff.
     }
@@ -1992,7 +1992,7 @@ static int64_t nTimeFlush = 0;
 static int64_t nTimeChainState = 0;
 static int64_t nTimePostConnect = 0;
 
-/** 
+/**
  * Connect a new block to chainActive. pblock is either NULL or a pointer to a CBlock
  * corresponding to pindexNew, to bypass loading it again from disk.
  */
@@ -4469,7 +4469,7 @@ bool SendMessages(CNode* pto, bool fSendTrickle)
         // transactions become unconfirmed and spams other nodes.
         if (!fReindex && !fImporting && !IsInitialBlockDownload())
         {
-            g_signals.Broadcast();
+            GetMainSignals().Broadcast(nTimeBestReceived);
         }
 
         //
