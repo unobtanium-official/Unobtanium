@@ -14,6 +14,7 @@
 #include "rpcserver.h"
 #include "timedata.h"
 #include "util.h"
+#include "validationinterface.h"
 #include "base58.h"
 #include "auxpow.h"
 #ifdef ENABLE_WALLET

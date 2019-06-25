@@ -23,6 +23,7 @@
 #include "ui_interface.h"
 #include "util.h"
 #include "utilmoneystr.h"
+#include "validationinterface.h"
 #ifdef ENABLE_WALLET
 #include "wallet/wallet.h"
 #include "wallet/walletdb.h"
@@ -861,7 +862,7 @@ bool AppInit2(boost::thread_group& threadGroup)
             InitWarning(warningString);
         if (!errorString.empty())
             return InitError(warningString);
-            
+
 
     } // (!fDisableWallet)
 #endif // ENABLE_WALLET
