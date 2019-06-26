@@ -36,6 +36,18 @@ std::string HelpRequiringPassphrase()
         : "";
 }
 
+bool EnsureWalletIsAvailable(bool avoidException)
+{
+	  if (!pwalletMain)
+	  {
+	      if (!avoidException)
+	          throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Method not found (disabled)");
+	      else
+	          return false;
+	  }
+	  return true;
+}
+
 void EnsureWalletIsUnlocked()
 {
     if (pwalletMain->IsLocked())
@@ -76,7 +88,10 @@ string AccountFromValue(const Value& value)
 
 Value getnewaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 1)
         throw runtime_error(
             "getnewaddress ( \"account\" )\n"
             "\nReturns a new Bitcoin address for receiving payments.\n"
@@ -152,7 +167,10 @@ CBitcoinAddress GetAccountAddress(string strAccount, bool bForceNew=false)
 
 Value getaccountaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() != 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaccountaddress \"account\"\n"
             "\nDEPRECATED. Returns the current Bitcoin address for receiving payments to this account.\n"
@@ -181,7 +199,10 @@ Value getaccountaddress(const Array& params, bool fHelp)
 
 Value getrawchangeaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 1)
         throw runtime_error(
             "getrawchangeaddress\n"
             "\nReturns a new Bitcoin address, for receiving change.\n"
@@ -213,7 +234,10 @@ Value getrawchangeaddress(const Array& params, bool fHelp)
 
 Value setaccount(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 2)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "setaccount \"unobtaniumaddress\" \"account\"\n"
             "\nDEPRECATED. Sets the account associated with the given address.\n"
@@ -256,7 +280,10 @@ Value setaccount(const Array& params, bool fHelp)
 
 Value getaccount(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() != 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaccount \"unobtaniumaddress\"\n"
             "\nDEPRECATED. Returns the account associated with the given address.\n"
@@ -285,7 +312,10 @@ Value getaccount(const Array& params, bool fHelp)
 
 Value getaddressesbyaccount(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() != 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() != 1)
         throw runtime_error(
             "getaddressesbyaccount \"account\"\n"
             "\nDEPRECATED. Returns the list of addresses for the given account.\n"
@@ -353,7 +383,10 @@ void SendMoney(const CTxDestination &address, CAmount nValue, CWalletTx& wtxNew)
 
 Value sendtoaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 2 || params.size() > 4)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 2 || params.size() > 5)
         throw runtime_error(
             "sendtoaddress \"unobtaniumaddress\" amount ( \"comment\" \"comment-to\" )\n"
             "\nSend an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n"
@@ -399,7 +432,10 @@ Value sendtoaddress(const Array& params, bool fHelp)
 
 Value listaddressgroupings(const Array& params, bool fHelp)
 {
-    if (fHelp)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp)
         throw runtime_error(
             "listaddressgroupings\n"
             "\nLists groups of addresses which have had their common ownership\n"
@@ -448,7 +484,10 @@ Value listaddressgroupings(const Array& params, bool fHelp)
 
 Value signmessage(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() != 2)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() != 2)
         throw runtime_error(
             "signmessage \"unobtaniumaddress\" \"message\"\n"
             "\nSign a message with the private key of an address"
@@ -501,7 +540,10 @@ Value signmessage(const Array& params, bool fHelp)
 
 Value getreceivedbyaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 2)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "getreceivedbyaddress \"unobtaniumaddress\" ( minconf )\n"
             "\nReturns the total amount received by the given unobtaniumaddress in transactions with at least minconf confirmations.\n"
@@ -556,7 +598,10 @@ Value getreceivedbyaddress(const Array& params, bool fHelp)
 
 Value getreceivedbyaccount(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 2)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "getreceivedbyaccount \"account\" ( minconf )\n"
             "\nDEPRECATED. Returns the total amount received by addresses with <account> in transactions with at least [minconf] confirmations.\n"
@@ -642,7 +687,10 @@ CAmount GetAccountBalance(const string& strAccount, int nMinDepth, const isminef
 
 Value getbalance(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 3)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 3)
         throw runtime_error(
             "getbalance ( \"account\" minconf includeWatchonly )\n"
             "\nIf account is not specified, returns the server's total available balance.\n"
@@ -714,7 +762,10 @@ Value getbalance(const Array& params, bool fHelp)
 
 Value getunconfirmedbalance(const Array &params, bool fHelp)
 {
-    if (fHelp || params.size() > 0)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 0)
         throw runtime_error(
                 "getunconfirmedbalance\n"
                 "Returns the server's total unconfirmed balance\n");
@@ -727,7 +778,10 @@ Value getunconfirmedbalance(const Array &params, bool fHelp)
 
 Value movecmd(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 3 || params.size() > 5)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 3 || params.size() > 5)
         throw runtime_error(
             "move \"fromaccount\" \"toaccount\" amount ( minconf \"comment\" )\n"
             "\nDEPRECATED. Move a specified amount from one account in your wallet to another.\n"
@@ -794,7 +848,10 @@ Value movecmd(const Array& params, bool fHelp)
 
 Value sendfrom(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 3 || params.size() > 6)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 3 || params.size() > 6)
         throw runtime_error(
             "sendfrom \"fromaccount\" \"tobitcoinaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
             "\nDEPRECATED (use sendtoaddress). Sent an amount from an account to a bitcoin address.\n"
@@ -854,7 +911,10 @@ Value sendfrom(const Array& params, bool fHelp)
 
 Value sendmany(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 2 || params.size() > 4)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 2 || params.size() > 5)
         throw runtime_error(
             "sendmany \"fromaccount\" {\"address\":amount,...} ( minconf \"comment\" )\n"
             "\nSend multiple times. Amounts are double-precision floating point numbers."
@@ -939,7 +999,10 @@ extern CScript _createmultisig_redeemScript(const Array& params);
 
 Value addmultisigaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 2 || params.size() > 3)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 2 || params.size() > 3)
     {
         string msg = "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
             "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
@@ -1117,7 +1180,10 @@ Value ListReceived(const Array& params, bool fByAccounts)
 
 Value listreceivedbyaddress(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 3)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 3)
         throw runtime_error(
             "listreceivedbyaddress ( minconf includeempty includeWatchonly)\n"
             "\nList balances by receiving address.\n"
@@ -1151,7 +1217,10 @@ Value listreceivedbyaddress(const Array& params, bool fHelp)
 
 Value listreceivedbyaccount(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 3)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 3)
         throw runtime_error(
             "listreceivedbyaccount ( minconf includeempty includeWatchonly)\n"
             "\nDEPRECATED. List balances by account.\n"
@@ -1278,7 +1347,10 @@ void AcentryToJSON(const CAccountingEntry& acentry, const string& strAccount, Ar
 
 Value listtransactions(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 4)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 4)
         throw runtime_error(
             "listtransactions ( \"account\" count from includeWatchonly)\n"
             "\nReturns up to 'count' most recent transactions skipping the first 'from' transactions for account 'account'.\n"
@@ -1387,9 +1459,12 @@ Value listtransactions(const Array& params, bool fHelp)
     return ret;
 }
 
-Value listaccounts(const Array& params, bool fHelp)
+Value listsinceblock(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 2)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp)
         throw runtime_error(
             "listaccounts ( minconf includeWatchonly)\n"
             "\nDEPRECATED. Returns Object that has account names as keys, account balances as values.\n"
@@ -1554,7 +1629,10 @@ Value listsinceblock(const Array& params, bool fHelp)
 
 Value gettransaction(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 2)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "gettransaction \"txid\" ( includeWatchonly )\n"
             "\nGet detailed information about in-wallet transaction <txid>\n"
@@ -1629,7 +1707,10 @@ Value gettransaction(const Array& params, bool fHelp)
 
 Value backupwallet(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() != 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() != 1)
         throw runtime_error(
             "backupwallet \"destination\"\n"
             "\nSafely copies wallet.dat to destination, which can be a directory or a path with filename.\n"
@@ -1652,7 +1733,10 @@ Value backupwallet(const Array& params, bool fHelp)
 
 Value keypoolrefill(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 1)
         throw runtime_error(
             "keypoolrefill ( newsize )\n"
             "\nFills the keypool."
@@ -1693,7 +1777,10 @@ static void LockWallet(CWallet* pWallet)
 
 Value walletpassphrase(const Array& params, bool fHelp)
 {
-    if (pwalletMain->IsCrypted() && (fHelp || params.size() != 2))
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (pwalletMain->IsCrypted() && (fHelp || params.size() != 2))
         throw runtime_error(
             "walletpassphrase \"passphrase\" timeout\n"
             "\nStores the wallet decryption key in memory for 'timeout' seconds.\n"
@@ -1750,7 +1837,10 @@ Value walletpassphrase(const Array& params, bool fHelp)
 
 Value walletpassphrasechange(const Array& params, bool fHelp)
 {
-    if (pwalletMain->IsCrypted() && (fHelp || params.size() != 2))
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (pwalletMain->IsCrypted() && (fHelp || params.size() != 2))
         throw runtime_error(
             "walletpassphrasechange \"oldpassphrase\" \"newpassphrase\"\n"
             "\nChanges the wallet passphrase from 'oldpassphrase' to 'newpassphrase'.\n"
@@ -1793,7 +1883,10 @@ Value walletpassphrasechange(const Array& params, bool fHelp)
 
 Value walletlock(const Array& params, bool fHelp)
 {
-    if (pwalletMain->IsCrypted() && (fHelp || params.size() != 0))
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (pwalletMain->IsCrypted() && (fHelp || params.size() != 0))
         throw runtime_error(
             "walletlock\n"
             "\nRemoves the wallet encryption key from memory, locking the wallet.\n"
@@ -1829,7 +1922,10 @@ Value walletlock(const Array& params, bool fHelp)
 
 Value encryptwallet(const Array& params, bool fHelp)
 {
-    if (!pwalletMain->IsCrypted() && (fHelp || params.size() != 1))
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (!pwalletMain->IsCrypted() && (fHelp || params.size() != 1))
         throw runtime_error(
             "encryptwallet \"passphrase\"\n"
             "\nEncrypts the wallet with 'passphrase'. This is for first time encryption.\n"
@@ -1883,7 +1979,10 @@ Value encryptwallet(const Array& params, bool fHelp)
 
 Value lockunspent(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 2)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
             "lockunspent unlock [{\"txid\":\"txid\",\"vout\":n},...]\n"
             "\nUpdates list of temporarily unspendable outputs.\n"
@@ -1964,7 +2063,10 @@ Value lockunspent(const Array& params, bool fHelp)
 
 Value listlockunspent(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() > 0)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() > 0)
         throw runtime_error(
             "listlockunspent\n"
             "\nReturns list of temporarily unspendable outputs.\n"
@@ -2010,7 +2112,10 @@ Value listlockunspent(const Array& params, bool fHelp)
 
 Value settxfee(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() < 1 || params.size() > 1)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() < 1 || params.size() > 1)
         throw runtime_error(
             "settxfee amount\n"
             "\nSet the transaction fee per kB.\n"
@@ -2036,7 +2141,10 @@ Value settxfee(const Array& params, bool fHelp)
 
 Value getwalletinfo(const Array& params, bool fHelp)
 {
-    if (fHelp || params.size() != 0)
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
+	  if (fHelp || params.size() != 0)
         throw runtime_error(
             "getwalletinfo\n"
             "Returns an object containing various wallet state info.\n"
@@ -2073,6 +2181,9 @@ Value getwalletinfo(const Array& params, bool fHelp)
 
 Value resendwallettransactions(const Array& params, bool fHelp)
 {
+	  if (!EnsureWalletIsAvailable(fHelp))
+	      return Value::null;
+
 	  if (fHelp || params.size() != 0)
 	      throw runtime_error(
 	          "resendwallettransactions\n"
