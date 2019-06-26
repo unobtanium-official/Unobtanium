@@ -7,6 +7,7 @@
 #define BITCOIN_TXDB_H
 
 #include "coins.h"
+#include "main.h"
 #include "leveldbwrapper.h"
 
 
