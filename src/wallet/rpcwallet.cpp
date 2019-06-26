@@ -2207,43 +2207,43 @@ Value resendwallettransactions(const Array& params, bool fHelp)
 Value listunspent(const Array& params, bool fHelp)
 {
     if (!EnsureWalletIsAvailable(fHelp))
-          return Value::null;
+        return Value::null;
 
     if (fHelp || params.size() > 3)
-    throw runtime_error(
-                        "listunspent ( minconf maxconf  [\"address\",...] )\n"
-                        "\nReturns array of unspent transaction outputs\n"
-                        "with between minconf and maxconf (inclusive) confirmations.\n"
-                        "Optionally filter to only include txouts paid to specified addresses.\n"
-                        "Results are an array of Objects, each of which has:\n"
-                        "{txid, vout, scriptPubKey, amount, confirmations}\n"
-                        "\nArguments:\n"
-                        "1. minconf          (numeric, optional, default=1) The minimum confirmations to filter\n"
-                        "2. maxconf          (numeric, optional, default=9999999) The maximum confirmations to filter\n"
-                        "3. \"addresses\"    (string) A json array of bitcoin addresses to filter\n"
-                        "    [\n"
-                        "      \"address\"   (string) bitcoin address\n"
-                        "      ,...\n"
-                        "    ]\n"
-                        "\nResult\n"
-                        "[                   (array of json object)\n"
-                        "  {\n"
-                        "    \"txid\" : \"txid\",        (string) the transaction id \n"
-                        "    \"vout\" : n,               (numeric) the vout value\n"
-                        "    \"address\" : \"address\",  (string) the bitcoin address\n"
-                        "    \"account\" : \"account\",  (string) DEPRECATED. The associated account, or \"\" for the default account\n"
-                        "    \"scriptPubKey\" : \"key\", (string) the script key\n"
-                        "    \"amount\" : x.xxx,         (numeric) the transaction amount in btc\n"
-                        "    \"confirmations\" : n       (numeric) The number of confirmations\n"
-                        "  }\n"
-                        "  ,...\n"
-                        "]\n"
+        throw runtime_error(
+            "listunspent ( minconf maxconf  [\"address\",...] )\n"
+            "\nReturns array of unspent transaction outputs\n"
+            "with between minconf and maxconf (inclusive) confirmations.\n"
+            "Optionally filter to only include txouts paid to specified addresses.\n"
+            "Results are an array of Objects, each of which has:\n"
+            "{txid, vout, scriptPubKey, amount, confirmations}\n"
+            "\nArguments:\n"
+            "1. minconf          (numeric, optional, default=1) The minimum confirmations to filter\n"
+            "2. maxconf          (numeric, optional, default=9999999) The maximum confirmations to filter\n"
+            "3. \"addresses\"    (string) A json array of bitcoin addresses to filter\n"
+            "    [\n"
+            "      \"address\"   (string) bitcoin address\n"
+            "      ,...\n"
+            "    ]\n"
+            "\nResult\n"
+            "[                   (array of json object)\n"
+            "  {\n"
+            "    \"txid\" : \"txid\",        (string) the transaction id \n"
+            "    \"vout\" : n,               (numeric) the vout value\n"
+            "    \"address\" : \"address\",  (string) the bitcoin address\n"
+            "    \"account\" : \"account\",  (string) DEPRECATED. The associated account, or \"\" for the default account\n"
+            "    \"scriptPubKey\" : \"key\", (string) the script key\n"
+            "    \"amount\" : x.xxx,         (numeric) the transaction amount in btc\n"
+            "    \"confirmations\" : n       (numeric) The number of confirmations\n"
+            "  }\n"
+            "  ,...\n"
+            "]\n"
 
-                        "\nExamples\n"
-                        + HelpExampleCli("listunspent", "")
-                        + HelpExampleCli("listunspent", "6 9999999 \"[\\\"1PGFqEzfmQch1gKD3ra4k18PNj3tTUUSqg\\\",\\\"1LtvqCaApEdUGFkpKMM4MstjcaL4dKg8SP\\\"]\"")
-                        + HelpExampleRpc("listunspent", "6, 9999999 \"[\\\"1PGFqEzfmQch1gKD3ra4k18PNj3tTUUSqg\\\",\\\"1LtvqCaApEdUGFkpKMM4MstjcaL4dKg8SP\\\"]\"")
-                        );
+            "\nExamples\n"
+            + HelpExampleCli("listunspent", "")
+            + HelpExampleCli("listunspent", "6 9999999 \"[\\\"1PGFqEzfmQch1gKD3ra4k18PNj3tTUUSqg\\\",\\\"1LtvqCaApEdUGFkpKMM4MstjcaL4dKg8SP\\\"]\"")
+            + HelpExampleRpc("listunspent", "6, 9999999 \"[\\\"1PGFqEzfmQch1gKD3ra4k18PNj3tTUUSqg\\\",\\\"1LtvqCaApEdUGFkpKMM4MstjcaL4dKg8SP\\\"]\"")
+        );
 
     RPCTypeCheck(params, boost::assign::list_of(int_type)(int_type)(array_type));
 
