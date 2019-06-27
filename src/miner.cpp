@@ -7,6 +7,7 @@
 
 #include "amount.h"
 #include "primitives/transaction.h"
+#include "consensus/consensus.h"
 #include "hash.h"
 #include "main.h"
 #include "net.h"

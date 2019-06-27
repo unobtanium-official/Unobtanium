@@ -12,8 +12,6 @@
 #include "uint256.h"
 #include "util.h"
 
-/** The maximum allowed size for a serialized block, in bytes (network rule) */
-static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const int AUXPOW_CHAIN_ID = 0x75;
 static const int AUXPOW_TESTNET_CHAIN_ID = 0x77;
 

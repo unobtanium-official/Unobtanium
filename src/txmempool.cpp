@@ -6,6 +6,7 @@
 #include "txmempool.h"
 
 #include "clientversion.h"
+#include "consensus/consensus.h"
 #include "main.h"
 #include "streams.h"
 #include "util.h"
@@ -258,7 +259,7 @@ public:
 
         for (size_t i = 0; i < history.size(); i++) {
             if (history[i].FeeSamples() + history[i].PrioritySamples() > 0)
-                LogPrint("estimatefee", "estimates: for confirming within %d blocks based on %d/%d samples, fee=%s, prio=%g\n", 
+                LogPrint("estimatefee", "estimates: for confirming within %d blocks based on %d/%d samples, fee=%s, prio=%g\n",
                          i,
                          history[i].FeeSamples(), history[i].PrioritySamples(),
                          estimateFee(i+1).ToString(), estimatePriority(i+1));
@@ -354,7 +355,7 @@ public:
             throw runtime_error("Corrupt estimates file. Must have between 1 and 10k entries.");
 
         std::vector<CBlockAverage> fileHistory;
-        
+
         for (size_t i = 0; i < numEntries; i++)
         {
             CBlockAverage entry;
