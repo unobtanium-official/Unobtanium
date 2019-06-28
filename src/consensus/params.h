@@ -25,7 +25,7 @@ struct Params {
     bool fPowAllowMinDifficultyBlocks;
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
-    int64_t DifficultyAdjustmentInterval() const { return nPowTargetTimespan / nPowTargetSpacing; }
+    int64_t Interval() const { return nPowTargetTimespan / nPowTargetSpacing; }
 };
 } // namespace Consensus
 
