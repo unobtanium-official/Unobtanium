@@ -109,6 +109,14 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
+        consensus.nSubsidyHalvingInterval = 100000;
+        consensus.nMajorityEnforceBlockUpgrade = 750;
+        consensus.nMajorityRejectBlockOutdated = 950;
+        consensus.nMajorityWindow = 1000;
+        consensus.powLimit = ~uint256(0) >> 20;
+        consensus.nPowTargetTimespan = 3 * 60; // 3 minutes
+        consensus.nPowTargetSpacing = 60; // 30 seconds
+        consensus.fPowAllowMinDifficultyBlocks = false;
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -121,15 +129,7 @@ public:
         vAlertPubKey = ParseHex("04fd68acb6a895f3462d91b43eef0da845f0d531958a858554feab3ac330562bf76910700b3f7c29ee273ddc4da2bb5b953858f6958a50e8831eb43ee30c32f21d");
         nDefaultPort = 65534;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
-        nSubsidyHalvingInterval = 100000;
-
-
-        nEnforceBlockUpgradeMajority = 750;
-        nRejectBlockOutdatedMajority = 950;
-        nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-		nTargetTimespan = 3 * 60; // 3 minutes
-		nTargetSpacing = 60; // 30 seconds
 
         const char* pszTimestamp = "San Francisco plaza evacuated after suspicious package is found";
         CMutableTransaction txNew;
@@ -146,9 +146,9 @@ public:
         genesis.nBits    = 0x1e0fffff;
         genesis.nNonce   = 1211565;
 
-        hashGenesisBlock = genesis.GetHash();
+        consensus.hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
-        assert(genesis.hashMerkleRoot == uint256S("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
+        assert(consensus.hashGenesisBlock == uint256S("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
         vSeeds.push_back(CDNSSeedData("node1.unobtanium.uno", "node1.unobtanium.uno"));
         vSeeds.push_back(CDNSSeedData("node2.unobtanium.uno", "node2.unobtanium.uno"));
@@ -167,7 +167,6 @@ public:
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fDefaultCheckMemPool = false;
-        fAllowMinDifficultyBlocks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
         fSkipProofOfWorkCheck = false;
@@ -189,19 +188,17 @@ public:
     CTestNetParams() {
 
         strNetworkID = "test";
+        consensus.nMajorityEnforceBlockUpgrade = 51;
+        consensus.nMajorityRejectBlockOutdated = 75;
+        consensus.nMajorityWindow = 100;
+        consensus.fPowAllowMinDifficultyBlocks = true;
         pchMessageStart[0] = 0x01;
         pchMessageStart[1] = 0x02;
         pchMessageStart[2] = 0x03;
         pchMessageStart[3] = 0x04;
         vAlertPubKey = ParseHex("0450a15957f7e05910a9ca54fd84a0b555a3563561f3ecbdb6f844f752917f8a8d0041d579022044bb9398dbb7babec4601444fc60870826f3f15afae074213bf4");
         nDefaultPort = 65522;
-
-        nEnforceBlockUpgradeMajority = 51;
-        nRejectBlockOutdatedMajority = 75;
-        nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-		nTargetTimespan = 3 * 60; // 3 minutes
-		nTargetSpacing = 60; // 30 seconds
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
 
@@ -226,8 +223,8 @@ public:
         genesis.nNonce = 1746468;
         genesis.nBits = 0x1e0fffff;
 	//merkle hash: 36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484
-        hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256S("0x000007b02afb00ae826d948d88f4973c00073425f965917f6298b6d280bde021"));
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x000007b02afb00ae826d948d88f4973c00073425f965917f6298b6d280bde021"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -245,7 +242,6 @@ public:
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fDefaultCheckMemPool = false;
-        fAllowMinDifficultyBlocks = true;
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
@@ -264,24 +260,22 @@ class CRegTestParams : public CTestNetParams {
 public:
     CRegTestParams() {
         strNetworkID = "regtest";
+        consensus.nSubsidyHalvingInterval = 150;
+        consensus.nMajorityEnforceBlockUpgrade = 750;
+        consensus.nMajorityRejectBlockOutdated = 950;
+        consensus.nMajorityWindow = 1000;
+        consensus.powLimit = ~uint256(0) >> 1;
         pchMessageStart[0] = 0x04;
         pchMessageStart[1] = 0x03;
         pchMessageStart[2] = 0x02;
         pchMessageStart[3] = 0x01;
-        nSubsidyHalvingInterval = 150;
-        nEnforceBlockUpgradeMajority = 750;
-        nRejectBlockOutdatedMajority = 950;
-        nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-		nTargetTimespan = 3 * 60; // 3 minutes
-		nTargetSpacing = 60; // 30 seconds
-        bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1375548985;
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 1;
-        hashGenesisBlock = genesis.GetHash();
+        consensus.hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
-        assert(hashGenesisBlock == uint256S("0x3868bcc735f32cdd9b42971cdee7bc620c50fada5e3ac5fdfd35630aaf2eb64e"));
+        assert(consensus.hashGenesisBlock == uint256S("0x3868bcc735f32cdd9b42971cdee7bc620c50fada5e3ac5fdfd35630aaf2eb64e"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
