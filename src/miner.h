@@ -24,6 +24,8 @@ struct CBlockTemplate
 
 /** Run the miner threads */
 void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads);
+/** Create a single block */
+bool MineBlock(CWallet *pwallet, uint256& hash);
 bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey);
 
 /** Generate a new block, without valid proof-of-work */
