@@ -6,6 +6,7 @@
 #ifndef BITCOIN_CONSENSUS_CONSENSUS_PARAMS_H
 #define BITCOIN_CONSENSUS_CONSENSUS_PARAMS_H
 
+#include "arith_uint256.h"
 #include "uint256.h"
 
 namespace Consensus {
@@ -20,7 +21,7 @@ struct Params {
     int nMajorityRejectBlockOutdated;
     int nMajorityWindow;
     /** Proof of work parameters */
-    uint256 powLimit;
+    arith_uint256 powLimit;
     bool fPowAllowMinDifficultyBlocks;
     int64_t nPowTargetSpacing;
     int64_t nPowTargetTimespan;
