@@ -1459,7 +1459,7 @@ Value listtransactions(const Array& params, bool fHelp)
     return ret;
 }
 
-Value listsinceblock(const Array& params, bool fHelp)
+Value listaccounts(const Array& params, bool fHelp)
 {
 	  if (!EnsureWalletIsAvailable(fHelp))
 	      return Value::null;
