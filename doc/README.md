@@ -1,5 +1,5 @@
-Unobtanium Core 0.10.4.1
-=====================
+Unobtanium Core 0.11.0.0-alpha
+==============================
 
 Setup
 ---------------------
@@ -7,7 +7,7 @@ Setup
 
 Running
 ---------------------
-The following are some helpful notes on how to run Unobtanium on your native platform. 
+The following are some helpful notes on how to run Unobtanium on your native platform.
 
 ### Unix
 
