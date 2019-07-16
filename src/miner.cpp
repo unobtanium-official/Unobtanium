@@ -7,6 +7,7 @@
 
 #include "amount.h"
 #include "primitives/transaction.h"
+#include "consensus/consensus.h"
 #include "hash.h"
 #include "main.h"
 #include "net.h"
@@ -16,7 +17,7 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #ifdef ENABLE_WALLET
-#include "wallet.h"
+#include "wallet/wallet.h"
 #endif
 
 #include <boost/thread.hpp>

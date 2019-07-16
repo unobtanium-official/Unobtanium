@@ -74,7 +74,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
         ( 630000,	uint256S("0xf16ef330597e3e6ba6f3e425400433f5bbc8e5eab7ff77744c29a24d6c1a632d"))
         ;
 static const Checkpoints::CCheckpointData data = {
-        &mapCheckpoints,
+        mapCheckpoints,
         1436478823, // * UNIX timestamp of last checkpoint block
         793171,     // * total number of transactions between genesis and last checkpoint
                     //   (the tx=... number in the SetBestChain debug.log lines)
@@ -88,7 +88,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         //( 25000, uint256S("0x00000008a54b0d3e8bcd84b131253009422104de8ecc16ac9fe53fa1a39c2fe4"))
         ;
 static const Checkpoints::CCheckpointData dataTestnet = {
-        &mapCheckpointsTestnet,
+        mapCheckpointsTestnet,
         1531487000,  //1436994107,
         0, //25044,
         0  //2880
@@ -99,7 +99,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
         ( 0, uint256S("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"))
         ;
 static const Checkpoints::CCheckpointData dataRegtest = {
-        &mapCheckpointsRegtest,
+        mapCheckpointsRegtest,
         0,
         0,
         0
@@ -109,6 +109,14 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
+        consensus.nSubsidyHalvingInterval = 100000;
+        consensus.nMajorityEnforceBlockUpgrade = 750;
+        consensus.nMajorityRejectBlockOutdated = 950;
+        consensus.nMajorityWindow = 1000;
+        consensus.powLimit = ~uint256(0) >> 20;
+        consensus.nPowTargetTimespan = 3 * 60; // 3 minutes
+        consensus.nPowTargetSpacing = 60; // 30 seconds
+        consensus.fPowAllowMinDifficultyBlocks = false;
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -120,16 +128,7 @@ public:
         pchMessageStart[3] = 0x03;
         vAlertPubKey = ParseHex("04fd68acb6a895f3462d91b43eef0da845f0d531958a858554feab3ac330562bf76910700b3f7c29ee273ddc4da2bb5b953858f6958a50e8831eb43ee30c32f21d");
         nDefaultPort = 65534;
-        bnProofOfWorkLimit = ~uint256(0) >> 20;
-        nSubsidyHalvingInterval = 100000;
-
-
-        nEnforceBlockUpgradeMajority = 750;
-        nRejectBlockOutdatedMajority = 950;
-        nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-		nTargetTimespan = 3 * 60; // 3 minutes
-		nTargetSpacing = 60; // 30 seconds
 
         const char* pszTimestamp = "San Francisco plaza evacuated after suspicious package is found";
         CMutableTransaction txNew;
@@ -146,8 +145,8 @@ public:
         genesis.nBits    = 0x1e0fffff;
         genesis.nNonce   = 1211565;
 
-        hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x000004c2fc5fffb810dccc197d603690099a68305232e552d96ccbe8e2c52b75"));
         assert(genesis.hashMerkleRoot == uint256S("0x36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484"));
 
         vSeeds.push_back(CDNSSeedData("node1.unobtanium.uno", "node1.unobtanium.uno"));
@@ -167,10 +166,8 @@ public:
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fDefaultCheckMemPool = false;
-        fAllowMinDifficultyBlocks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
-        fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = false;
     }
 
@@ -189,19 +186,17 @@ public:
     CTestNetParams() {
 
         strNetworkID = "test";
+        consensus.nMajorityEnforceBlockUpgrade = 51;
+        consensus.nMajorityRejectBlockOutdated = 75;
+        consensus.nMajorityWindow = 100;
+        consensus.fPowAllowMinDifficultyBlocks = true;
         pchMessageStart[0] = 0x01;
         pchMessageStart[1] = 0x02;
         pchMessageStart[2] = 0x03;
         pchMessageStart[3] = 0x04;
         vAlertPubKey = ParseHex("0450a15957f7e05910a9ca54fd84a0b555a3563561f3ecbdb6f844f752917f8a8d0041d579022044bb9398dbb7babec4601444fc60870826f3f15afae074213bf4");
         nDefaultPort = 65522;
-
-        nEnforceBlockUpgradeMajority = 51;
-        nRejectBlockOutdatedMajority = 75;
-        nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-		nTargetTimespan = 3 * 60; // 3 minutes
-		nTargetSpacing = 60; // 30 seconds
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
 
@@ -226,8 +221,8 @@ public:
         genesis.nNonce = 1746468;
         genesis.nBits = 0x1e0fffff;
 	//merkle hash: 36a192e90f70131a884fe541a1e8a5643a28ba4cb24cbb2924bd0ee483f7f484
-        hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256S("0x000007b02afb00ae826d948d88f4973c00073425f965917f6298b6d280bde021"));
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x000007b02afb00ae826d948d88f4973c00073425f965917f6298b6d280bde021"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -245,7 +240,6 @@ public:
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fDefaultCheckMemPool = false;
-        fAllowMinDifficultyBlocks = true;
         fRequireStandard = false;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = true;
@@ -264,24 +258,22 @@ class CRegTestParams : public CTestNetParams {
 public:
     CRegTestParams() {
         strNetworkID = "regtest";
+        consensus.nSubsidyHalvingInterval = 150;
+        consensus.nMajorityEnforceBlockUpgrade = 750;
+        consensus.nMajorityRejectBlockOutdated = 950;
+        consensus.nMajorityWindow = 1000;
+        consensus.powLimit = ~uint256(0) >> 1;
         pchMessageStart[0] = 0x04;
         pchMessageStart[1] = 0x03;
         pchMessageStart[2] = 0x02;
         pchMessageStart[3] = 0x01;
-        nSubsidyHalvingInterval = 150;
-        nEnforceBlockUpgradeMajority = 750;
-        nRejectBlockOutdatedMajority = 950;
-        nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-		nTargetTimespan = 3 * 60; // 3 minutes
-		nTargetSpacing = 60; // 30 seconds
-        bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1375548985;
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 1;
-        hashGenesisBlock = genesis.GetHash();
+        consensus.hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 18444;
-        assert(hashGenesisBlock == uint256S("0x3868bcc735f32cdd9b42971cdee7bc620c50fada5e3ac5fdfd35630aaf2eb64e"));
+        assert(consensus.hashGenesisBlock == uint256S("0x3868bcc735f32cdd9b42971cdee7bc620c50fada5e3ac5fdfd35630aaf2eb64e"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
@@ -293,7 +285,6 @@ public:
         fRequireRPCPassword = false;
         fMiningRequiresPeers = false;
         fDefaultCheckMemPool = true;
-        fAllowMinDifficultyBlocks = true;
         fRequireStandard = false;
         fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = false;
@@ -305,50 +296,7 @@ public:
 };
 static CRegTestParams regTestParams;
 
-/**
- * Unit test
- */
-class CUnitTestParams : public CMainParams, public CModifiableParams {
-public:
-    CUnitTestParams() {
-        strNetworkID = "unittest";
-        nDefaultPort = 18444;
-        vFixedSeeds.clear(); //! Unit test mode doesn't have any fixed seeds.
-        vSeeds.clear();  //! Unit test mode doesn't have any DNS seeds.
-
-        fRequireRPCPassword = false;
-        fMiningRequiresPeers = false;
-        fDefaultCheckMemPool = true;
-        fAllowMinDifficultyBlocks = false;
-        fMineBlocksOnDemand = true;
-    }
-
-    const Checkpoints::CCheckpointData& Checkpoints() const
-    {
-        // UnitTest share the same checkpoints as MAIN
-        return data;
-    }
-
-    //! Published setters to allow changing values in unit test cases
-    virtual void setSubsidyHalvingInterval(int anSubsidyHalvingInterval)  { nSubsidyHalvingInterval=anSubsidyHalvingInterval; }
-    virtual void setEnforceBlockUpgradeMajority(int anEnforceBlockUpgradeMajority)  { nEnforceBlockUpgradeMajority=anEnforceBlockUpgradeMajority; }
-    virtual void setRejectBlockOutdatedMajority(int anRejectBlockOutdatedMajority)  { nRejectBlockOutdatedMajority=anRejectBlockOutdatedMajority; }
-    virtual void setToCheckBlockUpgradeMajority(int anToCheckBlockUpgradeMajority)  { nToCheckBlockUpgradeMajority=anToCheckBlockUpgradeMajority; }
-    virtual void setDefaultCheckMemPool(bool afDefaultCheckMemPool)  { fDefaultCheckMemPool=afDefaultCheckMemPool; }
-    virtual void setAllowMinDifficultyBlocks(bool afAllowMinDifficultyBlocks) {  fAllowMinDifficultyBlocks=afAllowMinDifficultyBlocks; }
-    virtual void setSkipProofOfWorkCheck(bool afSkipProofOfWorkCheck) { fSkipProofOfWorkCheck = afSkipProofOfWorkCheck; }
-};
-static CUnitTestParams unitTestParams;
-
-
 static CChainParams *pCurrentParams = 0;
-
-CModifiableParams *ModifiableParams()
-{
-   assert(pCurrentParams);
-   assert(pCurrentParams==&unitTestParams);
-   return (CModifiableParams*)&unitTestParams;
-}
 
 const CChainParams &Params() {
     assert(pCurrentParams);
@@ -363,8 +311,6 @@ CChainParams &Params(CBaseChainParams::Network network) {
             return testNetParams;
         case CBaseChainParams::REGTEST:
             return regTestParams;
-        case CBaseChainParams::UNITTEST:
-            return unitTestParams;
         default:
             assert(false && "Unimplemented network");
             return mainParams;

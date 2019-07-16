@@ -6,15 +6,19 @@
 #ifndef BITCOIN_TXDB_H
 #define BITCOIN_TXDB_H
 
-#include "leveldbwrapper.h"
+#include "coins.h"
 #include "main.h"
+#include "leveldbwrapper.h"
+
 
 #include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
-class CCoins;
+class CBlockFileInfo;
+class CBlockIndex;
+struct CDiskTxPos;
 class uint256;
 
 //! -dbcache default (MiB)
@@ -48,7 +52,7 @@ private:
     CBlockTreeDB(const CBlockTreeDB&);
     void operator=(const CBlockTreeDB&);
 public:
-	bool WriteBatchSync(const std::vector<std::pair<int, const CBlockFileInfo*> >& fileInfo, int nLastFile, const std::vector<const CBlockIndex*>& blockinfo, const std::map<uint256, boost::shared_ptr<CAuxPow> >& auxpows);	
+	bool WriteBatchSync(const std::vector<std::pair<int, const CBlockFileInfo*> >& fileInfo, int nLastFile, const std::vector<const CBlockIndex*>& blockinfo, const std::map<uint256, boost::shared_ptr<CAuxPow> >& auxpows);
     bool WriteBatchSync(const std::vector<std::pair<int, const CBlockFileInfo*> >& fileInfo, int nLastFile, const std::vector<const CBlockIndex*>& blockinfo);
     bool ReadDiskBlockIndex(const uint256 &blkid, CDiskBlockIndex& diskblockindex);
     bool ReadBlockFileInfo(int nFile, CBlockFileInfo &fileinfo);

@@ -10,8 +10,8 @@
 #include "ui_interface.h"
 #include "util.h"
 #ifdef ENABLE_WALLET
-#include "db.h"
-#include "wallet.h"
+#include "wallet/db.h"
+#include "wallet/wallet.h"
 #endif
 
 #include <boost/filesystem.hpp>
@@ -31,7 +31,7 @@ struct TestingSetup {
 
     TestingSetup() {
         fPrintToDebugLog = false; // don't want to write to debug.log file
-        SelectParams(CBaseChainParams::UNITTEST);
+        SelectParams(CBaseChainParams::MAIN);
         noui_connect();
 #ifdef ENABLE_WALLET
         bitdb.MakeMock();

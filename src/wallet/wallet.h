@@ -7,15 +7,19 @@
 #define BITCOIN_WALLET_H
 
 #include "amount.h"
-#include "primitives/block.h"
-#include "primitives/transaction.h"
+#include "tinyformat.h"
 #include "crypter.h"
 #include "key.h"
 #include "keystore.h"
-#include "main.h"
+#include "primitives/block.h"
+#include "primitives/transaction.h"
+#include "tinyformat.h"
 #include "ui_interface.h"
-#include "wallet_ismine.h"
-#include "walletdb.h"
+#include "utilstrencodings.h"
+#include "validationinterface.h"
+#include "utilstrencodings.h"
+#include "wallet/wallet_ismine.h"
+#include "wallet/walletdb.h"
 
 #include <algorithm>
 #include <map>
@@ -48,10 +52,12 @@ static const CAmount nHighTransactionMaxFeeWarning = 100 * nHighTransactionFeeWa
 static const unsigned int MAX_FREE_TRANSACTION_CREATE_SIZE = 1000;
 
 class CAccountingEntry;
+class CBlockIndex;
 class CCoinControl;
 class COutput;
 class CReserveKey;
 class CScript;
+class CTxMemPool;
 class CWalletTx;
 
 /** (client) version numbers for particular wallet features */
@@ -191,7 +197,7 @@ public:
     bool AcceptToMemoryPool(bool fLimitFree=true, bool fRejectAbsurdFee=true);
 };
 
-/** 
+/**
  * A transaction with a bunch of additional info that only the owner cares about.
  * It includes any unrecorded transactions needed to link it back to the block chain.
  */
@@ -371,7 +377,7 @@ public:
     int64_t GetTxTime() const;
     int GetRequestCount() const;
 
-    void RelayWalletTransaction();
+    bool RelayWalletTransaction();
 
     std::set<uint256> GetConflicts() const;
 };
@@ -426,7 +432,7 @@ public:
 
 
 
-/** 
+/**
  * A CWallet is an extension of a keystore, which also maintains a set of transactions and balances,
  * and provides the ability to create new transactions.
  */
@@ -445,6 +451,7 @@ private:
 
     int64_t nNextResend;
     int64_t nLastResend;
+    bool fBroadcastTransactions;
 
     /**
      * Used to keep track of spent outpoints, and
@@ -508,6 +515,7 @@ public:
         nNextResend = 0;
         nLastResend = 0;
         nTimeFirstKey = 0;
+        fBroadcastTransactions = false;
     }
 
     std::map<uint256, CWalletTx> mapWallet;
@@ -528,7 +536,7 @@ public:
     //! check whether we are allowed to upgrade (or already support) to the named feature
     bool CanSupportFeature(enum WalletFeature wf) { AssertLockHeld(cs_wallet); return nWalletMaxVersion >= wf; }
 
-    void AvailableCoins(std::vector<COutput>& vCoins, bool fOnlyConfirmed=true, const CCoinControl *coinControl = NULL) const;
+    void AvailableCoins(std::vector<COutput>& vCoins, bool fOnlyConfirmed=true, const CCoinControl *coinControl = NULL, bool fIncludeZeroValue=false) const;
     bool SelectCoinsMinConf(const CAmount& nTargetValue, int nConfMine, int nConfTheirs, std::vector<COutput> vCoins, std::set<std::pair<const CWalletTx*,unsigned int> >& setCoinsRet, CAmount& nValueRet) const;
 
     bool IsSpent(const uint256& hash, unsigned int n) const;
@@ -581,7 +589,7 @@ public:
 
     void GetKeyBirthTimes(std::map<CKeyID, int64_t> &mapKeyBirth) const;
 
-    /** 
+    /**
      * Increment the next transaction order id
      * @return next transaction order id
      */
@@ -604,7 +612,8 @@ public:
     void EraseFromWallet(const uint256 &hash);
     int ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate = false);
     void ReacceptWalletTransactions();
-    void ResendWalletTransactions();
+    void ResendWalletTransactions(int64_t nBestBlockTime);
+    std::vector<uint256> ResendWalletTransactionsBefore(int64_t nTime);
     CAmount GetBalance() const;
     CAmount GetUnconfirmedBalance() const;
     CAmount GetImmatureBalance() const;
@@ -636,68 +645,16 @@ public:
 
     isminetype IsMine(const CTxIn& txin) const;
     CAmount GetDebit(const CTxIn& txin, const isminefilter& filter) const;
-    isminetype IsMine(const CTxOut& txout) const
-    {
-        return ::IsMine(*this, txout.scriptPubKey);
-    }
-    CAmount GetCredit(const CTxOut& txout, const isminefilter& filter) const
-    {
-        if (!MoneyRange(txout.nValue))
-            throw std::runtime_error("CWallet::GetCredit(): value out of range");
-        return ((IsMine(txout) & filter) ? txout.nValue : 0);
-    }
+    isminetype IsMine(const CTxOut& txout) const;
+	  CAmount GetCredit(const CTxOut& txout, const isminefilter& filter) const;
     bool IsChange(const CTxOut& txout) const;
-    CAmount GetChange(const CTxOut& txout) const
-    {
-        if (!MoneyRange(txout.nValue))
-            throw std::runtime_error("CWallet::GetChange(): value out of range");
-        return (IsChange(txout) ? txout.nValue : 0);
-    }
-    bool IsMine(const CTransaction& tx) const
-    {
-        BOOST_FOREACH(const CTxOut& txout, tx.vout)
-            if (IsMine(txout))
-                return true;
-        return false;
-    }
+    CAmount GetChange(const CTxOut& txout) const;
+	  bool IsMine(const CTransaction& tx) const;
     /** should probably be renamed to IsRelevantToMe */
-    bool IsFromMe(const CTransaction& tx) const
-    {
-        return (GetDebit(tx, ISMINE_ALL) > 0);
-    }
-    CAmount GetDebit(const CTransaction& tx, const isminefilter& filter) const
-    {
-        CAmount nDebit = 0;
-        BOOST_FOREACH(const CTxIn& txin, tx.vin)
-        {
-            nDebit += GetDebit(txin, filter);
-            if (!MoneyRange(nDebit))
-                throw std::runtime_error("CWallet::GetDebit(): value out of range");
-        }
-        return nDebit;
-    }
-    CAmount GetCredit(const CTransaction& tx, const isminefilter& filter) const
-    {
-        CAmount nCredit = 0;
-        BOOST_FOREACH(const CTxOut& txout, tx.vout)
-        {
-            nCredit += GetCredit(txout, filter);
-            if (!MoneyRange(nCredit))
-                throw std::runtime_error("CWallet::GetCredit(): value out of range");
-        }
-        return nCredit;
-    }
-    CAmount GetChange(const CTransaction& tx) const
-    {
-        CAmount nChange = 0;
-        BOOST_FOREACH(const CTxOut& txout, tx.vout)
-        {
-            nChange += GetChange(txout);
-            if (!MoneyRange(nChange))
-                throw std::runtime_error("CWallet::GetChange(): value out of range");
-        }
-        return nChange;
-    }
+    bool IsFromMe(const CTransaction& tx) const;
+	  CAmount GetDebit(const CTransaction& tx, const isminefilter& filter) const;
+	  CAmount GetCredit(const CTransaction& tx, const isminefilter& filter) const;
+	  CAmount GetChange(const CTransaction& tx) const;
     void SetBestChain(const CBlockLocator& loc);
 
     DBErrors LoadWallet(bool& fFirstRunRet);
@@ -739,7 +696,13 @@ public:
     //! Get wallet transactions that conflict with given transaction (spend same outputs)
     std::set<uint256> GetConflicts(const uint256& txid) const;
 
-    /** 
+    //! Flush wallet (bitdb flush)
+    void Flush(bool shutdown=false);
+
+    //! Verify the wallet database and perform salvage if required
+    static bool Verify(const std::string& walletFile, std::string& warningString, std::string& errorString);
+
+    /**
      * Address book entry changed.
      * @note called with lock cs_wallet held.
      */
@@ -748,7 +711,7 @@ public:
             const std::string &purpose,
             ChangeType status)> NotifyAddressBookChanged;
 
-    /** 
+    /**
      * Wallet transaction added, removed or updated.
      * @note called with lock cs_wallet held.
      */
@@ -760,6 +723,11 @@ public:
 
     /** Watch-only address added */
     boost::signals2::signal<void (bool fHaveWatchOnly)> NotifyWatchonlyChanged;
+
+	  /** Inquire whether this wallet broadcasts transactions. */
+	  bool GetBroadcastTransactions() const { return fBroadcastTransactions; }
+	  /** Set whether this wallet broadcasts transactions. */
+	  void SetBroadcastTransactions(bool broadcast) { fBroadcastTransactions = broadcast; }
 };
 
 /** A key allocated from the key pool. */
@@ -787,7 +755,7 @@ public:
 };
 
 
-/** 
+/**
  * Account information.
  * Stored in wallet with key "acc"+string account name.
  */
@@ -818,7 +786,7 @@ public:
 
 
 
-/** 
+/**
  * Internal transfers.
  * Database key is acentry<account><counter>.
  */
