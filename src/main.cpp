@@ -2475,6 +2475,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex * const pindexPrev)
 {
+    const CChainParams& chainParams = Params();
+    const Consensus::Params& consensusParams = chainParams.GetConsensus();
     uint256 hash = block.GetHash();
     if (hash == Params().HashGenesisBlock())
         return true;
@@ -2493,7 +2495,7 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
 							REJECT_INVALID, "time-too-new");
 
     // Check proof of work
-    if ((block.nBits != GetNextWorkRequired(pindexPrev, &block)))
+    if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
         return state.DoS(100, error("%s: incorrect proof of work", __func__),
                          REJECT_INVALID, "bad-diffbits");
 
@@ -2503,24 +2505,24 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
                              REJECT_INVALID, "time-too-old");
 
     // Check that the block chain matches the known block chain up to a checkpoint
-    if (!Checkpoints::CheckBlock(nHeight, hash))
+    if (!Checkpoints::CheckBlock(chainParams.Checkpoints(), nHeight, hash))
         return state.DoS(100, error("%s: rejected by checkpoint lock-in at %d", __func__, nHeight),
                          REJECT_CHECKPOINT, "checkpoint mismatch");
 
     // Don't accept any forks from the main chain prior to last checkpoint
-    CBlockIndex* pcheckpoint = Checkpoints::GetLastCheckpoint();
+    CBlockIndex* pcheckpoint = Checkpoints::GetLastCheckpoint(chainParams.Checkpoints());
     if (pcheckpoint && nHeight < pcheckpoint->nHeight)
         return state.DoS(100, error("%s: forked chain older than last checkpoint (height %d)", __func__, nHeight));
 
     // Reject block.nVersion=1 blocks when 95% (75% on testnet) of the network has upgraded:
-    if (block.nVersion < 2 && IsSuperMajority(2, pindexPrev, Params().RejectBlockOutdatedMajority()))
+    if (block.nVersion < 2 && IsSuperMajority(2, pindexPrev, consensusParams.nMajorityRejectBlockOutdated))
     {
         return state.Invalid(error("%s: rejected nVersion=1 block", __func__),
                              REJECT_OBSOLETE, "bad-version");
     }
 
     // Reject block.nVersion=2 blocks when 95% (75% on testnet) of the network has upgraded:
-    if (block.nVersion < 3 && IsSuperMajority(3, pindexPrev, Params().RejectBlockOutdatedMajority()))
+    if (block.nVersion < 3 && IsSuperMajority(3, pindexPrev, consensusParams.nMajorityRejectBlockOutdated))
     {
         return state.Invalid(error("%s : rejected nVersion=2 block", __func__),
                              REJECT_OBSOLETE, "bad-version");
@@ -2799,6 +2801,7 @@ CBlockIndex * InsertBlockIndex(uint256 hash)
 
 bool static LoadBlockIndexDB()
 {
+    const CChainParams& chainparams = Params();
     if (!pblocktree->LoadBlockIndexGuts())
         return false;
 
@@ -2894,7 +2897,7 @@ bool static LoadBlockIndexDB()
     LogPrintf("LoadBlockIndexDB(): hashBestChain=%s height=%d date=%s progress=%f\n",
         chainActive.Tip()->GetBlockHash().ToString(), chainActive.Height(),
         DateTimeStrFormat("%Y-%m-%d %H:%M:%S", chainActive.Tip()->GetBlockTime()),
-        Checkpoints::GuessVerificationProgress(chainActive.Tip()));
+        Checkpoints::GuessVerificationProgress(chainparams.Checkpoints(), chainActive.Tip()));
 
     return true;
 }
