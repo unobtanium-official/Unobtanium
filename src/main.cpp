@@ -1116,9 +1116,8 @@ CAmount GetBlockValue(int nHeight, const CAmount& nFees)
 
 bool IsInitialBlockDownload()
 {
-    const CChainParams& chainParams = Params();
     LOCK(cs_main);
-    if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate(chainParams.Checkpoints()))
+    if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate())
         return true;
     static bool lockIBDState = false;
     if (lockIBDState)
@@ -1621,7 +1620,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         return true;
     }
 
-    bool fScriptChecks = pindex->nHeight >= Checkpoints::GetTotalBlocksEstimate(chainparams.Checkpoints());
+    bool fScriptChecks = pindex->nHeight >= Checkpoints::GetTotalBlocksEstimate();
 
     // Do not allow blocks that contain transactions which 'overwrite' older transactions,
     // unless those are already completely spent.
@@ -1839,7 +1838,6 @@ void FlushStateToDisk() {
 
 /** Update chainActive and related internal data structures. */
 void static UpdateTip(CBlockIndex *pindexNew) {
-    const CChainParams& chainParams = Params();
     chainActive.SetTip(pindexNew);
 
     // New best block
@@ -1849,7 +1847,7 @@ void static UpdateTip(CBlockIndex *pindexNew) {
     LogPrintf("UpdateTip: new best=%s  height=%d  log2_work=%.8g  tx=%lu  date=%s progress=%f  cache=%u\n",
       chainActive.Tip()->GetBlockHash().ToString(), chainActive.Height(), log(chainActive.Tip()->nChainWork.getdouble())/log(2.0), (unsigned long)chainActive.Tip()->nChainTx,
       DateTimeStrFormat("%Y-%m-%d %H:%M:%S", chainActive.Tip()->GetBlockTime()),
-      Checkpoints::GuessVerificationProgress(chainParams.Checkpoints(), chainActive.Tip()), (unsigned int)pcoinsTip->GetCacheSize());
+      Checkpoints::GuessVerificationProgress(chainActive.Tip()), (unsigned int)pcoinsTip->GetCacheSize());
 
     cvBlockChange.notify_all();
 
@@ -2128,7 +2126,6 @@ static bool ActivateBestChainStep(CValidationState &state, CBlockIndex *pindexMo
 bool ActivateBestChain(CValidationState &state, CBlock *pblock) {
     CBlockIndex *pindexNewTip = NULL;
     CBlockIndex *pindexMostWork = NULL;
-    const CChainParams& chainParams = Params();
     do {
         boost::this_thread::interruption_point();
 
@@ -2153,7 +2150,7 @@ bool ActivateBestChain(CValidationState &state, CBlock *pblock) {
         if (!fInitialDownload) {
             uint256 hashNewTip = pindexNewTip->GetBlockHash();
             // Relay inventory, but don't relay old inventory during initial block download.
-            int nBlockEstimate = Checkpoints::GetTotalBlocksEstimate(chainParams.Checkpoints());
+            int nBlockEstimate = Checkpoints::GetTotalBlocksEstimate();
             {
                 LOCK(cs_vNodes);
                 BOOST_FOREACH(CNode* pnode, vNodes)
