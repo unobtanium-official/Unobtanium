@@ -16,6 +16,7 @@
 #include <map>
 #include <set>
 #include <stdint.h>
+#include <stdio.h>
 #include <string>
 #include <string.h>
 #include <utility>
@@ -321,8 +322,8 @@ private:
 
     int nType;
     int nVersion;
-	
-    FILE* file;	
+
+    FILE* file;
 
 public:
     CAutoFile(FILE* filenew, int nTypeIn, int nVersionIn)
