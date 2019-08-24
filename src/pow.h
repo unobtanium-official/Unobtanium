@@ -15,6 +15,7 @@ class CBlockIndex;
 class uint256;
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock);
+unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime);
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
@@ -26,10 +27,10 @@ static const CBigNum cbnProofOfWorkLimit(~uint256(0) >> 20);
 
 static const int64_t nTargetTimespan = 3 * 60; // 3 minutes
 static const int64_t nTargetSpacing = 60; // 30 seconds
-static const int64_t nInterval = nTargetTimespan / nTargetSpacing; 
+static const int64_t nInterval = nTargetTimespan / nTargetSpacing;
 
 static const int64_t nAveragingInterval = nInterval * 20;
-static const int64_t nAveragingTargetTimespan = nAveragingInterval * nTargetSpacing; 
+static const int64_t nAveragingTargetTimespan = nAveragingInterval * nTargetSpacing;
 
 static const int64_t nMaxAdjustDown = 20; // 20% adjustment down
 static const int64_t nMaxAdjustUp = 10; // 10% adjustment up

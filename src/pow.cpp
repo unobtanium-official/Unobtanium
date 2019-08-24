@@ -53,8 +53,14 @@ unsigned int static GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const 
         pindexFirst = pindexFirst->pprev;
     assert(pindexFirst);
 
+    return CalculateNextWorkRequired(pindexLast, pindexFirst->GetBlockTime());
+}
+
+unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime)
+{
+
     // Limit adjustment step
-    int64_t nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+    int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;
     LogPrintf("  nActualTimespan = %d  before bounds \n", nActualTimespan);
     if (nActualTimespan < nMinActualTimespan)
         nActualTimespan = nMinActualTimespan;
