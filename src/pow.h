@@ -22,14 +22,14 @@ bool CheckBlockProofOfWork(const CBlockHeader *pblock);
 uint256 GetBlockProof(const CBlockIndex& block);
 static const int PROOF_OF_WORK_FORK_BLOCK_MAINNET = 450000;
 static const int PROOF_OF_WORK_FORK_BLOCK_TESTNET = 50;
-static const CBigNum cbnProofOfWorkLimit(~uint256(0) >> 20);
+static const CBigNum cbnProofOfWorkLimit(~uint256(0));
 
 static const int64_t nTargetTimespan = 3 * 60; // 3 minutes
 static const int64_t nTargetSpacing = 60; // 30 seconds
-static const int64_t nInterval = nTargetTimespan / nTargetSpacing; 
+static const int64_t nInterval = nTargetTimespan / nTargetSpacing;
 
 static const int64_t nAveragingInterval = nInterval * 20;
-static const int64_t nAveragingTargetTimespan = nAveragingInterval * nTargetSpacing; 
+static const int64_t nAveragingTargetTimespan = nAveragingInterval * nTargetSpacing;
 
 static const int64_t nMaxAdjustDown = 20; // 20% adjustment down
 static const int64_t nMaxAdjustUp = 10; // 10% adjustment up
