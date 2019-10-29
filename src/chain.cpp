@@ -104,7 +104,6 @@ CBlockHeader CBlockIndex::GetBlockHeader(const std::map<uint256, boost::shared_p
     block.nNonce         = nNonce;
     return block;
 }
-
 /** Turn the lowest '1' bit in the binary representation of a number into a '0'. */
 int static inline InvertLowestOne(int n) { return n & (n - 1); }
 

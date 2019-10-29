@@ -4,7 +4,7 @@
 #ifndef BITCOIN_AUXPOW_H
 #define BITCOIN_AUXPOW_H
 
-#include "wallet/wallet.h"
+#include "wallet.h"
 
 const int AUXPOW_START_TESTNET = 500;
 const int AUXPOW_START_MAINNET = 600000;

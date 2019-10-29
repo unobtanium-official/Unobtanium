@@ -29,7 +29,6 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "getaddednodeinfo", 0 },
     { "setgenerate", 0 },
     { "setgenerate", 1 },
-    { "generate", 0 },
     { "getnetworkhashps", 0 },
     { "getnetworkhashps", 1 },
     { "sendtoaddress", 1 },
@@ -141,3 +140,4 @@ Array RPCConvertValues(const std::string &strMethod, const std::vector<std::stri
 
     return params;
 }
+

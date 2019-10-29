@@ -24,7 +24,7 @@
 using namespace json_spirit;
 using namespace std;
 
-bool EnsureWalletIsAvailable(bool avoidException);
+void EnsureWalletIsUnlocked();
 
 std::string static EncodeDumpTime(int64_t nTime) {
     return DateTimeStrFormat("%Y-%m-%dT%H:%M:%SZ", nTime);
@@ -60,7 +60,7 @@ std::string DecodeDumpString(const std::string &str) {
     for (unsigned int pos = 0; pos < str.length(); pos++) {
         unsigned char c = str[pos];
         if (c == '%' && pos+2 < str.length()) {
-            c = (((str[pos+1]>>6)*9+((str[pos+1]-'0')&15)) << 4) |
+            c = (((str[pos+1]>>6)*9+((str[pos+1]-'0')&15)) << 4) | 
                 ((str[pos+2]>>6)*9+((str[pos+2]-'0')&15));
             pos += 2;
         }
@@ -71,10 +71,6 @@ std::string DecodeDumpString(const std::string &str) {
 
 Value importprivkey(const Array& params, bool fHelp)
 {
-    if (!EnsureWalletIsAvailable(fHelp))
-        return Value::null;
-
-
     if (fHelp || params.size() < 1 || params.size() > 3)
         throw runtime_error(
             "importprivkey \"bitcoinprivkey\" ( \"label\" rescan )\n"
@@ -146,10 +142,7 @@ Value importprivkey(const Array& params, bool fHelp)
 
 Value importaddress(const Array& params, bool fHelp)
 {
-	  if (!EnsureWalletIsAvailable(fHelp))
-	      return Value::null;
-
-	  if (fHelp || params.size() < 1 || params.size() > 3)
+    if (fHelp || params.size() < 1 || params.size() > 3)
         throw runtime_error(
             "importaddress \"address\" ( \"label\" rescan )\n"
             "\nAdds an address or script (in hex) that can be watched as if it were in your wallet but cannot be used to spend.\n"
@@ -218,11 +211,8 @@ Value importaddress(const Array& params, bool fHelp)
 }
 
 Value importwallet(const Array& params, bool fHelp)
-	{
-	  if (!EnsureWalletIsAvailable(fHelp))
-	      return Value::null;
-
-	  if (fHelp || params.size() != 1)
+{
+    if (fHelp || params.size() != 1)
         throw runtime_error(
             "importwallet \"filename\"\n"
             "\nImports keys from a wallet dump file (see dumpwallet).\n"
@@ -323,11 +313,7 @@ Value importwallet(const Array& params, bool fHelp)
 
 Value dumpprivkey(const Array& params, bool fHelp)
 {
-	   if (!EnsureWalletIsAvailable(fHelp))
-	       return Value::null;
-
-	   if (fHelp || params.size() != 1)
-
+    if (fHelp || params.size() != 1)
         throw runtime_error(
             "dumpprivkey \"unobtaniumaddress\"\n"
             "\nReveals the private key corresponding to 'unobtaniumaddress'.\n"
@@ -362,10 +348,7 @@ Value dumpprivkey(const Array& params, bool fHelp)
 
 Value dumpwallet(const Array& params, bool fHelp)
 {
-	  if (!EnsureWalletIsAvailable(fHelp))
-	      return Value::null;
-
-	  if (fHelp || params.size() != 1)
+    if (fHelp || params.size() != 1)
         throw runtime_error(
             "dumpwallet \"filename\"\n"
             "\nDumps all wallet keys in a human-readable format.\n"

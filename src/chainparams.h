@@ -6,12 +6,11 @@
 #ifndef BITCOIN_CHAINPARAMS_H
 #define BITCOIN_CHAINPARAMS_H
 
-#include "uint256.h"
 #include "chainparamsbase.h"
 #include "checkpoints.h"
-#include "consensus/params.h"
 #include "primitives/block.h"
 #include "protocol.h"
+#include "uint256.h"
 
 #include <vector>
 
@@ -43,16 +42,16 @@ public:
         MAX_BASE58_TYPES
     };
 
-    const Consensus::Params& GetConsensus() const { return consensus; }
-    const uint256& HashGenesisBlock() const { return consensus.hashGenesisBlock; }
+    const uint256& HashGenesisBlock() const { return hashGenesisBlock; }
     const MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
     int GetDefaultPort() const { return nDefaultPort; }
-    const uint256& ProofOfWorkLimit() const { return consensus.powLimit; }
-    int SubsidyHalvingInterval() const { return consensus.nSubsidyHalvingInterval; }
-    int EnforceBlockUpgradeMajority() const { return consensus.nMajorityEnforceBlockUpgrade; }
-	  int RejectBlockOutdatedMajority() const { return consensus.nMajorityRejectBlockOutdated; }
-	  int ToCheckBlockUpgradeMajority() const { return consensus.nMajorityWindow; }
+    const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
+    int SubsidyHalvingInterval() const { return nSubsidyHalvingInterval; }
+    /** Used to check majorities for block version upgrade */
+    int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
+    int RejectBlockOutdatedMajority() const { return nRejectBlockOutdatedMajority; }
+    int ToCheckBlockUpgradeMajority() const { return nToCheckBlockUpgradeMajority; }
 
     /** Used if GenerateBitcoins is called with a negative number of threads */
     int DefaultMinerThreads() const { return nMinerThreads; }
@@ -63,12 +62,14 @@ public:
     /** Default value for -checkmempool argument */
     bool DefaultCheckMemPool() const { return fDefaultCheckMemPool; }
     /** Allow mining of a min-difficulty block */
-    bool AllowMinDifficultyBlocks() const { return consensus.fPowAllowMinDifficultyBlocks; }
+    bool AllowMinDifficultyBlocks() const { return fAllowMinDifficultyBlocks; }
+    /** Skip proof-of-work check: allow mining of any difficulty block */
+    bool SkipProofOfWorkCheck() const { return fSkipProofOfWorkCheck; }
     /** Make standard checks */
     bool RequireStandard() const { return fRequireStandard; }
-    int64_t TargetTimespan() const { return consensus.nPowTargetTimespan; }
-	  int64_t TargetSpacing() const { return consensus.nPowTargetSpacing; }
-    int64_t Interval() const { return consensus.nPowTargetTimespan / consensus.nPowTargetSpacing; }
+    int64_t TargetTimespan() const { return nTargetTimespan; }
+    int64_t TargetSpacing() const { return nTargetSpacing; }
+    int64_t Interval() const { return nTargetTimespan / nTargetSpacing; }
     /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
     bool MineBlocksOnDemand() const { return fMineBlocksOnDemand; }
     /** In the future use NetworkIDString() for RPC fields */
@@ -82,11 +83,18 @@ public:
 protected:
     CChainParams() {}
 
-    Consensus::Params consensus;
+    uint256 hashGenesisBlock;
     MessageStartChars pchMessageStart;
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
     int nDefaultPort;
+    uint256 bnProofOfWorkLimit;
+    int nSubsidyHalvingInterval;
+    int nEnforceBlockUpgradeMajority;
+    int nRejectBlockOutdatedMajority;
+    int nToCheckBlockUpgradeMajority;
+    int64_t nTargetTimespan;
+    int64_t nTargetSpacing;
     int nMinerThreads;
     std::vector<CDNSSeedData> vSeeds;
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
@@ -96,10 +104,31 @@ protected:
     bool fRequireRPCPassword;
     bool fMiningRequiresPeers;
     bool fDefaultCheckMemPool;
+    bool fAllowMinDifficultyBlocks;
     bool fRequireStandard;
     bool fMineBlocksOnDemand;
+    bool fSkipProofOfWorkCheck;
     bool fTestnetToBeDeprecatedFieldRPC;
 };
+
+/** 
+ * Modifiable parameters interface is used by test cases to adapt the parameters in order
+ * to test specific features more easily. Test cases should always restore the previous
+ * values after finalization.
+ */
+
+class CModifiableParams {
+public:
+    //! Published setters to allow changing values in unit test cases
+    virtual void setSubsidyHalvingInterval(int anSubsidyHalvingInterval) =0;
+    virtual void setEnforceBlockUpgradeMajority(int anEnforceBlockUpgradeMajority)=0;
+    virtual void setRejectBlockOutdatedMajority(int anRejectBlockOutdatedMajority)=0;
+    virtual void setToCheckBlockUpgradeMajority(int anToCheckBlockUpgradeMajority)=0;
+    virtual void setDefaultCheckMemPool(bool aDefaultCheckMemPool)=0;
+    virtual void setAllowMinDifficultyBlocks(bool aAllowMinDifficultyBlocks)=0;
+    virtual void setSkipProofOfWorkCheck(bool aSkipProofOfWorkCheck)=0;
+};
+
 
 /**
  * Return the currently selected parameters. This won't change after app startup
@@ -109,6 +138,9 @@ const CChainParams &Params();
 
 /** Return parameters for the given network. */
 CChainParams &Params(CBaseChainParams::Network network);
+
+/** Get modifiable network parameters (UNITTEST only) */
+CModifiableParams *ModifiableParams();
 
 /** Sets the params returned by Params() to those for the given network. */
 void SelectParams(CBaseChainParams::Network network);

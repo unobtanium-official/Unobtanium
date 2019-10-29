@@ -11,7 +11,7 @@
   </array>
 
   <key>CFBundleIconFile</key>
-  <string>bitcoin.icns</string>
+  <string>unobtanium.icns</string>
 
   <key>CFBundlePackageType</key>
   <string>APPL</string>
@@ -93,7 +93,7 @@
 
   <key>LSAppNapIsDisabled</key>
     <string>True</string>
-
+  
   <key>LSApplicationCategoryType</key>
     <string>public.app-category.finance</string>
 </dict>

@@ -21,14 +21,14 @@ unsigned int static GetNextWorkRequired_V1(const CBlockIndex* pindexLast, const 
     // Genesis block
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
-
-    if (pindexLast->nHeight+1 < nAveragingInterval)
+        
+    if (pindexLast->nHeight+1 < nAveragingInterval) 
         return nProofOfWorkLimit;
 
     // Only change once per interval
     if ((pindexLast->nHeight+1) % nInterval != 0)
     {
-    	if (Params().AllowMinDifficultyBlocks() && Params().MineBlocksOnDemand())
+    	if (Params().AllowMinDifficultyBlocks() && Params().MineBlocksOnDemand()) 
         {
             // Special difficulty rule for testnet:
             // If the new block's timestamp is more than 2* 10 minutes
@@ -101,7 +101,7 @@ unsigned int static KimotoGravityWell(const CBlockIndex* pindexLast, const CBloc
             if (PastBlocksMax > 0 && i > PastBlocksMax) { break; }
             PastBlocksMass++;
 
-            if (i == 1) {
+            if (i == 1) { 
                 PastDifficultyAverage.SetCompact(BlockReading->nBits);
             } else {
                 PastDifficultyAverage = ((CBigNum().SetCompact(BlockReading->nBits) - PastDifficultyAveragePrev) / i) + PastDifficultyAveragePrev;
@@ -162,7 +162,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         else {
                 if (pindexLast->nHeight+1 >= PROOF_OF_WORK_FORK_BLOCK_MAINNET) { DiffMode = 2; } // KGW kicks in at block 450,000
         }
-
+        
         if (DiffMode == 1) { return GetNextWorkRequired_V1(pindexLast, pblock); }
         else if (DiffMode == 2) { return GetNextWorkRequired_V2(pindexLast, pblock); }
         return GetNextWorkRequired_V2(pindexLast, pblock);
@@ -171,6 +171,9 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)
 {
     CBigNum bnTarget;
+
+    if (Params().SkipProofOfWorkCheck())
+       return true;
 
     bnTarget.SetCompact(nBits);
 
@@ -203,7 +206,7 @@ uint256 GetBlockProof(const CBlockIndex& block)
 bool CheckBlockProofOfWork(const CBlockHeader *pblock)
 {
 	// There's an issue with blocks prior to the auxpow fork reporting an invalid chain ID.
-	// As no version earlier than the 0.10 client a) has version 3 blocks and b)
+	// As no version earlier than the 0.10 client a) has version 3 blocks and b) 
 	//	has auxpow, anything that isn't a version 3 block can be checked normally.
 	//	There's probably a more elegant way to implement this.
 
@@ -219,7 +222,7 @@ bool CheckBlockProofOfWork(const CBlockHeader *pblock)
        LogPrintf("nVersion : %d, ChainID : %d, %d\n",pblock->nVersion,pblock->GetChainID(),chainID);
 
         if (!Params().AllowMinDifficultyBlocks() && (pblock->nVersion & BLOCK_VERSION_AUXPOW && pblock->GetChainID() != chainID))
-	        return error("CheckBlockProofOfWork() : block does not have our chain ID");
+	        return error("CheckBlockProofOfWork() : block does not have our chain ID");	
 
 	    if (pblock->auxpow.get() != NULL)
 	    {
@@ -228,7 +231,7 @@ bool CheckBlockProofOfWork(const CBlockHeader *pblock)
 	        // Check proof of work matches claimed amount
 	        if (!CheckProofOfWork(pblock->auxpow->GetParentBlockHash(), pblock->nBits))
 	            return error("CheckBlockProofOfWork() : AUX proof of work failed");
-	    }
+	    } 
 	    else
 	    {
 	        // Check proof of work matches claimed amount

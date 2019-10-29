@@ -8,9 +8,7 @@
 #include "walletmodel.h"
 
 #include "base58.h"
-#include "wallet/wallet.h"
-
-#include <boost/foreach.hpp>
+#include "wallet.h"
 
 #include <QFont>
 #include <QDebug>

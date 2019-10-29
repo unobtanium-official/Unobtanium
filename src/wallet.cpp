@@ -3,13 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "wallet/wallet.h"
+#include "wallet.h"
 
 #include "base58.h"
 #include "checkpoints.h"
 #include "coincontrol.h"
-#include "consensus/consensus.h"
-#include "main.h"
 #include "net.h"
 #include "script/script.h"
 #include "script/sign.h"
@@ -20,7 +18,6 @@
 #include <assert.h>
 
 #include <boost/algorithm/string/replace.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/thread.hpp>
 
 using namespace std;
@@ -35,8 +32,8 @@ bool bSpendZeroConfChange = true;
 bool fSendFreeTransactions = false;
 bool fPayAtLeastCustomFee = true;
 
-/**
- * Fees smaller than this (in satoshi) are considered zero fee (for transaction creation)
+/** 
+ * Fees smaller than this (in satoshi) are considered zero fee (for transaction creation) 
  * Override with -mintxfee
  */
 CFeeRate CWallet::minTxFee = CFeeRate(1000);
@@ -342,58 +339,6 @@ set<uint256> CWallet::GetConflicts(const uint256& txid) const
     return result;
 }
 
-void CWallet::Flush(bool shutdown)
-{
-    bitdb.Flush(shutdown);
-}
-
-bool CWallet::Verify(const string& walletFile, string& warningString, string& errorString)
-{
-    if (!bitdb.Open(GetDataDir()))
-    {
-        // try moving the database env out of the way
-        boost::filesystem::path pathDatabase = GetDataDir() / "database";
-        boost::filesystem::path pathDatabaseBak = GetDataDir() / strprintf("database.%d.bak", GetTime());
-        try {
-            boost::filesystem::rename(pathDatabase, pathDatabaseBak);
-            LogPrintf("Moved old %s to %s. Retrying.\n", pathDatabase.string(), pathDatabaseBak.string());
-        } catch (const boost::filesystem::filesystem_error&) {
-            // failure is ok (well, not really, but it's not worse than what we started with)
-        }
-
-        // try again
-        if (!bitdb.Open(GetDataDir())) {
-            // if it still fails, it probably means we can't even create the database env
-            string msg = strprintf(_("Error initializing wallet database environment %s!"), GetDataDir());
-            errorString += msg;
-            return true;
-        }
-    }
-
-    if (GetBoolArg("-salvagewallet", false))
-    {
-        // Recover readable keypairs:
-        if (!CWalletDB::Recover(bitdb, walletFile, true))
-            return false;
-    }
-
-    if (boost::filesystem::exists(GetDataDir() / walletFile))
-    {
-        CDBEnv::VerifyResult r = bitdb.Verify(walletFile, CWalletDB::Recover);
-        if (r == CDBEnv::RECOVER_OK)
-        {
-            warningString += strprintf(_("Warning: wallet.dat corrupt, data salvaged!"
-                                     " Original wallet.dat saved as wallet.{timestamp}.bak in %s; if"
-                                     " your balance or transactions are incorrect you should"
-                                     " restore from a backup."), GetDataDir());
-        }
-        if (r == CDBEnv::RECOVER_FAIL)
-            errorString += _("wallet.dat corrupt, salvage failed");
-    }
-
-    return true;
-}
-
 void CWallet::SyncMetaData(pair<TxSpends::iterator, TxSpends::iterator> range)
 {
     // We want all the wallet transactions in range to have the same metadata as
@@ -417,7 +362,7 @@ void CWallet::SyncMetaData(pair<TxSpends::iterator, TxSpends::iterator> range)
     {
         const uint256& hash = it->second;
         CWalletTx* copyTo = &mapWallet[hash];
-        if (!copyFrom->IsEquivalentTo(*copyTo)) continue;
+        if (copyFrom == copyTo) continue;
         copyTo->mapValue = copyFrom->mapValue;
         copyTo->vOrderForm = copyFrom->vOrderForm;
         // fTimeReceivedIsTxTime not copied on purpose
@@ -819,18 +764,6 @@ CAmount CWallet::GetDebit(const CTxIn &txin, const isminefilter& filter) const
     return 0;
 }
 
-isminetype CWallet::IsMine(const CTxOut& txout) const
-{
-	  return ::IsMine(*this, txout.scriptPubKey);
-}
-
-CAmount CWallet::GetCredit(const CTxOut& txout, const isminefilter& filter) const
-{
-	  if (!MoneyRange(txout.nValue))
-	        throw std::runtime_error("CWallet::GetCredit(): value out of range");
-	  return ((IsMine(txout) & filter) ? txout.nValue : 0);
-}
-
 bool CWallet::IsChange(const CTxOut& txout) const
 {
     // TODO: fix handling of 'change' outputs. The assumption is that any
@@ -851,62 +784,6 @@ bool CWallet::IsChange(const CTxOut& txout) const
             return true;
     }
     return false;
-}
-
-CAmount CWallet::GetChange(const CTxOut& txout) const
-{
-	  if (!MoneyRange(txout.nValue))
-	      throw std::runtime_error("CWallet::GetChange(): value out of range");
-	  return (IsChange(txout) ? txout.nValue : 0);
-}
-
-bool CWallet::IsMine(const CTransaction& tx) const
-{
-	  BOOST_FOREACH(const CTxOut& txout, tx.vout)
-	      if (IsMine(txout))
-	          return true;
-	  return false;
-}
-
-bool CWallet::IsFromMe(const CTransaction& tx) const
-{
-	  return (GetDebit(tx, ISMINE_ALL) > 0);
-}
-
-CAmount CWallet::GetDebit(const CTransaction& tx, const isminefilter& filter) const
-{
-	  CAmount nDebit = 0;
-	  BOOST_FOREACH(const CTxIn& txin, tx.vin)
-	  {
-	      nDebit += GetDebit(txin, filter);
-	      if (!MoneyRange(nDebit))
-	          throw std::runtime_error("CWallet::GetDebit(): value out of range");
-	  }
-	  return nDebit;
-}
-
-CAmount CWallet::GetCredit(const CTransaction& tx, const isminefilter& filter) const
-{
-	  CAmount nCredit = 0;
-	  BOOST_FOREACH(const CTxOut& txout, tx.vout)
-	  {
-	      nCredit += GetCredit(txout, filter);
-	      if (!MoneyRange(nCredit))
-	          throw std::runtime_error("CWallet::GetCredit(): value out of range");
-	  }
-	  return nCredit;
-}
-
-CAmount CWallet::GetChange(const CTransaction& tx) const
-{
-	  CAmount nChange = 0;
-	  BOOST_FOREACH(const CTxOut& txout, tx.vout)
-	  {
-	      nChange += GetChange(txout);
-	      if (!MoneyRange(nChange))
-	          throw std::runtime_error("CWallet::GetChange(): value out of range");
-	  }
-	  return nChange;
 }
 
 int64_t CWalletTx::GetTxTime() const
@@ -1097,13 +974,7 @@ int CWallet::ScanForWalletTransactions(CBlockIndex* pindexStart, bool fUpdate)
 
 void CWallet::ReacceptWalletTransactions()
 {
-	  // If transcations aren't broadcasted, don't let them into local mempool either
-	  if (!fBroadcastTransactions)
-	      return;
     LOCK2(cs_main, cs_wallet);
-    std::map<int64_t, CWalletTx*> mapSorted;
-
-    // Sort pending wallet transactions based on their initial wallet insertion order
     BOOST_FOREACH(PAIRTYPE(const uint256, CWalletTx)& item, mapWallet)
     {
         const uint256& wtxid = item.first;
@@ -1112,33 +983,24 @@ void CWallet::ReacceptWalletTransactions()
 
         int nDepth = wtx.GetDepthInMainChain();
 
-        if (!wtx.IsCoinBase() && nDepth < 0) {
-	          mapSorted.insert(std::make_pair(wtx.nOrderPos, &wtx));
+        if (!wtx.IsCoinBase() && nDepth < 0)
+        {
+            // Try to add to memory pool
+            LOCK(mempool.cs);
+            wtx.AcceptToMemoryPool(false);
         }
     }
-
-	  // Try to add wallet transactions to memory pool
-	  BOOST_FOREACH(PAIRTYPE(const int64_t, CWalletTx*)& item, mapSorted)
-	  {
-	      CWalletTx& wtx = *(item.second);
-
-	      LOCK(mempool.cs);
-	      wtx.AcceptToMemoryPool(false);
-	  }
 }
 
-bool CWalletTx::RelayWalletTransaction()
+void CWalletTx::RelayWalletTransaction()
 {
-    assert(pwallet->GetBroadcastTransactions());
     if (!IsCoinBase())
     {
         if (GetDepthInMainChain() == 0) {
             LogPrintf("Relaying wtx %s\n", GetHash().ToString());
             RelayTransaction((CTransaction)*this);
-            return true;
         }
     }
-    return false;
 }
 
 set<uint256> CWalletTx::GetConflicts() const
@@ -1340,35 +1202,11 @@ bool CWalletTx::IsTrusted() const
     return true;
 }
 
-std::vector<uint256> CWallet::ResendWalletTransactionsBefore(int64_t nTime)
-{
-	  std::vector<uint256> result;
-
-	  LOCK(cs_wallet);
-	  // Sort them in chronological order
-	  multimap<unsigned int, CWalletTx*> mapSorted;
-	  BOOST_FOREACH(PAIRTYPE(const uint256, CWalletTx)& item, mapWallet)
-	  {
-	      CWalletTx& wtx = item.second;
-	      // Don't rebroadcast if newer than nTime:
-	      if (wtx.nTimeReceived > nTime)
-	          continue;
-	      mapSorted.insert(make_pair(wtx.nTimeReceived, &wtx));
-	  }
-	  BOOST_FOREACH(PAIRTYPE(const unsigned int, CWalletTx*)& item, mapSorted)
-	  {
-	      CWalletTx& wtx = *item.second;
-	      if (wtx.RelayWalletTransaction())
-	          result.push_back(wtx.GetHash());
-	  }
-	  return result;
-}
-
-	void CWallet::ResendWalletTransactions(int64_t nBestBlockTime)
+void CWallet::ResendWalletTransactions()
 {
     // Do this infrequently and randomly to avoid giving away
     // that these are our transactions.
-    if (GetTime() < nNextResend || !fBroadcastTransactions)
+    if (GetTime() < nNextResend)
         return;
     bool fFirst = (nNextResend == 0);
     nNextResend = GetTime() + GetRand(30 * 60);
@@ -1376,16 +1214,31 @@ std::vector<uint256> CWallet::ResendWalletTransactionsBefore(int64_t nTime)
         return;
 
     // Only do it if there's been a new block since last time
-    if (nBestBlockTime < nLastResend)
+    if (nTimeBestReceived < nLastResend)
         return;
     nLastResend = GetTime();
 
-    // Rebroadcast unconfirmed txes older than 5 minutes before the last
-	  // block was found:
-	  std::vector<uint256> relayed = ResendWalletTransactionsBefore(nBestBlockTime-5*60);
-	  if (!relayed.empty())
-	      LogPrintf("%s: rebroadcast %u unconfirmed transactions\n", __func__, relayed.size());
- }
+    // Rebroadcast any of our txes that aren't in a block yet
+    LogPrintf("ResendWalletTransactions()\n");
+    {
+        LOCK(cs_wallet);
+        // Sort them in chronological order
+        multimap<unsigned int, CWalletTx*> mapSorted;
+        BOOST_FOREACH(PAIRTYPE(const uint256, CWalletTx)& item, mapWallet)
+        {
+            CWalletTx& wtx = item.second;
+            // Don't rebroadcast until it's had plenty of time that
+            // it should have gotten in already by now.
+            if (nTimeBestReceived - (int64_t)wtx.nTimeReceived > 5 * 60)
+                mapSorted.insert(make_pair(wtx.nTimeReceived, &wtx));
+        }
+        BOOST_FOREACH(PAIRTYPE(const unsigned int, CWalletTx*)& item, mapSorted)
+        {
+            CWalletTx& wtx = *item.second;
+            wtx.RelayWalletTransaction();
+        }
+    }
+}
 
 /** @} */ // end of mapWallet
 
@@ -1491,7 +1344,7 @@ CAmount CWallet::GetImmatureWatchOnlyBalance() const
 /**
  * populate vCoins with vector of available COutputs.
  */
-void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const CCoinControl *coinControl, bool fIncludeZeroValue) const
+void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const CCoinControl *coinControl) const
 {
     vCoins.clear();
 
@@ -1518,7 +1371,7 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
             for (unsigned int i = 0; i < pcoin->vout.size(); i++) {
                 isminetype mine = IsMine(pcoin->vout[i]);
                 if (!(IsSpent(wtxid, i)) && mine != ISMINE_NO &&
-                    !IsLockedCoin((*it).first, i) && (pcoin->vout[i].nValue > 0 || fIncludeZeroValue) &&
+                    !IsLockedCoin((*it).first, i) && pcoin->vout[i].nValue > 0 &&
                     (!coinControl || !coinControl->HasSelected() || coinControl->IsSelected((*it).first, i)))
                         vCoins.push_back(COutput(pcoin, i, nDepth, (mine & ISMINE_SPENDABLE) != ISMINE_NO));
             }
@@ -1950,9 +1803,7 @@ bool CWallet::CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey)
         // Track how many getdata requests our transaction gets
         mapRequestCount[wtxNew.GetHash()] = 0;
 
-        if (fBroadcastTransactions)
-        {
-       // Broadcast
+        // Broadcast
         if (!wtxNew.AcceptToMemoryPool(false))
         {
             // This must not fail. The transaction has already been signed and recorded.
@@ -1960,7 +1811,6 @@ bool CWallet::CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey)
             return false;
         }
         wtxNew.RelayWalletTransaction();
-      }
     }
     return true;
 }
@@ -2005,7 +1855,7 @@ DBErrors CWallet::LoadWallet(bool& fFirstRunRet)
             setKeyPool.clear();
             // Note: can't top-up keypool here, because wallet is locked.
             // User will be prompted to unlock wallet the next operation
-            // that requires a new key.
+            // the requires a new key.
         }
     }
 
@@ -2101,7 +1951,7 @@ bool CWallet::SetDefaultKey(const CPubKey &vchPubKey)
 
 /**
  * Mark old keypool keys as used,
- * and generate all new keys
+ * and generate all new keys 
  */
 bool CWallet::NewKeyPool()
 {
@@ -2711,3 +2561,4 @@ bool CMerkleTx::AcceptToMemoryPool(bool fLimitFree, bool fRejectAbsurdFee)
     CValidationState state;
     return ::AcceptToMemoryPool(mempool, state, *this, fLimitFree, NULL, fRejectAbsurdFee);
 }
+

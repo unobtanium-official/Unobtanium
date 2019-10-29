@@ -5,14 +5,10 @@
 #include "transactionrecord.h"
 
 #include "base58.h"
-#include "consensus/consensus.h"
-#include "main.h"
 #include "timedata.h"
-#include "wallet/wallet.h"
+#include "wallet.h"
 
 #include <stdint.h>
-
-#include <boost/foreach.hpp>
 
 /* Return positive answer if transaction should be shown in list.
  */
@@ -267,3 +263,4 @@ QString TransactionRecord::formatSubTxId(const uint256 &hash, int vout)
 {
     return QString::fromStdString(hash.ToString() + strprintf("-%03d", vout));
 }
+

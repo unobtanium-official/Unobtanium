@@ -1,5 +1,5 @@
-Unobtanium Core 0.11.0.0-alpha
-==============================
+Unobtanium Core 0.10.4.1
+=====================
 
 Intro
 -----
@@ -18,7 +18,7 @@ However, it downloads and stores the entire history of Unobtanium transactions;
 depending on the speed of your computer and network connection, the synchronization
 process can take anywhere from a few hours to a day or more.
 
-TODO:
+TODO:  
 See the unobtanium wiki at:
   https://unobtanium.uno/wiki
 for more help and information.
