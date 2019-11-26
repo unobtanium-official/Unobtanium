@@ -10,11 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: add repo
-      run: add-apt-repository ppa:bitcoin/bitcoin
+      run: sudo add-apt-repository ppa:bitcoin/bitcoin
     - name: update
-      run: apt-get update
+      run: sudo apt-get update
     - name: dep install
-      run:  apt-get install -y libdb4.8-dev libdb4.8++-dev 
+      run:  sudo apt-get install -y libdb4.8-dev libdb4.8++-dev 
     - name: autogen
       run: ./autogen.sh
     - name: configure
