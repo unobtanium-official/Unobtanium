@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-trusty
+    runs-on: ubuntu:14.04
     
     steps:
     - uses: actions/checkout@v1
