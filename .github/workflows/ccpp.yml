@@ -14,7 +14,8 @@ jobs:
     - name: update
       run: sudo apt-get update
     - name: dep install
-      run:  sudo apt-get install -y libdb4.8-dev libdb4.8++-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libssl-dev 1.0.2g    - name: autogen
+      run:  sudo apt-get install -y libdb4.8-dev libdb4.8++-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev libboost-all-dev libssl-dev 1.0.2g    
+    - name: autogen
       run: ./autogen.sh
     - name: configure
       run: ./configure
