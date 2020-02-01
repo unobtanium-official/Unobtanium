@@ -196,9 +196,9 @@ bool CDBEnv::Salvage(std::string strFile, bool fAggressive, std::vector<CDBEnv::
         getline(strDump, strLine); // Skip past header
 
     std::string keyHex, valueHex;
-    while (!strDump.eof() && keyHex != "DATA=END") {
+    while (!strDump.eof() && keyHex != "DATA_END") {
         getline(strDump, keyHex);
-        if (keyHex != "DATA=END") {
+        if (keyHex != "DATA_END") {
             getline(strDump, valueHex);
             vResult.push_back(make_pair(ParseHex(keyHex), ParseHex(valueHex)));
         }
