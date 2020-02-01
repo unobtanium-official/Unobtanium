@@ -19,6 +19,20 @@
 #include "json/json_spirit_utils.h"
 #include "json/json_spirit_writer_template.h"
 
+// Boost Support for 1.70+
+#if BOOST_VERSION >= 107000
+    #define GetIOService(s) ((boost::asio::io_context&)(s).get_executor().context())
+    #define GetIOServiceFromPtr(s) ((boost::asio::io_context&)(s->get_executor().context())) // this one
+    typedef boost::asio::io_context ioContext;
+
+#else
+    #define GetIOService(s) ((s).get_io_service())
+    #define GetIOServiceFromPtr(s) ((s)->get_io_service())
+    typedef boost::asio::io_service ioContext;
+#endif
+
+
+
 //! HTTP status codes
 enum HTTPStatusCode
 {
@@ -111,7 +125,7 @@ public:
     bool connect(const std::string& server, const std::string& port)
     {
         using namespace boost::asio::ip;
-        tcp::resolver resolver(stream.get_io_service());
+        boost::asio::ip::tcp::resolver resolver(GetIOService(stream));
         tcp::resolver::iterator endpoint_iterator;
 #if BOOST_VERSION >= 104300
         try {
