@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <boost/foreach.hpp>
+#include <openssl/opensslv.h> 
 #include <openssl/aes.h>
 #include <openssl/evp.h>
 
