@@ -9,6 +9,7 @@
 
 #include <openssl/bn.h>
 #include <openssl/ecdsa.h>
+#include <openssl/opensslv.h>     // Openssl 1.1
 #include <openssl/obj_mac.h>
 
 namespace {
