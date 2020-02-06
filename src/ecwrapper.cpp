@@ -1,4 +1,5 @@
 // Copyright (c) 2009-2014 The Bitcoin Core developers
+// Copyright (c) 2020 The Unobtanium developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +10,7 @@
 
 #include <openssl/bn.h>
 #include <openssl/ecdsa.h>
-#include <openssl/opensslv.h>     // Openssl 1.1
+#include <openssl/opensslv.h> 
 #include <openssl/obj_mac.h>
 
 namespace {
@@ -76,8 +77,11 @@ int ECDSA_SIG_recover_key_GFp(EC_KEY *eckey, ECDSA_SIG *ecsig, const unsigned ch
     if (!BN_bin2bn(msg, msglen, e)) { ret=-1; goto err; }
     if (8*msglen > n) BN_rshift(e, e, 8-(n & 7));
     zero = BN_CTX_get(ctx);
+#if OPENSSL_VERSION_NUMBER < 0x3000000L
     if (!BN_zero(zero)) { ret=-1; goto err; }
+#else
     if (!BN_mod_sub(e, zero, e, order, ctx)) { ret=-1; goto err; }
+#endif
     rr = BN_CTX_get(ctx);
 #if OPENSSL_VERSION_NUMBER >= 0x10100000L
         if (!BN_mod_inverse(rr, sig_r, order, ctx))

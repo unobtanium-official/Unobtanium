@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2020 The Unobtanium developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +12,7 @@
 #include "version.h"
 
 #include <openssl/bn.h>
-#include <openssl/opensslv.h>     // For using openssl 1.0 and 1.1 branches.
+#include <openssl/opensslv.h>     
 #include <stdexcept>
 #include <vector>
 
@@ -59,7 +60,6 @@ class CBigNum : public BIGNUM
 {
 
 #else
-//C++ wrapper for BIGNUM (OpenSSL 1.1 bignum)
 class CBigNum
 {
 protected:
@@ -67,7 +67,7 @@ protected:
 
     void CBigNum_init()
     {
-        bn = BN_secure_new();
+        bn = BN_new();
     }
 
 #endif
