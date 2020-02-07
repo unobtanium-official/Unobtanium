@@ -5,7 +5,7 @@
 
 #include "keystore.h"
 
-#include "crypter.h"
+#include "wallet/crypter.h"
 #include "key.h"
 #include "util.h"
 

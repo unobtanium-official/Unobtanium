@@ -91,7 +91,7 @@ BITCOIN_CORE_H = \
   compat.h \
   compressor.h \
   core_io.h \
-  crypter.h \
+  walllet/crypter.h \
   wallet/db.h \
   eccryptoverify.h \
   ecwrapper.h \
@@ -196,7 +196,7 @@ libbitcoin_server_a_SOURCES = \
 libbitcoin_wallet_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_SOURCES = \
   wallet/db.cpp \
-  crypter.cpp \
+  wallet/crypter.cpp \
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \

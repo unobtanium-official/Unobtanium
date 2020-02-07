@@ -9,7 +9,7 @@
 #include "amount.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"
-#include "crypter.h"
+#include "wallet/crypter.h"
 #include "key.h"
 #include "keystore.h"
 #include "main.h"
