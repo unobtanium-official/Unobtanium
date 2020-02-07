@@ -13,9 +13,9 @@
 #include "scicon.h"
 #include "walletmodel.h"
 
-#include "coincontrol.h"
+#include "wallet/coincontrol.h"
 #include "main.h"
-#include "wallet.h"
+#include "wallet/wallet.h"
 
 #include <boost/assign/list_of.hpp> // for 'map_list_of()'
 
