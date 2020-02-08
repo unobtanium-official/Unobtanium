@@ -2,9 +2,9 @@ packages:=boost openssl
 native_packages := native_ccache native_comparisontool
 
 qt_native_packages = native_protobuf
-qt_packages = qrencode protobuf
+qt_packages = qrencode protobuf zlib
 
-qt5_linux_packages= qt expat dbus libxcb xcb_proto libXau xproto freetype fontconfig libX11 xextproto libXext xtrans zlib
+qt5_linux_packages= qt expat dbus libxcb xcb_proto libXau xproto freetype fontconfig libX11 xextproto libXext xtrans
 
 qt_darwin_packages=qt
 qt_mingw32_packages=qt
