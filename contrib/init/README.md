@@ -1,9 +1,9 @@
 Sample configuration files for:
 
-SystemD: bitcoind.service
-Upstart: bitcoind.conf
-OpenRC:  bitcoind.openrc
-         bitcoind.openrcconf
+SystemD: unobtaniumd.service
+Upstart: unobtaniumd.conf
+OpenRC:  unobtaniumd.openrc
+         unobtaniumd.openrcconf
 
 have been made available to assist packagers in creating node packages here.
 

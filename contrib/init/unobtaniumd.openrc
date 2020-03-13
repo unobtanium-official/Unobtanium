@@ -1,0 +1,86 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/unobtanium/.unobtanium" ]; then
+	UNOBTANIUMD_DEFAULT_DATADIR="/var/lib/unobtanium/.unobtanium"
+else
+	UNOBTANIUMD_DEFAULT_DATADIR="/var/lib/unobtaniumd"
+fi
+
+UNOBTANIUMD_CONFIGFILE=${UNOBTANIUMD_CONFIGFILE:-/etc/unobtanium/unobtanium.conf}
+UNOBTANIUMD_PIDDIR=${UNOBTANIUMD_PIDDIR:-/var/run/unobtaniumd}
+UNOBTANIUMD_PIDFILE=${UNOBTANIUMD_PIDFILE:-${UNOBTANIUMD_PIDDIR}/unobtaniumd.pid}
+UNOBTANIUMD_DATADIR=${UNOBTANIUMD_DATADIR:-${UNOBTANIUMD_DEFAULT_DATADIR}}
+UNOBTANIUMD_USER=${UNOBTANIUMD_USER:-unobtanium}
+UNOBTANIUMD_GROUP=${UNOBTANIUMD_GROUP:-unobtanium}
+UNOBTANIUMD_BIN=${UNOBTANIUMD_BIN:-/usr/bin/unobtaniumd}
+
+name="Unobtanium Core Daemon"
+description="Unobtanium crypto-currency p2p network daemon"
+
+command="/usr/bin/unobtaniumd"
+command_args="-pid=\"${UNOBTANIUMD_PIDFILE}\" \
+		-conf=\"${UNOBTANIUMD_CONFIGFILE}\" \
+		-datadir=\"${UNOBTANIUMD_DATADIR}\" \
+		-daemon \
+		${UNOBTANIUMD_OPTS}"
+
+required_files="${UNOBTANIUMD_CONFIGFILE}"
+start_stop_daemon_args="-u ${UNOBTANIUMD_USER} \
+			-N ${UNOBTANIUMD_NICE:-0} -w 2000"
+pidfile="${UNOBTANIUMD_PIDFILE}"
+retry=60
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${UNOBTANIUMD_USER}:${UNOBTANIUMD_GROUP}" \
+	"${UNOBTANIUMD_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${UNOBTANIUMD_USER}:${UNOBTANIUMD_GROUP}" \
+	"${UNOBTANIUMD_PIDDIR}"
+
+	checkpath -f \
+	-o ${UNOBTANIUMD_USER}:${UNOBTANIUMD_GROUP} \
+	-m 0660 \
+	${UNOBTANIUMD_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${UNOBTANIUMD_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run unobtaniumd."
+		eerror "The setting must appear in ${UNOBTANIUMD_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following"
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is also recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"UNO Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

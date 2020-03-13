@@ -1,0 +1,76 @@
+# It is not recommended to modify this file in-place, because it will
+# be overwritten during package upgrades. If you want to add further
+# options or overwrite existing ones then use
+# $ systemctl edit unobtaniumd.service
+# See "man systemd.service" for details.
+
+# Note that almost all daemon options could be specified in
+# /etc/unobtanium/unobtanium.conf, but keep in mind those explicitly
+# specified as arguments in ExecStart= will override those in the
+# config file.
+
+[Unit]
+Description=Unobtanium daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/unobtaniumd -daemon \
+                            -conf=/etc/unobtanium/unobtanium.conf \
+                            -datadir=/var/lib/unobtaniumd
+
+# Make sure the config directory is readable by the service user
+PermissionsStartOnly=true
+ExecStartPre=/bin/chgrp unobtanium /etc/unobtanium
+
+# Process management
+####################
+
+Type=forking
+GuessMainPID=
+Restart=on-failure
+TimeoutStopSec=600
+
+# Directory creation and permissions
+####################################
+
+# Run as unobtanium:unobtanium
+User=unobtanium
+Group=unobtanium
+
+# /run/unobtaniumd
+RuntimeDirectory=unobtaniumd
+RuntimeDirectoryMode=0710
+
+# /etc/unobtanium
+ConfigurationDirectory=unobtanium
+ConfigurationDirectoryMode=0710
+
+# /var/lib/unobtaniumd
+StateDirectory=unobtaniumd
+StateDirectoryMode=0710
+
+# Hardening measures
+####################
+
+# Provide a private /tmp and /var/tmp.
+PrivateTmp=true
+
+# Mount /usr, /boot/ and /etc read-only for the process.
+ProtectSystem=full
+
+# Deny access to /home, /root and /run/user
+ProtectHome=true
+
+# Disallow the process and all of its children to gain
+# new privileges through execve().
+NoNewPrivileges=true
+
+# Use a new /dev namespace only populated with API pseudo devices
+# such as /dev/null, /dev/zero and /dev/random.
+PrivateDevices=true
+
+# Deny the creation of writable and executable memory mappings.
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target

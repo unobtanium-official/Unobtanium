@@ -1,0 +1,27 @@
+# /etc/conf.d/unobtaniumd: config file for /etc/init.d/unobtaniumd
+
+# Config file location
+#UNOBTANIUMD_CONFIGFILE="/etc/unobtanium/unobtanium.conf"
+
+# What directory to write pidfile to?  (created and owned by $UNOBTANIUMD_USER)
+#UNOBTANIUMD_PIDDIR="/var/run/unobtaniumd"
+
+# What filename to give the pidfile
+#UNOBTANIUMD_PIDFILE="${UNOBTANIUMD_PIDDIR}/unobtaniumd.pid"
+
+# Where to write unobtaniumd data (be mindful that the blockchain is large)
+#UNOBTANIUMD_DATADIR="/var/lib/unobtaniumd"
+
+# User and group to own unobtaniumd process
+#UNOBTANIUMD_USER="unobtanium"
+#UNOBTANIUMD_GROUP="unobtanium"
+
+# Path to unobtaniumd executable
+#UNOBTANIUMD_BIN="/usr/bin/unobtaniumd"
+
+# Nice value to run unobtaniumd under
+#UNOBTANIUMD_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+UNOBTANIUMD_OPTS="-disablewallet"
+
