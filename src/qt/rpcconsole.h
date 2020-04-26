@@ -11,6 +11,7 @@
 #include "net.h"
 
 #include <QWidget>
+#include <QCompleter>
 
 class ClientModel;
 
@@ -97,6 +98,7 @@ private:
     ClientModel *clientModel;
     QStringList history;
     int historyPtr;
+    QCompleter *autoCompleter;
     NodeId cachedNodeid;
 };
 
