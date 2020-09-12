@@ -1,0 +1,17 @@
+diff -uNr a/src/google/protobuf/stubs/platform_macros.h b/src/google/protobuf/stubs/platform_macros.h
+--- a/src/google/protobuf/stubs/platform_macros.h a7e75f65abd84d0973cc601720915e55b9a4535d96be07c9d195637cf1e8d12e1ba957cb68658e8c2601385452ba8452ab735d957ae5594e46a18c57f61d1198
++++ b/src/google/protobuf/stubs/platform_macros.h 5c89b68ad66daa0bce9b30bc75f56405e9fc0c36c1d6ce566904f42d4e58947b9a6aa7558a17c85876e6a4a0cc2e85d8c65c7a23ee34fb6d886342e79e9450cf
+@@ -57,10 +57,12 @@
+ #elif defined(__ppc__)
+ #define GOOGLE_PROTOBUF_ARCH_PPC 1
+ #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
++#elif defined(__aarch64__)
++#define GOOGLE_PROTOBUF_ARCH_ARM 1
++#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
+ #else
+ #error Host architecture was not detected as supported by protobuf
+ #endif
+-
+ #if defined(__APPLE__)
+ #define GOOGLE_PROTOBUF_OS_APPLE
+ #elif defined(__native_client__)
