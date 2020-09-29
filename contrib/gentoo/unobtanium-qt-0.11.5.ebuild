@@ -7,7 +7,7 @@ DESCRIPTION="An end-user Qt GUI + command line tools for the Unobtanium crypto-c
 LICENSE="WTFPL"
 HOMEPAGE="http://unobtanium.uno/"
 SLOT="0"
-SRC_URI="http://btc.info.gf/uno/src/0.11.5/unobtanium-0.11.5.tar.gz -> unobtanium-0.11.5.tar.gz"
+SRC_URI="https://github.com/unobtanium-official/Unobtanium/archive/v0.11.5.tar.gz -> unobtanium-0.11.5.tar.gz"
 
 DB_VER="4.8"
 inherit autotools bash-completion-r1 db-use gnome2-utils xdg-utils
