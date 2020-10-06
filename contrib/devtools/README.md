@@ -9,10 +9,10 @@ A small script to automate merging pull-requests securely and sign them with GPG
 
 For example:
 
-  ./github-merge.sh bitcoin/bitcoin 3077
+  ./github-merge.sh unobtanium-official/unobtanium 3077
 
 (in any git repository) will help you merge pull request #3077 for the
-bitcoin/bitcoin repository.
+unobtanium-official/unobtanium repository.
 
 What it does:
 * Fetch master and the pull request.
@@ -36,18 +36,27 @@ Configuring the github-merge tool for the bitcoin repository is done in the foll
     git config githubmerge.testcmd "make -j4 check" (adapt to whatever you want to use for testing)
     git config --global user.signingkey mykeyid (if you want to GPG sign)
 
-fix-copyright-headers.py
+copyright_header.py
 ===========================
 
-Every year newly updated files need to have its copyright headers updated to reflect the current year.
-If you run this script from src/ it will automatically update the year on the copyright header for all
-.cpp and .h files if these have a git commit from the current year.
+Provides utilities for managing copyright headers of The Unobtanium Core developers in repository source files. It has three subcommands:
 
-For example a file changed in 2014 (with 2014 being the current year):
-```// Copyright (c) 2009-2013 The Bitcoin Core developers```
+```
+$ ./copyright_header.py report <base_directory> [verbose]
+$ ./copyright_header.py update <base_directory>
+$ ./copyright_header.py insert <file>
+```
+Running these subcommands without arguments displays a usage string.
 
-would be changed to:
-```// Copyright (c) 2009-2014 The Bitcoin Core developers```
+gen-manpages.sh
+==================
+A small script to automatically create manpages in ../../doc/man by running the release binaries with the -help option. This requires help2man which can be found at: https://www.gnu.org/software/help2man/
+
+With in-tree builds this tool can be run from any directory within the repostitory. To use this tool with out-of-tree builds set BUILDDIR. For example:
+
+```
+BUILDDIR=$PWD/build contrib/devtools/gen-manpages.sh
+```
 
 symbol-check.py
 ==================
