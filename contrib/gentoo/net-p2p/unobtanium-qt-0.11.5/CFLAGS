@@ -1,0 +1,1 @@
+-O3 -march=native -mfpmath=both -pipe -funroll-loops -fgraphite-identity -floop-nest-optimize -malign-data=cacheline -Wl,--hash-style=gnu
