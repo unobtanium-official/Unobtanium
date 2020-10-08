@@ -3,11 +3,11 @@
 
 EAPI=5
 
-DESCRIPTION="An end-user Qt GUI + command line tools for the Unobtanium crypto-currency"
-LICENSE="WTFPL"
+DESCRIPTION="An end-user Qt GUI for the Unobtanium crypto-currency"
+LICENSE="DWTFYW"
 HOMEPAGE="http://unobtanium.uno/"
 SLOT="0"
-SRC_URI="https://github.com/unobtanium-official/Unobtanium/archive/v0.11.5.tar.gz -> unobtanium-0.11.5.tar.gz"
+SRC_URI="http://btc.info.gf/uno/src/0.11.5/unobtanium-0.11.5.tar.gz -> unobtanium-0.11.5.tar.gz"
 
 DB_VER="4.8"
 inherit autotools bash-completion-r1 db-use gnome2-utils xdg-utils
@@ -62,7 +62,7 @@ src_prepare() {
 
 	echo '#!/bin/true' >share/genbuild.sh || die
 	mkdir -p src/obj || die
-	echo "#define BUILD_SUFFIX gentoo-${PVR#${PV}}" >src/obj/build.h || die
+	echo "#define BUILD_SUFFIX gentoo${PVR#${PV}}" >src/obj/build.h || die
 
 	eautoreconf
 }
