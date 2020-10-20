@@ -1,5 +1,5 @@
 // Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2014 The Bitcoin Core developers
+// Copyright (c) 2009-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -121,6 +121,13 @@ public:
      * @throws an exception (json_spirit::Value) when an error happens.
      */
     json_spirit::Value execute(const std::string &method, const json_spirit::Array &params) const;
+
+
+    /**
+    * Returns a list of registered commands
+    * @returns List of registered commands.
+    */
+    std::vector<std::string> listCommands() const;
 };
 
 extern const CRPCTable tableRPC;
@@ -170,8 +177,6 @@ extern json_spirit::Value submitblock(const json_spirit::Array& params, bool fHe
 extern json_spirit::Value estimatefee(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value estimatepriority(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getauxblock(const json_spirit::Array& params, bool fHelp);
-extern json_spirit::Value createauxblock(const json_spirit::Array& params, bool fHelp);
-extern json_spirit::Value submitauxblock(const json_spirit::Array& params, bool fHelp);
 
 extern json_spirit::Value getnewaddress(const json_spirit::Array& params, bool fHelp); // in rpcwallet.cpp
 extern json_spirit::Value getaccountaddress(const json_spirit::Array& params, bool fHelp);
