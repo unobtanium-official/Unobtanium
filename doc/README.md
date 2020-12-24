@@ -11,10 +11,6 @@ The following are some helpful notes on how to run Unobtanium on your native pla
 
 ### Unix
 
-You need the Qt4 run-time libraries to run Unobtanium-Qt. On Debian or Ubuntu:
-
-	sudo apt-get install libqtgui4
-
 Unpack the files into a directory and run:
 
 - bin/32/unobtanium-qt (GUI, 32-bit) or bin/32/unobtaniumd (headless, 32-bit)
