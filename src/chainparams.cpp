@@ -152,7 +152,6 @@ public:
 
         vSeeds.push_back(CDNSSeedData("node1.unobtanium.uno", "node1.unobtanium.uno"));
         vSeeds.push_back(CDNSSeedData("node2.unobtanium.uno", "node2.unobtanium.uno"));
-        vSeeds.push_back(CDNSSeedData("unobtanium.cryptap.us", "unobtanium.cryptap.us"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,30);
