@@ -36,9 +36,6 @@ for Debian-based Linux systems. If you compile bitcoind/bitcoin-qt yourself, the
 ### [Gitian-descriptors](/contrib/gitian-descriptors) ###
 Gavin's notes on getting gitian builds up and running using KVM.
 
-### [Gitian-downloader](/contrib/gitian-downloader)
-Various PGP files of core developers. 
-
 ### [MacDeploy](/contrib/macdeploy) ###
 Scripts and notes for Mac builds. 
 
