@@ -1,4 +1,4 @@
-Unobtanium integration/staging tree
+<img src="https://raw.githubusercontent.com/unobtanium-official/Unobtanium/master/doc/unobtanium_logo_doxygen.png"></img> Unobtanium Core integration/staging tree
 =====================================
 
 https://www.unobtanium.uno
