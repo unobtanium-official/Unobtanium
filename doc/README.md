@@ -1,4 +1,4 @@
-Unobtanium Core 0.10.4.1
+Unobtanium Core
 =====================
 
 Setup
@@ -28,11 +28,11 @@ Drag Unobtanium-Qt to your applications folder, and then run Unobtanium-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Unobtanium Wiki](https://unobtanium.uno/wiki)
+* See the documentation at the [Unobtanium Wiki](https://unobtanium.uno/blog)
 for help and more information.
-* Ask for help on [#bitcoin](http://webchat.freenode.net?channels=unobtanium) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=bitcoin).
-* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Technical Support board](https://bitcointalk.org/index.php?topic=527500.0).
-
+* Ask for help on [#unobtanium-dev](http://webchat.freenode.net?channels=unobtanium-dev) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net?channels=unobtanium-dev).
+* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Official UNO thread](https://bitcointalk.org/index.php?topic=527500.0).
+* Ask for help on [Telegram](https://web.telegram.org) in the [Official UNO channel](https://t.me/joinchat/AAAAAEIAq9IOEd4Z5BlyYA)
 Building
 ---------------------
 The following are developer notes on how to build Unobtanium on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
@@ -42,7 +42,7 @@ The following are developer notes on how to build Unobtanium on your native plat
 
 Development
 ---------------------
-The Unobtanium repo's [root README](https://github.com/Flurbos/Unobtanium/blob/master/README.md) contains relevant information on the development process and automated testing.
+The Unobtanium repo's [root README](https://github.com/unobtanium-official/Unobtanium/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -54,7 +54,8 @@ The Unobtanium repo's [root README](https://github.com/Flurbos/Unobtanium/blob/m
 
 ### Resources
 * Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Development & Technical Discussion board](https://bitcointalk.org/index.php?topic=527500.0).
-* Discuss on [#unobtanium-dev](http://webchat.freenode.net/?channels=bitcoin) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=unobtanium-dev).
+* Discuss on [#unobtanium-dev](http://webchat.freenode.net/?channels=unobtanium-dev) on Freenode. If you don't have an IRC client use [webchat here](http://webchat.freenode.net/?channels=unobtanium-dev).
+* Discuss on [Telegram](https://web.telegram.org) in the [Official UNO channel](https://t.me/joinchat/AAAAAEIAq9IOEd4Z5BlyYA)
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
