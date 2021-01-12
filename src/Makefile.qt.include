@@ -357,11 +357,11 @@ endif
 if TARGET_WINDOWS
   qt_unobtanium_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_unobtanium_qt_LDADD = qt/libunobtaniumqt.a $(LIBBITCOIN_SERVER)
+qt_unobtanium_qt_LDADD = qt/libunobtaniumqt.a $(LIBUNOBTANIUM_SERVER)
 if ENABLE_WALLET
-qt_unobtanium_qt_LDADD += $(LIBBITCOIN_WALLET)
+qt_unobtanium_qt_LDADD += $(LIBUNOBTANIUM_WALLET)
 endif
-qt_unobtanium_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_unobtanium_qt_LDADD += $(LIBUNOBTANIUM_CLI) $(LIBUNOBTANIUM_COMMON) $(LIBUNOBTANIUM_UTIL) $(LIBUNOBTANIUM_CRYPTO) $(LIBUNOBTANIUM_UNIVALUE) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1)
 qt_unobtanium_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 qt_unobtanium_qt_LIBTOOLFLAGS = --tag CXX
@@ -371,7 +371,7 @@ QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-qt/bitcoinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES)
+qt/bitcoinstrings.cpp: $(libunobtanium_server_a_SOURCES) $(libunobtanium_wallet_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) ../share/qt/extract_strings_qt.py $^
 
@@ -395,7 +395,7 @@ CLEAN_QT = $(nodist_qt_libunobtaniumqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gc
 CLEANFILES += $(CLEAN_QT)
 
 bitcoin_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libunobtaniumqt_a_OBJECTS) $(qt_unobtanium_qt_OBJECTS) qt/unobtanium-qt$(EXEEXT) $(LIBBITCOINQT)
+	rm -f $(CLEAN_QT) $(qt_libunobtaniumqt_a_OBJECTS) $(qt_unobtanium_qt_OBJECTS) qt/unobtanium-qt$(EXEEXT) $(LIBUNOBTANIUMQT)
 
 unobtanium_qt : qt/unobtanium-qt$(EXEEXT)
 

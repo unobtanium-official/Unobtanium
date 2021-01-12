@@ -23,14 +23,14 @@ BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BOOST_CPPFLAGS) $(LEVELDB_CPP
 
 BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 
-LIBBITCOIN_SERVER=libbitcoin_server.a
-LIBBITCOIN_WALLET=libbitcoin_wallet.a
-LIBBITCOIN_COMMON=libbitcoin_common.a
-LIBBITCOIN_CLI=libbitcoin_cli.a
-LIBBITCOIN_UTIL=libbitcoin_util.a
-LIBBITCOIN_CRYPTO=crypto/libbitcoin_crypto.a
-LIBBITCOIN_UNIVALUE=univalue/libbitcoin_univalue.a
-LIBBITCOINQT=qt/libunobtaniumqt.a
+LIBUNOBTANIUM_SERVER=libunobtanium_server.a
+LIBUNOBTANIUM_WALLET=libunobtanium_wallet.a
+LIBUNOBTANIUM_COMMON=libunobtanium_common.a
+LIBUNOBTANIUM_CLI=libunobtanium_cli.a
+LIBUNOBTANIUM_UTIL=libunobtanium_util.a
+LIBUNOBTANIUM_CRYPTO=crypto/libunobtanium_crypto.a
+LIBUNOBTANIUM_UNIVALUE=univalue/libunobtanium_univalue.a
+LIBUNOBTANIUMQT=qt/libunobtaniumqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -39,22 +39,22 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES = \
-  crypto/libbitcoin_crypto.a \
-  libbitcoin_util.a \
-  libbitcoin_common.a \
-  univalue/libbitcoin_univalue.a \
-  libbitcoin_server.a \
-  libbitcoin_cli.a
+  crypto/libunobtanium_crypto.a \
+  libunobtanium_util.a \
+  libunobtanium_common.a \
+  univalue/libunobtanium_univalue.a \
+  libunobtanium_server.a \
+  libunobtanium_cli.a
 if ENABLE_WALLET
 BITCOIN_INCLUDES += $(BDB_CPPFLAGS)
-EXTRA_LIBRARIES += libbitcoin_wallet.a
+EXTRA_LIBRARIES += libunobtanium_wallet.a
 endif
 
 if BUILD_BITCOIN_LIBS
-lib_LTLIBRARIES = libbitcoinconsensus.la
-LIBBITCOIN_CONSENSUS=libbitcoinconsensus.la
+lib_LTLIBRARIES = libunobtaniumconsensus.la
+LIBUNOBTANIUM_CONSENSUS=libunobtaniumconsensus.la
 else
-LIBBITCOIN_CONSENSUS=
+LIBUNOBTANIUM_CONSENSUS=
 endif
 
 bin_PROGRAMS =
@@ -159,11 +159,11 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh $(abs_top_builddir)/src/obj/build.h \
 	  $(abs_top_srcdir)
-libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
+libunobtanium_util_a-clientversion.$(OBJEXT): obj/build.h
 
 # server: shared between bitcoind and bitcoin-qt
-libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
-libbitcoin_server_a_SOURCES = \
+libunobtanium_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
+libunobtanium_server_a_SOURCES = \
   addrman.cpp \
   alert.cpp \
   bloom.cpp \
@@ -193,8 +193,8 @@ libbitcoin_server_a_SOURCES = \
 
 # wallet: shared between bitcoind and bitcoin-qt, but only linked
 # when wallet enabled
-libbitcoin_wallet_a_CPPFLAGS = $(BITCOIN_INCLUDES)
-libbitcoin_wallet_a_SOURCES = \
+libunobtanium_wallet_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+libunobtanium_wallet_a_SOURCES = \
   wallet/db.cpp \
   wallet/crypter.cpp \
   wallet/rpcdump.cpp \
@@ -205,8 +205,8 @@ libbitcoin_wallet_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libbitcoin_crypto_a_CPPFLAGS = $(BITCOIN_CONFIG_INCLUDES)
-crypto_libbitcoin_crypto_a_SOURCES = \
+crypto_libunobtanium_crypto_a_CPPFLAGS = $(BITCOIN_CONFIG_INCLUDES)
+crypto_libunobtanium_crypto_a_SOURCES = \
   crypto/sha1.cpp \
   crypto/sha256.cpp \
   crypto/sha512.cpp \
@@ -222,7 +222,7 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/ripemd160.h
 
 # univalue JSON library
-univalue_libbitcoin_univalue_a_SOURCES = \
+univalue_libunobtanium_univalue_a_SOURCES = \
   univalue/univalue.cpp \
   univalue/univalue_read.cpp \
   univalue/univalue_write.cpp \
@@ -230,8 +230,8 @@ univalue_libbitcoin_univalue_a_SOURCES = \
   univalue/univalue.h
 
 # common: shared between bitcoind, and bitcoin-qt and non-server tools
-libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
-libbitcoin_common_a_SOURCES = \
+libunobtanium_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+libunobtanium_common_a_SOURCES = \
   allocators.cpp \
   amount.cpp \
   auxpow.cpp \
@@ -261,8 +261,8 @@ libbitcoin_common_a_SOURCES = \
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libbitcoin_util_a_CPPFLAGS = $(BITCOIN_INCLUDES)
-libbitcoin_util_a_SOURCES = \
+libunobtanium_util_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+libunobtanium_util_a_SOURCES = \
   chainparamsbase.cpp \
   clientversion.cpp \
   compat/glibc_sanity.cpp \
@@ -279,16 +279,16 @@ libbitcoin_util_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
+libunobtanium_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
 # cli: shared between bitcoin-cli and bitcoin-qt
-libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
-libbitcoin_cli_a_SOURCES = \
+libunobtanium_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+libunobtanium_cli_a_SOURCES = \
   rpcclient.cpp \
   $(BITCOIN_CORE_H)
 
-nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libunobtanium_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
@@ -301,17 +301,17 @@ unobtaniumd_SOURCES += bitcoind-res.rc
 endif
 
 unobtaniumd_LDADD = \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBUNOBTANIUM_SERVER) \
+  $(LIBUNOBTANIUM_COMMON) \
+  $(LIBUNOBTANIUM_UNIVALUE) \
+  $(LIBUNOBTANIUM_UTIL) \
+  $(LIBUNOBTANIUM_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
 if ENABLE_WALLET
-unobtaniumd_LDADD += libbitcoin_wallet.a
+unobtaniumd_LDADD += libunobtanium_wallet.a
 endif
 
 unobtaniumd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
@@ -327,8 +327,8 @@ unobtanium_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
 unobtanium_cli_LDADD = \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_UTIL) \
+  $(LIBUNOBTANIUM_CLI) \
+  $(LIBUNOBTANIUM_UTIL) \
   $(LIBSECP256K1)
 
 unobtanium_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS)
@@ -340,10 +340,10 @@ unobtanium_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 unobtanium_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 unobtanium_tx_LDADD = \
-  $(LIBBITCOIN_UNIVALUE) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO) \
+  $(LIBUNOBTANIUM_UNIVALUE) \
+  $(LIBUNOBTANIUM_COMMON) \
+  $(LIBUNOBTANIUM_UTIL) \
+  $(LIBUNOBTANIUM_CRYPTO) \
   $(LIBSECP256K1)
 
 unobtanium_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
@@ -352,7 +352,7 @@ unobtanium_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 # bitcoinconsensus library #
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
-libbitcoinconsensus_la_SOURCES = \
+libunobtaniumconsensus_la_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/ripemd160.cpp \
   crypto/sha1.cpp \
@@ -370,15 +370,15 @@ libbitcoinconsensus_la_SOURCES = \
   utilstrencodings.cpp
 
 if GLIBC_BACK_COMPAT
-  libbitcoinconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libunobtaniumconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libbitcoinconsensus_la_LDFLAGS = -no-undefined $(RELDFLAGS)
-libbitcoinconsensus_la_LIBADD = $(CRYPTO_LIBS)
-libbitcoinconsensus_la_CPPFLAGS = $(CRYPTO_CFLAGS) -I$(builddir)/obj -DBUILD_BITCOIN_INTERNAL
+libunobtaniumconsensus_la_LDFLAGS = -no-undefined $(RELDFLAGS)
+libunobtaniumconsensus_la_LIBADD = $(CRYPTO_LIBS)
+libunobtaniumconsensus_la_CPPFLAGS = $(CRYPTO_CFLAGS) -I$(builddir)/obj -DBUILD_BITCOIN_INTERNAL
 
 if USE_LIBSECP256K1
-libbitcoinconsensus_la_LIBADD += secp256k1/libsecp256k1.la
+libunobtaniumconsensus_la_LIBADD += secp256k1/libsecp256k1.la
 endif
 endif
 #

@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+Name: Unobtanium Core consensus library
+Description: Library for the Unobtanium consensus protocol.
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lunobtaniumconsensus
+Cflags: -I${includedir}
+Requires.private: libcrypto
