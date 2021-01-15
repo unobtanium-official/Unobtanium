@@ -18,10 +18,10 @@ $(LIBLEVELDB) $(LIBMEMENV):
           OPT="$(CXXFLAGS) $(CPPFLAGS)"
 endif
 
-BITCOIN_CONFIG_INCLUDES=-I$(builddir)/config
-BITCOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+UNOBTANIUM_CONFIG_INCLUDES=-I$(builddir)/config
+UNOBTANIUM_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-BITCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
+UNOBTANIUM_INCLUDES += -I$(srcdir)/secp256k1/include
 
 LIBUNOBTANIUM_SERVER=libunobtanium_server.a
 LIBUNOBTANIUM_WALLET=libunobtanium_wallet.a
@@ -46,11 +46,11 @@ EXTRA_LIBRARIES = \
   libunobtanium_server.a \
   libunobtanium_cli.a
 if ENABLE_WALLET
-BITCOIN_INCLUDES += $(BDB_CPPFLAGS)
+UNOBTANIUM_INCLUDES += $(BDB_CPPFLAGS)
 EXTRA_LIBRARIES += libunobtanium_wallet.a
 endif
 
-if BUILD_BITCOIN_LIBS
+if BUILD_UNOBTANIUM_LIBS
 lib_LTLIBRARIES = libunobtaniumconsensus.la
 LIBUNOBTANIUM_CONSENSUS=libunobtaniumconsensus.la
 else
@@ -60,17 +60,17 @@ endif
 bin_PROGRAMS =
 TESTS =
 
-if BUILD_BITCOIND
+if BUILD_UNOBTANIUMD
   bin_PROGRAMS += unobtaniumd
 endif
 
-if BUILD_BITCOIN_UTILS
+if BUILD_UNOBTANIUM_UTILS
   bin_PROGRAMS += unobtanium-cli unobtanium-tx
 endif
 
 .PHONY: FORCE
-# bitcoin core #
-BITCOIN_CORE_H = \
+# unobtanium core #
+UNOBTANIUM_CORE_H = \
   addrman.h \
   alert.h \
   allocators.h \
@@ -161,8 +161,8 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libunobtanium_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between bitcoind and bitcoin-qt
-libunobtanium_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS)
+# server: shared between unobtaniumd and unobtanium-qt
+libunobtanium_server_a_CPPFLAGS = $(UNOBTANIUM_INCLUDES) $(MINIUPNPC_CPPFLAGS)
 libunobtanium_server_a_SOURCES = \
   addrman.cpp \
   alert.cpp \
@@ -189,11 +189,11 @@ libunobtanium_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   $(JSON_H) \
-  $(BITCOIN_CORE_H)
+  $(UNOBTANIUM_CORE_H)
 
-# wallet: shared between bitcoind and bitcoin-qt, but only linked
+# wallet: shared between unobtaniumd and unobtanium-qt, but only linked
 # when wallet enabled
-libunobtanium_wallet_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+libunobtanium_wallet_a_CPPFLAGS = $(UNOBTANIUM_INCLUDES)
 libunobtanium_wallet_a_SOURCES = \
   wallet/db.cpp \
   wallet/crypter.cpp \
@@ -202,10 +202,10 @@ libunobtanium_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/wallet_ismine.cpp \
   wallet/walletdb.cpp \
-  $(BITCOIN_CORE_H)
+  $(UNOBTANIUM_CORE_H)
 
 # crypto primitives library
-crypto_libunobtanium_crypto_a_CPPFLAGS = $(BITCOIN_CONFIG_INCLUDES)
+crypto_libunobtanium_crypto_a_CPPFLAGS = $(UNOBTANIUM_CONFIG_INCLUDES)
 crypto_libunobtanium_crypto_a_SOURCES = \
   crypto/sha1.cpp \
   crypto/sha256.cpp \
@@ -229,8 +229,8 @@ univalue_libunobtanium_univalue_a_SOURCES = \
   univalue/univalue_escapes.h \
   univalue/univalue.h
 
-# common: shared between bitcoind, and bitcoin-qt and non-server tools
-libunobtanium_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+# common: shared between unobtaniumd, and unobtanium-qt and non-server tools
+libunobtanium_common_a_CPPFLAGS = $(UNOBTANIUM_INCLUDES)
 libunobtanium_common_a_SOURCES = \
   allocators.cpp \
   amount.cpp \
@@ -256,12 +256,12 @@ libunobtanium_common_a_SOURCES = \
   script/sign.cpp \
   script/standard.cpp \
   script/script_error.cpp \
-  $(BITCOIN_CORE_H)
+  $(UNOBTANIUM_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libunobtanium_util_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+libunobtanium_util_a_CPPFLAGS = $(UNOBTANIUM_INCLUDES)
 libunobtanium_util_a_SOURCES = \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -276,28 +276,28 @@ libunobtanium_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(BITCOIN_CORE_H)
+  $(UNOBTANIUM_CORE_H)
 
 if GLIBC_BACK_COMPAT
 libunobtanium_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between bitcoin-cli and bitcoin-qt
-libunobtanium_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
+# cli: shared between unobtanium-cli and unobtanium-qt
+libunobtanium_cli_a_CPPFLAGS = $(UNOBTANIUM_INCLUDES)
 libunobtanium_cli_a_SOURCES = \
   rpcclient.cpp \
-  $(BITCOIN_CORE_H)
+  $(UNOBTANIUM_CORE_H)
 
 nodist_libunobtanium_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# bitcoind binary #
-unobtaniumd_SOURCES = bitcoind.cpp
-unobtaniumd_CPPFLAGS = $(BITCOIN_INCLUDES)
+# unobtaniumd binary #
+unobtaniumd_SOURCES = unobtaniumd.cpp
+unobtaniumd_CPPFLAGS = $(UNOBTANIUM_INCLUDES)
 unobtaniumd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-unobtaniumd_SOURCES += bitcoind-res.rc
+unobtaniumd_SOURCES += unobtaniumd-res.rc
 endif
 
 unobtaniumd_LDADD = \
@@ -317,13 +317,13 @@ endif
 unobtaniumd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
 #
 
-# bitcoin-cli binary #
-unobtanium_cli_SOURCES = bitcoin-cli.cpp
-unobtanium_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+# unobtanium-cli binary #
+unobtanium_cli_SOURCES = unobtanium-cli.cpp
+unobtanium_cli_CPPFLAGS = $(UNOBTANIUM_INCLUDES)
 unobtanium_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-unobtanium_cli_SOURCES += bitcoin-cli-res.rc
+unobtanium_cli_SOURCES += unobtanium-cli-res.rc
 endif
 
 unobtanium_cli_LDADD = \
@@ -334,9 +334,9 @@ unobtanium_cli_LDADD = \
 unobtanium_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS)
 #
 
-# bitcoin-tx binary #
-unobtanium_tx_SOURCES = bitcoin-tx.cpp
-unobtanium_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+# unobtanium-tx binary #
+unobtanium_tx_SOURCES = unobtanium-tx.cpp
+unobtanium_tx_CPPFLAGS = $(UNOBTANIUM_INCLUDES)
 unobtanium_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 unobtanium_tx_LDADD = \
@@ -349,9 +349,9 @@ unobtanium_tx_LDADD = \
 unobtanium_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# bitcoinconsensus library #
-if BUILD_BITCOIN_LIBS
-include_HEADERS = script/bitcoinconsensus.h
+# unobtaniumconsensus library #
+if BUILD_UNOBTANIUM_LIBS
+include_HEADERS = script/unobtaniumconsensus.h
 libunobtaniumconsensus_la_SOURCES = \
   crypto/hmac_sha512.cpp \
   crypto/ripemd160.cpp \
@@ -363,7 +363,7 @@ libunobtaniumconsensus_la_SOURCES = \
   hash.cpp \
   primitives/transaction.cpp \
   pubkey.cpp \
-  script/bitcoinconsensus.cpp \
+  script/unobtaniumconsensus.cpp \
   script/interpreter.cpp \
   script/script.cpp \
   uint256.cpp \
@@ -375,7 +375,7 @@ endif
 
 libunobtaniumconsensus_la_LDFLAGS = -no-undefined $(RELDFLAGS)
 libunobtaniumconsensus_la_LIBADD = $(CRYPTO_LIBS)
-libunobtaniumconsensus_la_CPPFLAGS = $(CRYPTO_CFLAGS) -I$(builddir)/obj -DBUILD_BITCOIN_INTERNAL
+libunobtaniumconsensus_la_CPPFLAGS = $(CRYPTO_CFLAGS) -I$(builddir)/obj -DBUILD_UNOBTANIUM_INTERNAL
 
 if USE_LIBSECP256K1
 libunobtaniumconsensus_la_LIBADD += secp256k1/libsecp256k1.la
