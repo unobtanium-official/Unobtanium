@@ -328,8 +328,7 @@ endif
 
 unobtanium_cli_LDADD = \
   $(LIBUNOBTANIUM_CLI) \
-  $(LIBUNOBTANIUM_UTIL) \
-  $(LIBSECP256K1)
+  $(LIBUNOBTANIUM_UTIL)
 
 unobtanium_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS)
 #
