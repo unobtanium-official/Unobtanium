@@ -10,7 +10,7 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both bitcoind and bitcoin-core, to make it harder for attackers to
+ * for both unobtaniumd and unobtanium-core, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
 const std::string CLIENT_NAME("Unobtanium");
@@ -18,7 +18,7 @@ const std::string CLIENT_NAME("Unobtanium");
 /**
  * Client version number
  */
-#define CLIENT_VERSION_SUFFIX "-unobtanium-bip65"
+#define CLIENT_VERSION_SUFFIX "-unobtanium"
 
 
 /**
