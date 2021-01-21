@@ -912,6 +912,7 @@ bool EvalScript(vector<vector<unsigned char> >& stack, const CScript& script, un
                             return set_error(serror, SCRIPT_ERR_CHECKMULTISIGVERIFY);
                     }
                 }
+                /* fall through */
                case OP_CHECKLOCKTIMEVERIFY:
                 {
                     if (!(flags & SCRIPT_VERIFY_CHECKLOCKTIMEVERIFY)) {

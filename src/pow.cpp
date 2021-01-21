@@ -218,7 +218,7 @@ bool CheckBlockProofOfWork(const CBlockHeader *pblock)
     else
         chainID = AUXPOW_CHAIN_ID;
 
-	if (pblock->nVersion > 2) {
+    if (pblock->nVersion > 2) {
        LogPrintf("nVersion : %d, ChainID : %d, %d\n",pblock->nVersion,pblock->GetChainID(),chainID);
 
         if (!Params().AllowMinDifficultyBlocks() && (pblock->nVersion & BLOCK_VERSION_AUXPOW && pblock->GetChainID() != chainID))
