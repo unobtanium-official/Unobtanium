@@ -267,7 +267,7 @@ public:
      * unordered_map will behave unpredictably if the custom hasher returns a
      * uint64_t, resulting in failures when syncing the chain (#4634).
      */
-    size_t operator()(const uint256& key) const {
+    size_t operator()(const uint256& key) const noexcept {
         return key.GetHash(salt);
     }
 };
