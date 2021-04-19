@@ -52,7 +52,7 @@ S="${WORKDIR}/Unobtanium"
 pkg_pretend() {
 		elog "You are building ${PN} from Unobtanium Core."
 		elog "For more information, see:"
-		elog "https://btc.info.gf/uno/2020/05/02/release-${PV}/"
+		elog "http://unobtanium.uno/release/release-${PV}/"
 }
 
 src_prepare() {
