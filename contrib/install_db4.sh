@@ -13,7 +13,7 @@ if [ -z "${1}" ]; then
   echo "Usage: $0 <base-dir> [<extra-bdb-configure-flag> ...]"
   echo
   echo "Must specify a single argument: the directory in which db4 will be built."
-  echo "This is probably \`pwd\` if you're at the root of the bitcoin repository."
+  echo "This is probably \`pwd\` if you're at the root of the Unobtanium repository."
   exit 1
 fi
 
@@ -245,8 +245,8 @@ echo
 echo "db4 build complete."
 echo
 # shellcheck disable=SC2016
-echo 'When compiling bitcoind, run `./configure` in the following way:'
+echo 'When compiling unobtaniumd, run `./configure` in the following way:'
 echo
 echo "  export BDB_PREFIX='${BDB_PREFIX}'"
 # shellcheck disable=SC2016
-echo '  ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include" ...'
+echo '  ./configure LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" CPPFLAGS="-I${BDB_PREFIX}/include" ...'
