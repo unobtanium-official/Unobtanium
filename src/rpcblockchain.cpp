@@ -344,22 +344,24 @@ Value getblockheader(const Array& params, bool fHelp)
     uint256 hash(uint256S(strHash));
 
     bool fVerbose = true;
-    if (params.size() > 1)
-        fVerbose = params[1].get_bool();
+    //if (params.size() > 1)
+    //    fVerbose = params[1].get_bool();
 
     if (mapBlockIndex.count(hash) == 0)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Block not found");
 
     CBlockIndex* pblockindex = mapBlockIndex[hash];
 
-    if (!fVerbose)
-    {
-        CDataStream ssBlock(SER_NETWORK, PROTOCOL_VERSION);
-        mapDirtyAuxPow.insert(std::make_pair(pblockindex->hash, pblockindex->auxpow));
-        ssBlock << pblockindex->GetBlockHeader(mapDirtyAuxPow);
-        std::string strHex = HexStr(ssBlock.begin(), ssBlock.end());
-        return strHex;
-    }
+    // Temporarily Remove Verbose
+    //if (!fVerbose)
+    //{
+    //    CDataStream ssBlock(SER_NETWORK, PROTOCOL_VERSION);
+        //std::map<uint256, boost::shared_ptr<CAuxPow> >::const_iterator it = mapDirtyAuxPow.find(*phashBlock);
+    //    mapDirtyAuxPow.insert(std::make_pair(pblockindex, it->second));
+    //    ssBlock << pblockindex->GetBlockHeader(mapDirtyAuxPow);
+    //    std::string strHex = HexStr(ssBlock.begin(), ssBlock.end());
+    //    return strHex;
+    //}
 
     return blockheaderToJSON(pblockindex);
 }
