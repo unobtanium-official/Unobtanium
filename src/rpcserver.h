@@ -55,7 +55,7 @@ void StopRPCThreads();
 /** Query whether RPC is running */
 bool IsRPCRunning();
 
-/** 
+/**
  * Set the RPC warmup status.  When this is done, all RPC calls will error out
  * immediately with RPC_IN_WARMUP.
  */
@@ -235,6 +235,7 @@ extern json_spirit::Value settxfee(const json_spirit::Array& params, bool fHelp)
 extern json_spirit::Value getmempoolinfo(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getrawmempool(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getblockhash(const json_spirit::Array& params, bool fHelp);
+extern json_spirit::Value getblockheader(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value getblock(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value gettxoutsetinfo(const json_spirit::Array& params, bool fHelp);
 extern json_spirit::Value gettxout(const json_spirit::Array& params, bool fHelp);

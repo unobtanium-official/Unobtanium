@@ -291,6 +291,7 @@ static const CRPCCommand vRPCCommands[] =
     /* Block chain and UTXO */
     { "blockchain",         "getblockchaininfo",      &getblockchaininfo,      true,      false },
     { "blockchain",         "getbestblockhash",       &getbestblockhash,       true,      false },
+    { "blockchain",         "getblockheader",         &getblockheader,         true       false },
     { "blockchain",         "getblockcount",          &getblockcount,          true,      false },
     { "blockchain",         "getblock",               &getblock,               true,      false },
     { "blockchain",         "getblockhash",           &getblockhash,           true,      false },
@@ -1038,7 +1039,7 @@ std::vector<std::string> CRPCTable::listCommands() const
                    std::back_inserter(commandList),
                    boost::bind(&commandMap::value_type::first,_1) );
     return commandList;
-} 
+}
 
 std::string HelpExampleCli(string methodname, string args){
     return "> unobtanium-cli " + methodname + " " + args + "\n";
