@@ -355,7 +355,7 @@ Value getblockheader(const Array& params, bool fHelp)
     if (!fVerbose)
     {
         CDataStream ssBlock(SER_NETWORK, PROTOCOL_VERSION);
-        mapDirtyAuxPow.insert(std::make_pair(pblockindex.GetHash(), pblockindex.auxpow));
+        mapDirtyAuxPow.insert(std::make_pair(pblockindex->hash, pblockindex->auxpow));
         ssBlock << pblockindex->GetBlockHeader(mapDirtyAuxPow);
         std::string strHex = HexStr(ssBlock.begin(), ssBlock.end());
         return strHex;
