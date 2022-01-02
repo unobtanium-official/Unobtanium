@@ -1173,21 +1173,6 @@ CAmount GetBlockValue(int nHeight, const CAmount& nFees)
     return nSubsidy + nFees;
 }
 
-bool IsInitialBlockDownload()
-{
-    LOCK(cs_main);
-    if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate())
-        return true;
-    static bool lockIBDState = false;
-    if (lockIBDState)
-        return false;
-    bool state = (chainActive.Height() < pindexBestHeader->nHeight - 24 * 6 ||
-            pindexBestHeader->GetBlockTime() < GetTime() - 24 * 60 * 60);
-    if (!state)
-        lockIBDState = true;
-    return state;
-}
-
 bool fLargeWorkForkFound = false;
 bool fLargeWorkInvalidChainFound = false;
 CBlockIndex *pindexBestForkTip = NULL, *pindexBestForkBase = NULL;
@@ -1288,28 +1273,17 @@ void Misbehaving(NodeId pnode, int howmuch)
 
 bool IsInitialBlockDownload()
 {
-    // TODO: This function will still need work, but will make do for now.
-    const CChainParams& chainParams = Params();
-
-    // Once this function has returned false, it must remain false.
-    static std::atomic<bool> latchToFalse{false};
-    // Optimization: pre-test latch before taking the lock.
-    if (latchToFalse.load(std::memory_order_relaxed))
-        return false;
-
     LOCK(cs_main);
-    if (latchToFalse.load(std::memory_order_relaxed))
+    if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate())
+        return true;
+    static bool lockIBDState = false;
+    if (lockIBDState)
         return false;
-    if (fImporting || fReindex)
-        return true;
-    if (chainActive.Tip() == NULL)
-        return true;
-    //if (chainActive.Tip()->nChainWork < UintToArith256(chainParams.GetConsensus(chainActive.Height()).nMinimumChainWork))
-    //    return true;
-    if (chainActive.Tip()->GetBlockTime() < (GetTime() - nMaxTipAge))
-        return true;
-    latchToFalse.store(true, std::memory_order_relaxed);
-    return false;
+    bool state = (chainActive.Height() < pindexBestHeader->nHeight - 24 * 6 ||
+            pindexBestHeader->GetBlockTime() < GetTime() - 24 * 60 * 60);
+    if (!state)
+        lockIBDState = true;
+    return state;
 }
 
 void static InvalidChainFound(CBlockIndex* pindexNew)
