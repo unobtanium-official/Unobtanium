@@ -170,7 +170,7 @@ UniValue setgenerate(const UniValue& params, bool fHelp)
             nHeightEnd = nHeightStart+nGenerate;
         }
         unsigned int nExtraNonce = 0;
-        Array blockHashes;
+        UniValue blockHashes(UniValue::VARR);
         while (nHeight < nHeightEnd)
         {
             unique_ptr<CBlockTemplate> pblocktemplate(CreateNewBlockWithKey(reservekey));
