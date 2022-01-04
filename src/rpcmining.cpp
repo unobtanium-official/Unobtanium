@@ -25,10 +25,8 @@
 
 #include <boost/assign/list_of.hpp>
 
-#include "json/json_spirit_utils.h"
-#include "json/json_spirit_value.h"
+#include "univalue/univalue.h"
 
-using namespace json_spirit;
 using namespace std;
 
 /**
@@ -36,7 +34,7 @@ using namespace std;
  * or from the last difficulty change if 'lookup' is nonpositive.
  * If 'height' is nonnegative, compute the estimate at the time when a given block was found.
  */
-Value GetNetworkHashPS(int lookup, int height) {
+UniValue GetNetworkHashPS(int lookup, int height) {
     CBlockIndex *pb = chainActive.Tip();
 
     if (height >= 0 && height < chainActive.Height())
@@ -73,7 +71,7 @@ Value GetNetworkHashPS(int lookup, int height) {
     return (int64_t)(workDiff.getdouble() / timeDiff);
 }
 
-Value getnetworkhashps(const Array& params, bool fHelp)
+UniValue getnetworkhashps(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() > 2)
         throw runtime_error(
@@ -96,7 +94,7 @@ Value getnetworkhashps(const Array& params, bool fHelp)
 }
 
 #ifdef ENABLE_WALLET
-Value getgenerate(const Array& params, bool fHelp)
+UniValue getgenerate(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
         throw runtime_error(
@@ -116,7 +114,7 @@ Value getgenerate(const Array& params, bool fHelp)
 }
 
 
-Value setgenerate(const Array& params, bool fHelp)
+UniValue setgenerate(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
@@ -203,12 +201,12 @@ Value setgenerate(const Array& params, bool fHelp)
         GenerateBitcoins(fGenerate, pwalletMain, nGenProcLimit);
     }
 
-    return Value::null;
+    return NullUniValue;
 }
 #endif
 
 
-Value getmininginfo(const Array& params, bool fHelp)
+UniValue getmininginfo(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)
         throw runtime_error(
@@ -235,7 +233,7 @@ Value getmininginfo(const Array& params, bool fHelp)
 
     LOCK(cs_main);
 
-    Object obj;
+    UniValue obj(UniValue::VOBJ);
     obj.push_back(Pair("blocks",           (int)chainActive.Height()));
     obj.push_back(Pair("currentblocksize", (uint64_t)nLastBlockSize));
     obj.push_back(Pair("currentblocktx",   (uint64_t)nLastBlockTx));
@@ -254,7 +252,7 @@ Value getmininginfo(const Array& params, bool fHelp)
 
 
 // NOTE: Unlike wallet RPC (which use BTC values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
-Value prioritisetransaction(const Array& params, bool fHelp)
+UniValue prioritisetransaction(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 3)
         throw runtime_error(
@@ -286,10 +284,10 @@ Value prioritisetransaction(const Array& params, bool fHelp)
 
 
 // NOTE: Assumes a conclusive result; if result is inconclusive, it must be handled by caller
-static Value BIP22ValidationResult(const CValidationState& state)
+static UniValue BIP22ValidationResult(const CValidationState& state)
 {
     if (state.IsValid())
-        return Value::null;
+        return NullUniValue;
 
     std::string strRejectReason = state.GetRejectReason();
     if (state.IsError())
@@ -304,7 +302,7 @@ static Value BIP22ValidationResult(const CValidationState& state)
     return "valid?";
 }
 
-Value getblocktemplate(const Array& params, bool fHelp)
+UniValue getblocktemplate(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
         throw runtime_error(
@@ -369,14 +367,14 @@ Value getblocktemplate(const Array& params, bool fHelp)
     LOCK(cs_main);
 
     std::string strMode = "template";
-    Value lpval = Value::null;
+    UniValue lpval = NullUniValue;
     if (params.size() > 0)
     {
-        const Object& oparam = params[0].get_obj();
-        const Value& modeval = find_value(oparam, "mode");
-        if (modeval.type() == str_type)
+        const UniValue& oparam = params[0].get_obj();
+        const UniValue& modeval = find_value(oparam, "mode");
+        if (modeval.isStr())
             strMode = modeval.get_str();
-        else if (modeval.type() == null_type)
+        else if (modeval.isNull())
         {
             /* Do nothing */
         }
@@ -386,8 +384,8 @@ Value getblocktemplate(const Array& params, bool fHelp)
 
         if (strMode == "proposal")
         {
-            const Value& dataval = find_value(oparam, "data");
-            if (dataval.type() != str_type)
+            const UniValue& dataval = find_value(oparam, "data");
+            if (dataval.isStr())
                 throw JSONRPCError(RPC_TYPE_ERROR, "Missing data String key for proposal");
 
             CBlock block;
@@ -426,14 +424,14 @@ Value getblocktemplate(const Array& params, bool fHelp)
 
     static unsigned int nTransactionsUpdatedLast;
 
-    if (lpval.type() != null_type)
+    if (!lpval.isNull())
     {
         // Wait to respond until either the best block changes, OR a minute has passed and there are more transactions
         uint256 hashWatchedChain;
         boost::system_time checktxtime;
         unsigned int nTransactionsUpdatedLastLP;
 
-        if (lpval.type() == str_type)
+        if (lpval.isStr())
         {
             // Format: <hashBestChain><nTransactionsUpdatedLast>
             std::string lpstr = lpval.get_str();
@@ -507,9 +505,9 @@ Value getblocktemplate(const Array& params, bool fHelp)
     UpdateTime(pblock, pindexPrev);
     pblock->nNonce = 0;
 
-    static const Array aCaps = boost::assign::list_of("proposal");
+    UniValue aCaps(UniValue::VARR); aCaps.push_back("proposal");
 
-    Array transactions;
+    UniValue transactions(UniValue::VARR);
     map<uint256, int64_t> setTxIndex;
     int i = 0;
     BOOST_FOREACH (CTransaction& tx, pblock->vtx)
@@ -520,13 +518,13 @@ Value getblocktemplate(const Array& params, bool fHelp)
         if (tx.IsCoinBase())
             continue;
 
-        Object entry;
+        UniValue entry(UniValue::VOBJ);
 
         entry.push_back(Pair("data", EncodeHexTx(tx)));
 
         entry.push_back(Pair("hash", txHash.GetHex()));
 
-        Array deps;
+        UniValue deps(UniValue::VARR);
         BOOST_FOREACH (const CTxIn &in, tx.vin)
         {
             if (setTxIndex.count(in.prevout.hash))
@@ -541,12 +539,12 @@ Value getblocktemplate(const Array& params, bool fHelp)
         transactions.push_back(entry);
     }
 
-    Object aux;
+    UniValue aux(UniValue::VOBJ);
     aux.push_back(Pair("flags", HexStr(COINBASE_FLAGS.begin(), COINBASE_FLAGS.end())));
 
     uint256 hashTarget = uint256().SetCompact(pblock->nBits);
 
-    static Array aMutable;
+    static UniValue aMutable(UniValue::VARR);
     if (aMutable.empty())
     {
         aMutable.push_back("time");
@@ -554,7 +552,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
         aMutable.push_back("prevblock");
     }
 
-    Object result;
+    UniValue result(UniValue::VOBJ);
     result.push_back(Pair("capabilities", aCaps));
     result.push_back(Pair("version", pblock->nVersion));
     result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
@@ -593,7 +591,7 @@ protected:
     };
 };
 
-Value submitblock(const Array& params, bool fHelp)
+UniValue submitblock(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 2)
         throw runtime_error(
@@ -649,7 +647,7 @@ Value submitblock(const Array& params, bool fHelp)
     return BIP22ValidationResult(state);
 }
 
-Value estimatefee(const Array& params, bool fHelp)
+UniValue estimatefee(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
@@ -668,7 +666,7 @@ Value estimatefee(const Array& params, bool fHelp)
             + HelpExampleCli("estimatefee", "6")
             );
 
-    RPCTypeCheck(params, boost::assign::list_of(int_type));
+    RPCTypeCheck(params, boost::assign::list_of(UniValue::VNUM));
 
     int nBlocks = params[0].get_int();
     if (nBlocks < 1)
@@ -681,7 +679,7 @@ Value estimatefee(const Array& params, bool fHelp)
     return ValueFromAmount(feeRate.GetFeePerK());
 }
 
-Value estimatepriority(const Array& params, bool fHelp)
+UniValue estimatepriority(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
@@ -700,7 +698,7 @@ Value estimatepriority(const Array& params, bool fHelp)
             + HelpExampleCli("estimatepriority", "6")
             );
 
-    RPCTypeCheck(params, boost::assign::list_of(int_type));
+    RPCTypeCheck(params, boost::assign::list_of(UniValue::VNUM));
 
     int nBlocks = params[0].get_int();
     if (nBlocks < 1)
@@ -719,7 +717,7 @@ Value estimatepriority(const Array& params, bool fHelp)
 static std::map<uint256, CBlock*> mapNewBlock;
 static std::vector<CBlockTemplate*> vNewBlockTemplate;
 
-static 
+static
 void AuxMiningCheck()
 {
     if (vNodes.empty())
@@ -731,8 +729,8 @@ void AuxMiningCheck()
     static CReserveKey reservekey(pwalletMain);
 }
 
-static 
-Value _CreateAuxBlock(const CScript& scriptPubKey)
+static
+UniValue _CreateAuxBlock(const CScript& scriptPubKey)
 {
     AuxMiningCheck();
 
@@ -796,7 +794,7 @@ Value _CreateAuxBlock(const CScript& scriptPubKey)
     uint256 target;
     target.SetCompact(pblock->nBits);
 
-    Object result;
+    UniValue result(UniValue::VOBJ);
     result.push_back(Pair("hash", pblock->GetHash().GetHex()));
     result.push_back(Pair("chainid", pblock->GetChainID()));
     result.push_back(Pair("previousblockhash", pblock->hashPrevBlock.GetHex()));
@@ -809,7 +807,7 @@ Value _CreateAuxBlock(const CScript& scriptPubKey)
 }
 
 static
-Value _SumbitAuxBlock(const std::string& hashHex, const std::string& auxpowHex)
+UniValue _SumbitAuxBlock(const std::string& hashHex, const std::string& auxpowHex)
 {
     AuxMiningCheck();
 
@@ -836,7 +834,7 @@ Value _SumbitAuxBlock(const std::string& hashHex, const std::string& auxpowHex)
             return "duplicate-invalid";
     }
 
-    CValidationState state; 
+    CValidationState state;
     submitblock_StateCatcher sc(pblock->GetHash());
     RegisterValidationInterface(&sc);
 
@@ -854,11 +852,12 @@ Value _SumbitAuxBlock(const std::string& hashHex, const std::string& auxpowHex)
             return "inconclusive";
         state = sc.state;
     }
-    Value result = BIP22ValidationResult(state);
-    return result.is_null() ? true : result;
+    UniValue result(UniValue::VOBJ);
+    result = BIP22ValidationResult(state);
+    return result.isNull() ? true : result;
 }
 
-Value getauxblock(const Array& params, bool fHelp)
+UniValue getauxblock(const UniValue& params, bool fHelp)
 {
     if (fHelp || (params.size() != 0 && params.size() != 2))
         throw runtime_error(
@@ -881,11 +880,11 @@ Value getauxblock(const Array& params, bool fHelp)
        since ProcessNewBlock below locks it instead.  */
     assert(params.size() == 2);
 
-    return  _SumbitAuxBlock(params[0].get_str(), 
+    return  _SumbitAuxBlock(params[0].get_str(),
                             params[1].get_str());
 }
 
-Value createauxblock(const Array& params, bool fHelp)
+UniValue createauxblock(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw std::runtime_error(
@@ -918,7 +917,7 @@ Value createauxblock(const Array& params, bool fHelp)
     return _CreateAuxBlock(scriptPubKey);
 }
 
-Value submitauxblock(const Array& params, bool fHelp)
+UniValue submitauxblock(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 2)
         throw std::runtime_error(
@@ -934,6 +933,6 @@ Value submitauxblock(const Array& params, bool fHelp)
             + HelpExampleRpc("submitauxblock", "")
             );
 
-    return _SumbitAuxBlock(params[0].get_str(), 
+    return _SumbitAuxBlock(params[0].get_str(),
                            params[1].get_str());
 }
