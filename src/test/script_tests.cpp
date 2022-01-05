@@ -15,7 +15,7 @@
 #include "util.h"
 
 #if defined(HAVE_CONSENSUS_LIB)
-#include "script/bitcoinconsensus.h"
+#include "script/unobtaniumconsensus.h"
 #endif
 
 #include <fstream>
