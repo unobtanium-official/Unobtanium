@@ -305,7 +305,9 @@ BOOST_AUTO_TEST_CASE(univalue_readwrite)
     BOOST_CHECK_EQUAL(obj.size(), 3);
 
     BOOST_CHECK(obj["key1"].isStr());
-    BOOST_CHECK_EQUAL(obj["key1"].getValStr(), "str");
+    std::string correctValue("str");
+    correctValue.push_back('\0');
+    BOOST_CHECK_EQUAL(obj["key1"].getValStr(), correctValue);
     BOOST_CHECK(obj["key2"].isNum());
     BOOST_CHECK_EQUAL(obj["key2"].getValStr(), "800");
     BOOST_CHECK(obj["key3"].isObject());
