@@ -111,7 +111,7 @@ protected:
     bool fTestnetToBeDeprecatedFieldRPC;
 };
 
-/** 
+/**
  * Modifiable parameters interface is used by test cases to adapt the parameters in order
  * to test specific features more easily. Test cases should always restore the previous
  * values after finalization.

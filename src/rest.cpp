@@ -16,8 +16,9 @@
 
 #include <boost/algorithm/string.hpp>
 
+#include "univalue/univalue.h"
+
 using namespace std;
-using namespace json_spirit;
 
 enum RetFormat {
     RF_UNDEF,
@@ -43,8 +44,9 @@ public:
     string message;
 };
 
-extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, Object& entry);
-extern Object blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool txDetails = false);
+extern void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry);
+extern UniValue blockToJSON(const CBlock& block, const CBlockIndex* blockindex, bool txDetails = false);
+//extern void ScriptPubKeyToJSON(const CScript& scriptPubKey, UniValue& out, bool fIncludeHex);
 
 static RestErr RESTERR(enum HTTPStatusCode status, string message)
 {
@@ -197,8 +199,8 @@ static bool rest_block(AcceptedConnection* conn,
     }
 
     case RF_JSON: {
-        Object objBlock = blockToJSON(block, pblockindex, showTxDetails);
-        string strJSON = write_string(Value(objBlock), false) + "\n";
+        UniValue objBlock = blockToJSON(block, pblockindex, showTxDetails);
+        string strJSON = objBlock.write() + "\n";
         conn->stream() << HTTPReply(HTTP_OK, strJSON, fRun) << std::flush;
         return true;
     }
@@ -235,13 +237,12 @@ static bool rest_chaininfo(AcceptedConnection* conn,
 {
     vector<string> params;
     const RetFormat rf = ParseDataFormat(params, strReq);
-    
+
     switch (rf) {
     case RF_JSON: {
-        Array rpcParams;
-        Value chainInfoObject = getblockchaininfo(rpcParams, false);
-        
-        string strJSON = write_string(chainInfoObject, false) + "\n";
+        UniValue rpcParams(UniValue::VARR);
+        UniValue chainInfoObject = getblockchaininfo(rpcParams, false);
+        string strJSON = chainInfoObject.write() + "\n";
         conn->stream() << HTTPReply(HTTP_OK, strJSON, fRun) << std::flush;
         return true;
     }
@@ -249,7 +250,7 @@ static bool rest_chaininfo(AcceptedConnection* conn,
         throw RESTERR(HTTP_NOT_FOUND, "output format not found (available: json)");
     }
     }
-    
+
     // not reached
     return true; // continue to process further HTTP reqs on this cxn
 }
@@ -289,9 +290,9 @@ static bool rest_tx(AcceptedConnection* conn,
     }
 
     case RF_JSON: {
-        Object objTx;
+        UniValue objTx(UniValue::VOBJ);
         TxToJSON(tx, hashBlock, objTx);
-        string strJSON = write_string(Value(objTx), false) + "\n";
+        string strJSON = objTx.write() + "\n";
         conn->stream() << HTTPReply(HTTP_OK, strJSON, fRun) << std::flush;
         return true;
     }
