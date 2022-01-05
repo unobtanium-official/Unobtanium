@@ -1,4 +1,4 @@
-Unobtanium Core
+Unobtanium Core v11.6.0
 =====================
 
 Setup
