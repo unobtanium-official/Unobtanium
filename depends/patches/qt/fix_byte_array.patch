@@ -1,0 +1,13 @@
+diff -crB a/src/corelib/tools/qbytearraymatcher.h b/src/corelib/tools/qbytearraymatcher.h
+*** a/qtbase/src/corelib/tools/qbytearraymatcher.h	2019-04-08 23:52:04.000000000 -0500
+--- b/qtbase/src/corelib/tools/qbytearraymatcher.h	2024-02-18 16:24:33.439353876 -0600
+***************
+*** 41,46 ****
+--- 41,47 ----
+  #define QBYTEARRAYMATCHER_H
+  
+  #include <QtCore/qbytearray.h>
++ #include <limits>
+  
+  QT_BEGIN_NAMESPACE
+  
