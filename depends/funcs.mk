@@ -190,7 +190,7 @@ $($(1)_postprocessed): | $($(1)_staged)
 	$(AT)touch $$@
 $($(1)_cached): | $($(1)_dependencies) $($(1)_postprocessed)
 	$(AT)echo Caching $(1)...
-	$(AT)cd $$($(1)_staging_dir)/$(host_prefix); find . | sort | tar --no-recursion -czf $$($(1)_staging_dir)/$$(@F) -T -
+	$(AT)cd $$($(1)_staging_dir); find . | sort | tar --no-recursion -czf $$($(1)_staging_dir)/$$(@F) -T -
 	$(AT)mkdir -p $$(@D)
 	$(AT)rm -rf $$(@D) && mkdir -p $$(@D)
 	$(AT)mv $$($(1)_staging_dir)/$$(@F) $$(@)

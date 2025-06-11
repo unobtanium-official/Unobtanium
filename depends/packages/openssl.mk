@@ -1,14 +1,15 @@
 package=openssl
-$(package)_version=1.0.1k
+$(package)_version=3.0.16
 $(package)_download_path=https://www.openssl.org/source
 $(package)_file_name=$(package)-$($(package)_version).tar.gz
-$(package)_sha256_hash=8f9faeaebad088e772f4ef5e38252d472be4d878c6b3a2718c10a4fcebe7a41c
+$(package)_sha256_hash=57e03c50feab5d31b152af2b764f10379aecd8ee92f16c985983ce4a99f7ef86
 
 define $(package)_set_vars
 $(package)_config_env=AR="$($(package)_ar)" RANLIB="$($(package)_ranlib)" CC="$($(package)_cc)"
-$(package)_config_opts=--prefix=$(host_prefix) --openssldir=$(host_prefix)/etc/openssl no-zlib no-shared no-dso
-$(package)_config_opts+=no-krb5 no-camellia no-capieng no-cast no-cms no-dtls1 no-gost no-gmp no-heartbeats no-idea no-jpake no-md2
-$(package)_config_opts+=no-mdc2 no-rc5 no-rdrand no-rfc3779 no-rsax no-sctp no-seed no-sha0 no-static_engine no-whirlpool no-rc2 no-rc4 no-ssl2 no-ssl3
+$(package)_config_opts=--prefix=$(host_prefix) --openssldir=$(host_prefix)/etc/openssl no-zlib no-shared no-dso -DDATE='\"2024-01-01\"'
+$(package)_config_opts+=no-camellia no-capieng no-cast no-cms no-dtls1 no-gost no-idea no-md2
+$(package)_config_opts+=no-mdc2 no-rc5 no-rdrand no-rfc3779 no-sctp no-seed no-whirlpool no-rc2 no-rc4 no-ssl3
+$(package)_config_opts+=no-legacy
 $(package)_config_opts+=$($(package)_cflags) $($(package)_cppflags)
 $(package)_config_opts_linux=-fPIC -Wa,--noexecstack
 $(package)_config_opts_x86_64_linux=linux-x86_64
@@ -23,8 +24,7 @@ $(package)_config_opts_i686_mingw32=mingw
 endef
 
 define $(package)_preprocess_cmds
-  sed -i.old "/define DATE/d" util/mkbuildinf.pl && \
-  sed -i.old "s|engines apps test|engines|" Makefile.org
+  sed -i.old "/define DATE/d" util/mkbuildinf.pl
 endef
 
 define $(package)_config_cmds
@@ -40,5 +40,5 @@ define $(package)_stage_cmds
 endef
 
 define $(package)_postprocess_cmds
-  rm -rf share bin etc
+  rm -rf share/man bin etc/ssl
 endef
