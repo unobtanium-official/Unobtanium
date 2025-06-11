@@ -54,12 +54,11 @@ public:
 };
 
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
-
 //C++ wrapper for BIGNUM (OpenSSL 1.0 bignum)
 class CBigNum : public BIGNUM
 {
-
-#else
+#elif OPENSSL_VERSION_NUMBER < 0x30000000L
+//C++ wrapper for BIGNUM (OpenSSL 1.1 bignum)
 class CBigNum
 {
 protected:
@@ -69,7 +68,17 @@ protected:
     {
         bn = BN_new();
     }
+#else
+//C++ wrapper for BIGNUM (OpenSSL 3.0+ bignum)
+class CBigNum
+{
+protected:
+    BIGNUM *bn;
 
+    void CBigNum_init()
+    {
+        bn = BN_new();
+    }
 #endif
 
 public:

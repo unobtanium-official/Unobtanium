@@ -74,7 +74,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
         ( 630000,   uint256S("0xf16ef330597e3e6ba6f3e425400433f5bbc8e5eab7ff77744c29a24d6c1a632d"))
 	( 1670000,  uint256S("0xa7f563020cf3965a9e2636df19841fc0327dfd2591856a8850748073c864141e"))
         ;
-static const Checkpoints::CCheckpointData data = {
+static const Checkpoints::CCheckpointData checkpointData = {
         &mapCheckpoints,
         1436478823, // * UNIX timestamp of last checkpoint block
         793171,     // * total number of transactions between genesis and last checkpoint
@@ -88,7 +88,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
         //( 10000, uint256S("0x0000000d0ad0fcd14d0642755a1ebdabc418dba2bbbb6c9d48f9f5304dd99dff"))
         //( 25000, uint256S("0x00000008a54b0d3e8bcd84b131253009422104de8ecc16ac9fe53fa1a39c2fe4"))
         ;
-static const Checkpoints::CCheckpointData dataTestnet = {
+static const Checkpoints::CCheckpointData checkpointDataTestnet = {
         &mapCheckpointsTestnet,
         1531487000,  //1436994107,
         0, //25044,
@@ -99,7 +99,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
         boost::assign::map_list_of
         ( 0, uint256S("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"))
         ;
-static const Checkpoints::CCheckpointData dataRegtest = {
+static const Checkpoints::CCheckpointData checkpointDataRegtest = {
         &mapCheckpointsRegtest,
         0,
         0,
@@ -174,7 +174,7 @@ public:
 
     const Checkpoints::CCheckpointData& Checkpoints() const 
     {
-        return data;
+        return checkpointData;
     }
 };
 static CMainParams mainParams;
@@ -250,7 +250,7 @@ public:
     }
     const Checkpoints::CCheckpointData& Checkpoints() const 
     {
-        return dataTestnet;
+        return checkpointDataTestnet;
     }
 };
 static CTestNetParams testNetParams;
@@ -298,7 +298,7 @@ public:
     }
     const Checkpoints::CCheckpointData& Checkpoints() const 
     {
-        return dataRegtest;
+        return checkpointDataRegtest;
     }
 };
 static CRegTestParams regTestParams;
@@ -324,7 +324,7 @@ public:
     const Checkpoints::CCheckpointData& Checkpoints() const 
     {
         // UnitTest share the same checkpoints as MAIN
-        return data;
+        return checkpointData;
     }
 
     //! Published setters to allow changing values in unit test cases
