@@ -22,6 +22,10 @@
 #include <QDebug>
 #include <QTimer>
 
+#include <boost/bind.hpp>
+
+using namespace boost::placeholders;
+
 static const int64_t nClientStartupTime = GetTime();
 
 ClientModel::ClientModel(OptionsModel *optionsModel, QObject *parent) :
