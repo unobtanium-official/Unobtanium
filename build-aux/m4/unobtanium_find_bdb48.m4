@@ -28,8 +28,8 @@ AC_DEFUN([UNOBTANIUM_FIND_BDB48],[
     AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
       #include <${searchpath}db_cxx.h>
     ]],[[
-      #if !(DB_VERSION_MAJOR == 4 && DB_VERSION_MINOR == 8)
-        #error "failed to find bdb 4.8"
+      #if !((DB_VERSION_MAJOR == 4 && DB_VERSION_MINOR >= 8) || DB_VERSION_MAJOR > 4)
+        #error "failed to find bdb 4.8+"
       #endif
     ]])],[
       bdb48path="${searchpath}"
@@ -53,7 +53,7 @@ AC_DEFUN([UNOBTANIUM_FIND_BDB48],[
   AC_SUBST(BDB_CPPFLAGS)
   
   # TODO: Ideally this could find the library version and make sure it matches the headers being used
-  for searchlib in db_cxx-4.8 db_cxx; do
+  for searchlib in db_cxx-4.8 db_cxx-5.3 db_cxx-5.2 db_cxx-5.1 db_cxx-5.0 db_cxx; do
     AC_CHECK_LIB([$searchlib],[main],[
       BDB_LIBS="-l${searchlib}"
       break
