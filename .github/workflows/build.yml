@@ -23,7 +23,7 @@ jobs:
             artifact_name: unobtanium-macos
           - os: windows-latest
             host: x86_64-w64-mingw32
-            packages: nsis gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 binutils-mingw-w64-x86-64 mingw-w64-dev
+            packages: nsis mingw
             goal: deploy
             artifact_name: unobtanium-windows
 
