@@ -1,0 +1,66 @@
+name: Build Unobtanium
+
+on:
+  push:
+    branches: [ "v0.12.0" ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            host: x86_64-unknown-linux-gnu
+            packages: build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libdb4.8-dev libdb4.8++-dev libminiupnpc-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
+            goal: install
+            artifact_name: unobtanium-linux
+          - os: macos-latest
+            host: x86_64-apple-darwin
+            packages: autoconf automake libtool boost miniupnpc openssl pkg-config protobuf qt5
+            goal: install
+            artifact_name: unobtanium-macos
+          - os: windows-latest
+            host: x86_64-w64-mingw32
+            packages: nsis gcc-mingw-w64-x86-64 g++-mingw-w64-x86-64 binutils-mingw-w64-x86-64 mingw-w64-dev
+            goal: deploy
+            artifact_name: unobtanium-windows
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo add-apt-repository ppa:bitcoin/bitcoin
+        sudo apt-get update
+        sudo apt-get install -y ${{ matrix.packages }}
+
+    - name: Install dependencies (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install ${{ matrix.packages }}
+        brew install https://raw.githubusercontent.com/homebrew/homebrew-core/master/Formula/berkeley-db@4.rb --without-java
+        export LDFLAGS="-L/usr/local/opt/berkeley-db@4/lib"
+        export CPPFLAGS="-I/usr/local/opt/berkeley-db@4/include"
+
+    - name: Install dependencies (Windows)
+      if: matrix.os == 'windows-latest'
+      run: choco install ${{ matrix.packages }}
+
+    - name: Build
+      run: |
+        ./autogen.sh
+        ./configure --prefix=`pwd`/depends/${{ matrix.host }} --with-gui=qt5
+        make ${{ matrix.goal }} -j$(nproc)
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: |
+          ${{ matrix.os == 'windows-latest' && 'unobtanium-*-win64-setup.exe' || '' }}
+          ${{ matrix.os == 'macos-latest' && 'Unobtanium-Qt.dmg' || '' }}
+          ${{ matrix.os == 'ubuntu-latest' && 'src/unobtaniumd' || '' }}
+          ${{ matrix.os == 'ubuntu-latest' && 'src/qt/unobtanium-qt' || '' }}
