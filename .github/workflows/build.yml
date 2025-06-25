@@ -1,67 +1,291 @@
-name: Build Unobtanium
+name: Continuous Integration
 
 on:
   push:
-    branches: [ "v0.12.0" ]
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    paths-ignore:
+      - 'doc/**'
+      - 'contrib/**'
+      - '**/*.md'
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.name }}
+
+    env:
+      MAKEJOBS: "-j3"
+      CHECK_DOC: "0"
+      CCACHE_SIZE: "100M"
+      CCACHE_TEMPDIR: /tmp/.ccache-temp
+      CCACHE_COMPRESS: "1"
+      PYTHON_DEBUG: "1"
+      CACHE_NONCE: "1"
+      WINEDEBUG: fixme-all
+      WINEPREFIX: /tmp/wineprefix/
+      SDK_URL: https://depends.dogecoincore.org
+
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, macos-latest, windows-latest]
+        name:
+          - aarch64-linux
+          - aarch64-linux-experimental
+          - armhf-linux
+          - i686-linux
+          - i686-win
+          - x86_64-linux-dbg
+          - x86_64-linux-nowallet
+          - x86_64-macos
+          - x86_64-win
+          - x86_64-win-experimental
+          - x86_64-linux-experimental
         include:
-          - os: ubuntu-22.04
+          - name: i686-linux
+            host: i686-pc-linux-gnu
+            container: ubuntu:20.04
+            packages: g++-multilib bc python3-zmq
+            run-bench: false
+            check-security: true
+            check-symbols: true
+            dep-opts: "NO_QT=1"
+            config-opts: "--enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
+            goal: install
+          - name: armhf-linux
+            host: arm-linux-gnueabihf
+            container: ubuntu:20.04
+            packages: g++-arm-linux-gnueabihf qemu-user-static qemu-user
+            run-bench: false
+            check-security: true
+            check-symbols: true
+            dep-opts: "NO_QT=1"
+            config-opts: "--enable-glibc-back-compat LDFLAGS=-static-libstdc++"
+            goal: install
+          - name: aarch64-linux-experimental
+            host: aarch64-linux-gnu
+            container: ubuntu:20.04
+            packages: g++-aarch64-linux-gnu qemu-user-static qemu-user
+            run-bench: false
+            check-security: true
+            check-symbols: false
+            dep-opts: "NO_QT=1"
+            config-opts: "--enable-experimental --with-armv8-crypto --with-armv82-crypto --enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++ --enable-c++14"
+            goal: install
+          - name: aarch64-linux
+            host: aarch64-linux-gnu
+            container: ubuntu:20.04
+            packages: g++-aarch64-linux-gnu qemu-user-static qemu-user
+            run-bench: false
+            check-security: true
+            check-symbols: true
+            dep-opts: "NO_QT=1"
+            config-opts: "--enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
+            goal: install
+          - name: x86_64-linux-nowallet
             host: x86_64-unknown-linux-gnu
-            packages: build-essential libtool autotools-dev autoconf pkg-config libssl-dev libboost-all-dev libdb5.3-dev libdb5.3++-dev libminiupnpc-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
+            container: ubuntu:20.04
+            packages: python3
+            run-bench: false
+            check-security: true
+            check-symbols: true
+            dep-opts: "NO_WALLET=1"
+            config-opts: "--with-gui=qt5 --enable-glibc-back-compat --disable-wallet LDFLAGS=-static-libstdc++"
             goal: install
-            artifact_name: unobtanium-linux
-          - os: macos-latest
-            host: x86_64-apple-darwin
-            packages: autoconf automake libtool boost miniupnpc openssl pkg-config protobuf berkeley-db qt5
+          - name: x86_64-linux-dbg
+            host: x86_64-unknown-linux-gnu
+            container: ubuntu:20.04
+            packages: bc python3-zmq
+            run-bench: false
+            check-security: true
+            check-symbols: false
+            dep-opts: "DEBUG=1"
+            config-opts: "--with-gui=qt5 --enable-zmq --enable-glibc-back-compat CPPFLAGS=-DDEBUG_LOCKORDER"
             goal: install
-            artifact_name: unobtanium-macos
-          - os: windows-latest
+          - name: i686-win
+            host: i686-w64-mingw32
+            container: ubuntu:20.04
+            container-options: --privileged
+            packages: python3 nsis g++-mingw-w64-i686 wine32 bc wine-binfmt binfmt-support
+            preinstall: |
+              dpkg --add-architecture i386
+            postinstall: |
+              update-alternatives --set i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-posix
+              update-alternatives --set i686-w64-mingw32-g++  /usr/bin/i686-w64-mingw32-g++-posix
+              update-binfmts --import /usr/share/binfmts/wine
+              update-binfmts --enable
+              update-binfmts --display
+            run-bench: false
+            check-security: true
+            check-symbols: true
+            dep-opts: ""
+            config-opts: "--enable-gui=qt5"
+            goal: install
+          - name: x86_64-win
             host: x86_64-w64-mingw32
-            packages: nsis mingw
+            container: ubuntu:20.04
+            container-options: --privileged
+            packages: python3 nsis g++-mingw-w64-x86-64 wine64 bc wine-binfmt
+            postinstall: |
+              update-alternatives --set x86_64-w64-mingw32-gcc  /usr/bin/x86_64-w64-mingw32-gcc-posix
+              update-alternatives --set x86_64-w64-mingw32-g++  /usr/bin/x86_64-w64-mingw32-g++-posix
+              update-binfmts --import /usr/share/binfmts/wine
+              update-binfmts --enable
+              update-binfmts --display
+            run-bench: false
+            check-security: true
+            check-symbols: true
+            dep-opts: ""
+            config-opts: "--enable-gui=qt5"
+            goal: install
+          - name: x86_64-win-experimental
+            host: x86_64-w64-mingw32
+            container: ubuntu:20.04
+            container-options: --privileged
+            packages: python3 nsis g++-mingw-w64-x86-64 wine64 bc wine-binfmt
+            postinstall: |
+              update-alternatives --set x86_64-w64-mingw32-gcc  /usr/bin/x86_64-w64-mingw32-gcc-posix
+              update-alternatives --set x86_64-w64-mingw32-g++  /usr/bin/x86_64-w64-mingw32-g++-posix
+              update-binfmts --import /usr/share/binfmts/wine
+              update-binfmts --enable
+              update-binfmts --display
+            run-bench: false
+            check-security: true
+            check-symbols: false
+            dep-opts: "AVX2=1 MINGW=1"
+            config-opts: " --with-intel-avx2 --with-gui=qt5 --enable-c++14"
+            goal: install
+          - name: x86_64-macos
+            host: x86_64-apple-darwin11
+            container: ubuntu:20.04
+            packages: cmake imagemagick libcap-dev librsvg2-bin libz-dev libbz2-dev libtiff-tools libtinfo5 xorriso
+            run-bench: false
+            check-security: true
+            check-symbols: false
+            dep-opts: ""
+            config-opts: "--with-gui=qt5 --disable-tests"
             goal: deploy
-            artifact_name: unobtanium-windows
+            sdk: 10.11
+            sdk-shasum: "bec9d089ebf2e2dd59b1a811a38ec78ebd5da18cbbcd6ab39d1e59f64ac5033f"
+          - name: x86_64-linux-experimental
+            host: x86_64-linux-gnu
+            container: ubuntu:20.04
+            packages: bc python3-zmq
+            run-bench: false
+            dep-opts: "AVX2=1"
+            config-opts: " --with-intel-avx2 --with-gui=qt5 --enable-zmq --enable-glibc-back-compat --enable-reduce-exports --enable-c++14"
+            goal: install
+
+    runs-on: ubuntu-24.04
+    container:
+      image: ${{ matrix.container }}
+      options: ${{ matrix.container-options == '' && '-e UNO' || matrix.container-options }}
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Configure container
+        run: |
+          ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime
+          echo Etc/UTC > /etc/timezone
+          mkdir -p $WINEPREFIX
+          uname -a
 
-    - name: Install dependencies (Linux)
-      if: matrix.os == 'ubuntu-22.04'
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo apt-get update
-        sudo apt-get install -yq ${{ matrix.packages }}
+      - name: Pre install
+        if: ${{ matrix.preinstall }}
+        run: ${{ matrix.preinstall }}
 
-    - name: Install dependencies (macOS)
-      if: matrix.os == 'macos-latest'
-      run: |
-        brew install ${{ matrix.packages }}
-        export LDFLAGS="-L$(brew --prefix berkeley-db)/lib"
-        export CPPFLAGS="-I$(brew --prefix berkeley-db)/include"
+      - name: Install packages
+        run: |
+          apt-get update
+          apt-get install -y build-essential libtool autotools-dev automake \
+               pkg-config bsdmainutils curl ca-certificates ccache rsync git \
+               procps bison python3 python3-pip python3-setuptools python3-wheel
+          apt-get install -y ${{ matrix.packages }}
+          python3 -m pip install setuptools==70.3.0 --upgrade
+          python3 -m pip install lief
 
-    - name: Install dependencies (Windows)
-      if: matrix.os == 'windows-latest'
-      run: choco install ${{ matrix.packages }}
+      - name: Post install
+        if: ${{ matrix.postinstall }}
+        run: ${{ matrix.postinstall }}
 
-    - name: Build
-      run: |
-        ./autogen.sh
-        ./configure --prefix=`pwd`/depends/${{ matrix.host }} --with-gui=qt5
-        make ${{ matrix.goal }} -j$(nproc)
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ matrix.artifact_name }}
-        path: |
-          ${{ matrix.os == 'windows-latest' && 'unobtanium-*-win64-setup.exe' || '' }}
-          ${{ matrix.os == 'macos-latest' && 'Unobtanium-Qt.dmg' || '' }}
-          ${{ matrix.os == 'ubuntu-22.04' && 'src/unobtaniumd' || '' }}
-          ${{ matrix.os == 'ubuntu-22.04' && 'src/qt/unobtanium-qt' || '' }}
+      - name: SDK cache
+        if: ${{ matrix.sdk }}
+        uses: actions/cache@v4
+        env:
+          cache-name: sdk
+        with:
+          path: ./depends/sdk-sources
+          key: ${{ matrix.name }}-${{ env.cache-name }}-${{ hashFiles('.github/workflows/build.yml') }}
+
+      - name: Install SDK
+        if: ${{ matrix.sdk }}
+        env:
+          sdk-filename: MacOSX${{ matrix.sdk }}.sdk.tar.gz
+        run: |
+          mkdir -p ./depends/sdk-sources
+          mkdir -p ./depends/SDKs
+          echo "${{ matrix.sdk-shasum }}  depends/sdk-sources/${{ env.sdk-filename }}" | sha256sum -c || \
+          curl --location --fail $SDK_URL/${{ env.sdk-filename }} -o depends/sdk-sources/${{ env.sdk-filename }} &&\
+          echo "${{ matrix.sdk-shasum }}  depends/sdk-sources/${{ env.sdk-filename }}" | sha256sum -c
+          tar -C depends/SDKs -xf depends/sdk-sources/${{ env.sdk-filename }}
+
+      - name: Dependency cache
+        uses: actions/cache@v4
+        env:
+          cache-name: depends
+        with:
+          path: ./depends/built
+          key: ${{ matrix.name }}-${{ env.cache-name }}-${{ hashFiles('depends/packages/*', '.github/workflows/build.yml') }}
+
+      - name: Build depends
+        run: |
+          make $MAKEJOBS -C depends HOST=${{ matrix.host }} ${{ matrix.dep-opts }}
+
+      - name: CCache
+        uses: actions/cache@v4
+        env:
+          cache-name: ccache
+        with:
+          path: ~/.ccache
+          key: ${{ matrix.name }}-${{ env.cache-name }}-${{ hashFiles('**/configure.ac', '.github/workflows/build.yml') }}
+
+      - name: Build Unobtanium
+        run: |
+          depends/${{ matrix.host }}/native/bin/ccache --max-size=$CCACHE_SIZE
+          ./autogen.sh
+          ./configure --prefix=`pwd`/depends/${{ matrix.host }} ${{ matrix.config-opts }} --enable-reduce-exports || ( cat config.log && false)
+          make $MAKEJOBS ${{ matrix.goal }} || ( echo "Build failure. Verbose build follows." && make ${{ matrix.goal }} V=1 ; false )
+
+      - name: Run benchmark
+        if: ${{ matrix.run-bench }}
+        run: |
+          src/bench/bench_unobtanium > ${{ matrix.name }}-bench.csv
+          cat ${{ matrix.name }}-bench.csv
+
+      - name: Run tests
+        if: ${{ matrix.test-script }}
+        run: ${{ matrix.test-script }}
+
+      - name: Check security
+        if: ${{ matrix.check-security }}
+        run: make -C src check-security
+
+      - name: Check symbols
+        if: ${{ matrix.check-symbols }}
+        run: make -C src check-symbols
+
+      - name: Cleanup qa artifacts
+        run: |
+          rm -rf qa/cache || true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: unobtanium-${{ github.sha }}-${{ matrix.name }}
+          path: |
+            depends/${{ matrix.host }}/bin/unobtanium*
+            dist/Unobtanium-Qt.app
+            ${{ matrix.name }}-bench.csv
+
