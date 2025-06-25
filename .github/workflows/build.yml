@@ -32,9 +32,11 @@ jobs:
 
     - name: Install dependencies (Linux)
       if: matrix.os == 'ubuntu-22.04'
+      env:
+        DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt-get install -y ${{ matrix.packages }}
+        sudo apt-get install -yq ${{ matrix.packages }}
 
     - name: Install dependencies (macOS)
       if: matrix.os == 'macos-latest'
