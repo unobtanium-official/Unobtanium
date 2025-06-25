@@ -1,0 +1,16 @@
+--- xcb-proto-1.10/xcbgen/xtypes.py.orig
++++ xcb-proto-1.10/xcbgen/xtypes.py
+@@ -1,4 +1,4 @@
+-import imp
++import importlib.util
+ import os
+ import sys
+ 
+@@ -6,7 +6,9 @@ def load_module(name, path):
+     """Load a module from a file path."""
+-    with open(path, 'r') as f:
+-        return imp.load_source(name, path, f)
++    spec = importlib.util.spec_from_file_location(name, path)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module 
