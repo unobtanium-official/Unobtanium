@@ -8,6 +8,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-22.04, macos-latest, windows-latest]
         include:
@@ -18,7 +19,7 @@ jobs:
             artifact_name: unobtanium-linux
           - os: macos-latest
             host: x86_64-apple-darwin
-            packages: autoconf automake libtool boost miniupnpc openssl pkg-config protobuf qt5
+            packages: autoconf automake libtool boost miniupnpc openssl pkg-config protobuf berkeley-db qt5
             goal: install
             artifact_name: unobtanium-macos
           - os: windows-latest
@@ -42,9 +43,8 @@ jobs:
       if: matrix.os == 'macos-latest'
       run: |
         brew install ${{ matrix.packages }}
-        brew install https://raw.githubusercontent.com/homebrew/homebrew-core/master/Formula/berkeley-db@4.rb --without-java
-        export LDFLAGS="-L/usr/local/opt/berkeley-db@4/lib"
-        export CPPFLAGS="-I/usr/local/opt/berkeley-db@4/include"
+        export LDFLAGS="-L$(brew --prefix berkeley-db)/lib"
+        export CPPFLAGS="-I$(brew --prefix berkeley-db)/include"
 
     - name: Install dependencies (Windows)
       if: matrix.os == 'windows-latest'
