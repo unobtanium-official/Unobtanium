@@ -167,7 +167,7 @@ jobs:
           apt-get update
           apt-get install -y build-essential libtool autotools-dev automake \
                pkg-config bsdmainutils curl ca-certificates ccache rsync git \
-               procps bison python3 python3-pip python3-setuptools python3-wheel
+               procps bison python3 python3-pip python3-setuptools python3-wheel wget
           apt-get install -y ${{ matrix.packages }}
           python3 -m pip install setuptools==70.3.0 --upgrade
           python3 -m pip install lief
